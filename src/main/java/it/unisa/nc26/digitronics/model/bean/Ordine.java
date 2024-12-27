@@ -1,6 +1,7 @@
 package it.unisa.nc26.digitronics.model.bean;
 
 import java.time.LocalDate;
+import java.sql.Date;
 
 public class Ordine {
     private int idOrdine;
@@ -13,7 +14,7 @@ public class Ordine {
     private String via;
     private String telefono;
     private String nomeMetodoSpedizione ;
-    private LocalDate dataOrdine;
+    private Date dataOrdine;
 
     public int getIdOrdine() {
         return idOrdine;
@@ -95,11 +96,11 @@ public class Ordine {
         this.nomeMetodoSpedizione = nomeMetodoSpedizione;
     }
 
-    public LocalDate getDataOrdine() {
+    public Date getDataOrdine() {
         return dataOrdine;
     }
 
-    public void setDataOrdine(LocalDate dataOrdine) {
+    public void setDataOrdine(Date dataOrdine) {
         this.dataOrdine = dataOrdine;
     }
 }
