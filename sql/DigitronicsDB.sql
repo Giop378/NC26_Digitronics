@@ -10,7 +10,7 @@ create table categoria (
 create table prodotto(
 	IdProdotto int(5) zerofill auto_increment primary key,
 	nome varchar(255) not null,
-	prezzo int not null,
+	prezzo decimal(10, 2) not null,
 	descrizione text not null,
     immagine text not null,
     vetrina boolean not null,
@@ -45,12 +45,12 @@ create table itemCarrello(
 create table metodospedizione (
 	nome varchar(50) not null primary key,
 	descrizione text not null,
-    costo int not null
+    costo decimal(10, 2) not null
 );
 
 create table ordine  (
 	IdOrdine int(10) zerofill auto_increment primary key,
-    totale int not null,
+    totale decimal(10, 2) not null,
     IdUtente int(10) zerofill,
     cap int(5) zerofill not null,
     numerocivico int not null, 
@@ -67,7 +67,7 @@ create table itemordine(
 	IdItemOrdine int(10) zerofill auto_increment primary key,
     nome varchar(255) not null,
     immagine text not null,
-    prezzo int not null,
+    prezzo decimal (10, 2) not null,
     quantità int not null,
     IdProdotto int(5) zerofill,
     IdOrdine int(10) zerofill not null,
