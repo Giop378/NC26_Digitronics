@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="footer">
-  <p>© 2024 FrostCampania. Tutti i diritti riservati.</p>
+  <p>© 2024 Digitronics. Tutti i diritti riservati.</p>
   <div class="footer-nav">
     <a href="#" aria-label="Informazioni Legali">Informazioni Legali</a>
     <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
