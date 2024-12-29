@@ -1,0 +1,206 @@
+/* Stili per l'header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #6A0DAD; /* Viola scuro */
+    color: #fff;
+    position: relative; /* Assicura che i figli posizionati assolutamente siano relativi a questo contenitore */
+}
+
+.logo-img {
+    padding: 20px;
+    text-decoration: none;
+    transition: filter 0.3s ease;
+    width: 100px;
+    height: 100px;
+}
+
+.logo-img:hover {
+    filter: invert(100%);
+}
+
+.search-container {
+    display: flex;
+    position: relative; /* Importante per il posizionamento corretto della search-results */
+}
+
+.search-bar {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    flex: 1;
+    border-radius: 5px;
+}
+
+.search-container:focus,
+.search-bar:focus{
+    filter: invert(20%);
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-access,
+.icon-cart {
+    padding: 20px;
+    text-decoration: none;
+    transition: filter 0.3s ease;
+}
+
+.icon-img {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%); /* Rende l'icona bianca di default */
+    transition: filter 0.3s ease;
+}
+
+.icon-img:hover {
+    filter: invert(0%); /* Rende l'icona nera al passaggio del mouse */
+}
+
+.nav-items {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 10px 0;
+    background-color: #9A32CD; /* Viola medio */
+    border-radius: 5px;
+}
+
+.nav-items a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.nav-items a:hover {
+    color: #DDA0DD; /* Viola chiaro */
+}
+
+/* Stili per i risultati della ricerca */
+.search-results {
+    position: absolute;
+    top: calc(100% + 10px); /* Posiziona la finestra dei risultati sotto la barra di ricerca */
+    left: 0;
+    width: 100%; /* Larghezza al 100% della barra di ricerca */
+    max-width: 300px; /* Larghezza massima come quella della barra di ricerca */
+    background-color: #E6E6FA; /* Lilla */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #EEE;
+}
+
+.result-item img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.result-item .product-info {
+    flex: 1;
+}
+
+.search-results .no-results-message {
+    color: black; /* Imposta il colore del testo a nero */
+}
+
+.result-item .product-link {
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
+}
+
+.result-item .product-info p {
+    text-decoration: none; /* Rimuove la sottolineatura dai paragrafi */
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .logo {
+        order: 1; /*ordine di visualizzazione in un layout Flexbox*/
+    }
+
+    .search-container {
+        order: 2;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        margin: 0 10px;
+    }
+
+    .icon-container {
+        order: 3;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .logo-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .icon-access, .icon-cart {
+        padding: 10px;
+    }
+
+    .icon-img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav-items {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 0;
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    .nav-items a {
+        font-size: 16px;
+    }
+
+    .search-results {
+        max-width: 100%;
+    }
+
+    .result-item img {
+        width: 40px;
+    }
+
+    .result-item {
+        padding: 8px;
+    }
+}
+
+
+
+
+
+
+
+
+

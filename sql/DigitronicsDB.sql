@@ -30,9 +30,6 @@ create table utente(
 
 create table itemCarrello(
 	IdProdotto int(5) zerofill,
-    #nomeProdotto varchar(50) not null,
-	#prezzoProdotto int not null,
-    #immagineProdotto text not null,
     IdUtente int(10) zerofill,
     quantità int not null,
 	primary key(IdProdotto, IdUtente),
@@ -54,8 +51,8 @@ create table ordine  (
     IdUtente int(10) zerofill,
     cap int(5) zerofill not null,
     numerocivico int not null, 
-    nome varchar(50) not null,
-    cognome varchar(50) not null,
+    nome varchar(255) not null,
+    cognome varchar(255) not null,
     via text not null,
     telefono varchar(20),
     nomemetodospedizione varchar(50) not null,
