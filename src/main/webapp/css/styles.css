@@ -1,0 +1,182 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f5f3fa; /* Colore di sfondo viola chiaro */
+    color: #4b0082; /* Colore del testo viola scuro */
+}
+
+.intro,
+.featured-products {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e6e0f8; /* Viola pastello */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1); /* Ombra viola trasparente */
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product {
+    flex: 1 1 calc(25% - 40px);
+    border: 1px solid #b19cd9; /* Viola medio */
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+h2 {
+    text-align: center;
+}
+
+#initial-price {
+    text-decoration: line-through;
+}
+
+.product:hover {
+    box-shadow: 0 4px 10px rgba(75, 0, 130, 0.2);
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #b19cd9;
+    margin-bottom: 10px;
+}
+
+.product h3 {
+    color: #2e0854; /* Viola scurissimo */
+    font-size: 1.2em; /* Mantieni una buona leggibilità */
+    margin: 10px 0;
+    transition: color 0.3s ease; /* Per un effetto di transizione */
+}
+
+.product h3:hover {
+    color: #4b0082; /* Viola scuro al passaggio del mouse */
+}
+
+.intro {
+    text-align: center;
+}
+
+.category-image {
+    text-align: center;
+}
+
+.add-to-cart-button {
+    padding: 10px 20px;
+    background-color: #9370db; /* Viola chiaro */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #4b0082; /* Viola scuro */
+}
+
+.error-container {
+    text-align: center;
+}
+
+.error-container a {
+    text-decoration: none;
+}
+
+.product a {
+    text-decoration: none;
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #9370db;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.pagination button:hover {
+    background-color: #4b0082;
+}
+
+.pagination button:disabled {
+    background-color: #d8bfd8; /* Viola tenue */
+    cursor: not-allowed;
+}
+
+#page-info {
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+
+/* Responsive CSS */
+@media screen and (max-width: 1200px) {
+    .product {
+        flex: 1 1 calc(33.333% - 40px);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .product {
+        flex: 1 1 calc(50% - 40px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .product {
+        flex: 1 1 100%;
+    }
+
+    .category-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .product-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .category-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .add-to-cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quantity-input {
+        margin-bottom: 10px;
+    }
+}
