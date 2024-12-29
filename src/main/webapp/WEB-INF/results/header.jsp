@@ -10,7 +10,7 @@
 <body>
 <div class="header">
   <a href="index.html" class="logo" aria-label="Home">
-    <img src="./images/logo.png" alt="FrostCampania Logo" class="logo-img">
+    <img src="./images/logo.png" alt="Digitronics Logo" class="logo-img">
   </a>
   <div class="search-container">
     <input type="text" placeholder="Cerca i nostri prodotti..." class="search-bar" aria-label="Cerca" aria-labelledby="results">
