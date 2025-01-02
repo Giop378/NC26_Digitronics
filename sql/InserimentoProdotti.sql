@@ -15,7 +15,7 @@ values
 ('Vivo X100 Pro', 1199.99, 'Smartphone Vivo 2024 con sensore fotografico da 1.2 pollici e ricarica wireless.', './images/prodotti/x100pro.png', true, 8, 'Smartphone'),
 ('Nokia XR25', 549.99, 'Smartphone rugged 2024 con resistenza agli urti e batteria a lunga durata.', './images/prodotti/nokiaxr25.png', false, 50, 'Smartphone'),
 ('Honor Magic 6 Pro', 1049.99, 'Smartphone Honor 2024 con design innovativo e fotocamera avanzata.', './images/prodotti/magic6pro.png', true, 22, 'Smartphone'),
-('ZTE Axon 60 Ultra', 849.99, 'Smartphone ZTE 2024 con display AMOLED e fotocamera ad altissima risoluzione.', './images/prodotti/axon60ultra.png', false, 30, 'Smartphone');
+('ZTE Axon 60 Ultra', 849.99, 'Smartphone ZTE 2024 con display AMOLED e fotocamera ad altissima risoluzione.', './images/prodotti/axon60ultra.png', false, 30, 'Smartphone'),
 -- Inserimento di tablet
 ('Tablet XIAOMI Redmi Pad SE 4+128, 128 GB, 11', 179.00, 'Xiaomi Redmi Pad SE 4+128 Graphite Gray, tablet con display FHD+ da 11", Snapdragon 680, 90Hz, 4 altoparlanti Dolby Atmos, batteria 8000mAh, corpo in lega di alluminio', 'src/main/webapp/images/prodotti/Tablet1.jpg', 1, 100, 'Tablet'),
 ('Tablet SAMSUNG Tab A9+ WIFI 8+128GB, 128 GB, 11 ', 229.00, 'Samsung Galaxy Tab A9+  Gray con design in metallo, display fino a 11", 90Hz, 8GB RAM, 128GB espandibili, Dolby Atmos, e sicurezza Samsung Knox.', 'src/main/webapp/images/prodotti/Tablet2.jpg', 1, 90, 'Tablet'),
@@ -47,4 +47,20 @@ values
 ('SMARTWATCH HUAWEI WATCH FIT SE , Nebula Pink', 59.99, 'Huawei Watch FIT SE è uno smartwatch leggero con display AMOLED, GPS integrato, monitoraggio avanzato della salute (frequenza cardiaca, SpO2, stress, ciclo mestruale), miglioramento del sonno e notifiche di chiamate e messaggi.', 'src/main/webapp/images/prodotti/SW12.jpg', 1, 150, 'Smartwatch'),
 ('SMARTWATCH KSIX Titanium, Nero', 65.30, 'Ksix Titanium è uno smartwatch con display AMOLED da 1,43", batteria 300 mAh, impermeabile fino a 1 m, cinturino in silicone e acciaio inox, e peso di 50 g.', 'src/main/webapp/images/prodotti/SW13.jpg', 0, 130, 'Smartwatch'),
 ('SMARTWATCH CELLY TRAINERROUND2BK , NERO', 39.99, 'Celly TrainerRound2 è uno smartwatch multifunzione con display a colori da 1,28" (320x320 px), monitoraggio di salute (frequenza cardiaca, SpO2, pressione sanguigna, sonno), conteggio calorie e passi, notifiche di messaggi e chiamate, e batteria con durata fino a 4 giorni.', 'src/main/webapp/images/prodotti/SW14.jpg', 1, 155, 'Smartwatch'),
-('SMARTWATCH KSIX Urban 4, Nero', 47.21, 'Ksix Urban 4 è uno smartwatch con display IPS da 2,15" (diagonale 5,46 cm), batteria da 270 mAh, impermeabile fino a 1,5 m, e un peso di 50 g.', 'src/main/webapp/images/prodotti/SW15.jpg', 0, 175, 'Smartwatch');
+('SMARTWATCH KSIX Urban 4, Nero', 47.21, 'Ksix Urban 4 è uno smartwatch con display IPS da 2,15" (diagonale 5,46 cm), batteria da 270 mAh, impermeabile fino a 1,5 m, e un peso di 50 g.', 'src/main/webapp/images/prodotti/SW15.jpg', 0, 175, 'Smartwatch'),
+-- Inserimento accessori
+('Cover iPhone 16', 15.99, 'Cover protettiva in silicone resistente per iPhone 16, protegge da urti e graffi.', './images/prodotti/coverIphone16.jpg', TRUE, 100, 'Accessori'),
+('Cover Samsung S24', 15.99, 'Cover elegante e sottile per Samsung S24, garantisce protezione e un design moderno.', './images/prodotti/coverSamsungS24.jpg', TRUE, 200, 'Accessori'),
+('Cover Samsung A50', 13.99, 'Cover flessibile e leggera per Samsung A50, con grip antiscivolo per una presa sicura.', './images/prodotti/coverSamsungA50.jpg', FALSE, 50, 'Accessori'),
+('Cover iPhone 15 Pro', 19.99, 'Cover premium per iPhone 15 Pro, con protezione avanzata per bordi e angoli.', './images/prodotti/coverIphone15Pro.jpg', FALSE, 80, 'Accessori'),
+('Cover Huawei Pura 70 Pro', 19.99, 'Cover progettata per Huawei Pura 70 Pro, resistente a cadute e usura quotidiana.', './images/prodotti/coverHuaweiPura70Pro.jpg', FALSE, 100, 'Accessori'),
+('Power Bank 20,000mAh', 39.99, 'Batteria portatile ad alta capacità con doppia uscita USB-C, ideale per viaggi lunghi.', './images/prodotti/powerBank20mAh.jpg', TRUE, 150, 'Accessori'),
+('Alimentatore USB-C', 24.99, 'Caricatore rapido USB-C da 20W, compatibile con la maggior parte degli smartphone e tablet.', './images/prodotti/alimentatoreUsbC.jpg', TRUE, 120, 'Accessori'),
+('Cavo USB-C', 9.99, 'Cavo USB-C da 1 metro, ideale per ricarica e trasferimento dati ad alta velocità.', './images/prodotti/cavoUsbC.jpg', FALSE, 75, 'Accessori'),
+('Adattatore da USB-C a USB', 9.99, 'Adattatore compatto da USB-C a USB per connettere periferiche standard ai dispositivi USB-C.', './images/prodotti/adattatoreUSBCaUSB.jpg', FALSE, 40, 'Accessori'),
+('Cavo HDMI', 5.99, 'Cavo HDMI da 2 metri per una maggiore flessibilità.', './images/prodotti/cavoHDMI.jpg', FALSE, 30, 'Accessori'),
+('Pellicola protettiva iPhone 16', 19.99, 'Pellicola in vetro per iPhone 16, ultra-resistente e facile da applicare.', './images/prodotti/pellicolaProtettivaIphone15.jpg', TRUE, 200, 'Accessori'),
+('Pellicola protettiva Samsung S24', 14.99, 'Protezione in vetro per Samsung S24, garantisce massima chiarezza e resistenza ai graffi.', './images/prodotti/pellicolaProtettivaSamsungS24.jpg', TRUE, 150, 'Accessori'),
+('Pellicola protettiva Samsung A50', 9.99, 'Pellicola protettiva ultra-sottile in vetro per Samsung A50, resistente agli urti.', './images/prodotti/pellicolaProtettivaSamsungA50.jpg', FALSE, 100, 'Accessori'),
+('Pellicola protettiva iPhone 15 Pro', 19.99, 'Pellicola protettiva di alta qualità per iPhone 15 Pro, assicura protezione contro graffi e impronte.', './images/prodotti/pellicolaProtettivaIphone15Pro.jpg', FALSE, 100, 'Accessori'),
+('Pellicola protettiva Huawei Pura 70 Pro', 14.99, 'Pellicola in vetro per Huawei Pura 70 Pro, facile da applicare e resistente ai graffi.', './images/prodotti/pellicolaProtettivaHuaweiPura70Pro.jpg', FALSE, 50, 'Accessori');
