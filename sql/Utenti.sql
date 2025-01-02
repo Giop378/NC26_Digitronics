@@ -1,0 +1,2 @@
+INSERT INTO digitronics.utente (IdUtente, nome, cognome, email, passwordhash, datadinascita, ruolo) VALUES (0000000001, 'Giovanni ', 'Chierchia', 'giovanni@gmail.com', '85dd344344db4c4ce024b7c00609e96849fa96e3', '2003-11-18', 0);
+INSERT INTO digitronics.utente (IdUtente, nome, cognome, email, passwordhash, datadinascita, ruolo) VALUES (0000000002, 'admin', 'admin', 'admin@gmail.com', 'c165bb234ee4abdc30e8421400629f604f7bf738', '2025-01-01', 1);
