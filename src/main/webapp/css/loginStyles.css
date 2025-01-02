@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f5f3fa; /* Colore di sfondo viola chiaro */
+    color: #4b0082; /* Colore del testo viola scuro */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #e6e0f8; /* Viola pastello */
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1); /* Ombra viola trasparente */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #4b0082; /* Viola scuro */
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #4b0082; /* Viola scuro */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b19cd9; /* Viola medio */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #4b0082; /* Testo viola scuro */
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #9370db; /* Viola chiaro */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.login-button:hover {
+    background-color: #4b0082; /* Viola scuro */
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.register-link {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #4b0082; /* Viola scuro */
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #9370db; /* Viola chiaro */
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #4b0082; /* Viola scuro */
+}
+
+/* Responsive CSS */
+@media screen and (max-width: 480px) {
+    .login-container {
+        padding: 10px;
+    }
+
+    .login-box {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+    .login-button {
+        width: 100%;
+    }
+}

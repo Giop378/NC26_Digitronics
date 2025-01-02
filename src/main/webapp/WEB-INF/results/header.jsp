@@ -18,7 +18,7 @@
   </div>
 
   <div class="icon-container">
-    <a href="user-servlet" class="icon-access" aria-label="Accedi">
+    <a href="autenticazione-servlet?action=login" class="icon-access" aria-label="Accedi">
       <img src="./images/login.png" alt="Accedi" class="icon-img">
     </a>
     <a href="carrello" class="icon-cart" aria-label="Carrello">
