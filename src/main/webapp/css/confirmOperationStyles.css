@@ -1,0 +1,68 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+/* Stile per l'immagine del logo */
+.logo-img {
+    padding: 20px;
+    text-decoration: none; /* Rimuove il sottolineato */
+    transition: filter 0.3s ease; /* Aggiunge una transizione per un cambiamento di filtro fluido */
+    width: 100px; /* Imposta una dimensione appropriata per le icone */
+    height: 100px;
+}
+
+.logo-img:hover {
+    filter: invert(100%); /* Cambia quando il cursore è sopra */
+}
+
+/* Stile per l'header */
+.header-admin {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    padding: 20px 0;
+    background-color: #4b0082;
+    color: #fff;
+}
+
+/* Stile per l'intestazione principale */
+h1 {
+    font-size: 36px;
+    margin: 20px 0;
+}
+
+/* Contenitore per il messaggio di successo */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.message-container h1 {
+    font-size: 24px; /* Dimensione più piccola per il messaggio */
+}
+
+/* Stile per il pulsante */
+button {
+    padding: 20px 30px; /* Aumentata l'altezza dei pulsanti */
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4b0082; /* Colore di sfondo dei pulsanti */
+    color: white; /* Colore del testo dei pulsanti */
+    width: 300px; /* Larghezza fissa per i pulsanti */
+    margin-top: 20px; /* Spazio sopra il pulsante */
+}
+
+button:hover {
+    background-color: darkviolet; /* Colore di sfondo quando il mouse è sopra */
+}

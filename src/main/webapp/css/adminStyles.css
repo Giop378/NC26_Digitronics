@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.logo-img {
+    padding: 20px;
+    text-decoration: none;
+    transition: filter 0.3s ease; /* Aggiungi una transizione per un cambiamento di filtro fluido */
+    width: 100px;
+    height: 100px;
+}
+
+.logo-img:hover {
+    filter: invert(100%)  ;/*cambia quando gli passo il cursore sopra  */
+}
+
+.header-admin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:left;
+    padding: 20px 0;
+    background-color: #4b0082;
+    color: #fff;
+}
+
+
+h1 {
+    margin-bottom: 150px;
+    font-family: "Rage Italic", serif,sans-serif;
+
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap:50px; /* Aumentato lo spazio tra i pulsanti */
+    margin-top: -100px; /* Porta i pulsanti più in alto */
+    margin-bottom: 100px
+}
+
+
+.button-container button {
+    padding: 20px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 300px;
+}
+
+.button-container button:nth-child(1) {
+    background-color: #4b0082;
+    color: white;
+}
+
+.button-container button:nth-child(2) {
+    background-color: #4b0082;
+    color: white;
+}
+
+.button-container button:nth-child(3),
+.button-container button:nth-child(4){
+    background-color: #4b0082;
+    color: white;
+}
+
+.button-container button:nth-child(5) {
+    background-color: red;
+    color: white;
+}
+
+/* Stile quando il mouse è sopra il pulsante */
+.button-container button:hover {
+    background-color: blueviolet;
+    color: white;
+}
