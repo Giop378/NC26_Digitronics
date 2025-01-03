@@ -6,12 +6,20 @@ import it.unisa.nc26.digitronics.model.dao.ProdottoDAO;
 import it.unisa.nc26.digitronics.utils.MyServletException;
 
 public class ModificaProdottoServiceImpl implements ModificaProdottoService{
-    private final CategoriaDAO categoriaDAO;
-    private final ProdottoDAO prodottoDAO;
+    private CategoriaDAO categoriaDAO;
+    private ProdottoDAO prodottoDAO;
 
     public ModificaProdottoServiceImpl() {
         this.categoriaDAO = new CategoriaDAO();
         this.prodottoDAO = new ProdottoDAO();
+    }
+
+    public void setCategoriaDAO(CategoriaDAO categoriaDAO) {
+        this.categoriaDAO = categoriaDAO;
+    }
+
+    public void setProdottoDAO(ProdottoDAO prodottoDAO) {
+        this.prodottoDAO = prodottoDAO;
     }
 
     @Override

@@ -24,7 +24,7 @@
 <h1>Operazione Riuscita</h1>
 <div class="message-container">
     <h1><%=request.getAttribute("successMessage")%></h1>
-    <button onclick="location.href='user-servlet'">Torna all'area utente</button>
+    <button onclick="location.href='autenticazione-servlet'">Torna all'area utente</button>
 </div>
 </body>
 </html>

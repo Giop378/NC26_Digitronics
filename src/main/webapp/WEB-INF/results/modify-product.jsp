@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="header">
-    <a href="user-servlet" class="logo" aria-label="Home">
+    <a href="index.html" class="logo" aria-label="Home">
         <img src="./images/logo.png" alt="Digitronics Logo" class="logo-img">
     </a>
     <div class="spacer"></div>

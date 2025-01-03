@@ -16,6 +16,14 @@ public class CategoriaServiceImpl implements CategoriaService {
         this.categoriaDAO = new CategoriaDAO();
     }
 
+    public void setProdottoDAO(ProdottoDAO prodottoDAO) {
+        this.prodottoDAO = prodottoDAO;
+    }
+
+    public void setCategoriaDAO(CategoriaDAO categoriaDAO) {
+        this.categoriaDAO = categoriaDAO;
+    }
+
     @Override
     public List<Prodotto> getProdottiPerCategoria(String nomeCategoria) {
         return prodottoDAO.doRetrieveByCategory(nomeCategoria);
