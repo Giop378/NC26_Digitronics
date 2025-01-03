@@ -1,0 +1,183 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    height: auto;
+    margin: 0;
+    width: 100%;
+}
+
+/*Parte dell'header*/
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4b0082;
+    width: 100%;
+    color: #fff;
+    position: relative; /* Assicura che i figli posizionati assolutamente siano relativi a questo contenitore */
+}
+
+.logo-img {
+    padding: 20px;
+    text-decoration: none;
+    transition: filter 0.3s ease;/* Transizione per la proprietà 'filter' con durata di 0.3s e funzione di temporizzazione 'ease' */
+    width: 100px;
+    height: 100px;
+}
+
+.logo-img:hover {
+    filter: invert(100%);/* Inverte completamente i colori */
+}
+
+.spacer {
+    width:15%;
+}
+
+.search-container {
+    display: flex;
+    position: relative; /* Importante per il posizionamento corretto della search-results */
+}
+
+.search-bar {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    flex: 1;
+    border-radius: 5px;
+}
+
+.search-container:focus,
+.search-bar:focus{
+    filter: invert(20%);
+}
+
+
+/* Stili per i risultati della ricerca */
+.search-results {
+    position: absolute;
+    top: calc(100% + 10px); /* Posiziona la finestra dei risultati sotto la barra di ricerca */
+    left: 0;
+    width: 100%; /* Larghezza al 100% della barra di ricerca */
+    max-width: 300px; /* Larghezza massima come quella della barra di ricerca */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;/* Z-index alto per far risaltare l'elemento */
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.result-item img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.result-item .product-info {
+    flex: 1;
+}
+
+.search-results .no-results-message {
+    color: black; /* Imposta il colore del testo a nero */
+}
+
+.result-item .product-link {
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
+}
+
+.result-item .product-info p {
+    text-decoration: none; /* Rimuove la sottolineatura dai paragrafi */
+}
+
+/*Intro alla pagina*/
+#intro{
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+/*Stile del form*/
+form {
+
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: left;
+}
+
+label {
+    display: inline;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="checkbox"]{
+    max-width: 100px;
+    padding:50px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+input[type="submit"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4b0082;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10px 20px;
+}
+
+#sconto,
+#quantita {
+    max-width:100px;
+}
+
+input[type="submit"]:hover {
+    background-color: darkviolet;
+}
+
+select {
+    background-color: #fff;
+    color: #555;
+    appearance: none;
+    -webkit-appearance: none;/* Rimuove lo stile predefinito del browser */
+    -moz-appearance: none;/* Rimuove lo stile predefinito del browser(FireFox) */
+}
+
+select:focus {
+    outline: none;
+    border-color: #4b0082;
+}
+
+option {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #555;
+}
