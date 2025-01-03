@@ -29,7 +29,7 @@
         <div class="product-list" id="lista-prodotti">
             <c:forEach var="prodotto" items="${prodottiPerCategoria}">
                 <div class="product">
-                    <a href="prodotto?id=${prodotto.idProdotto}">
+                    <a href="dettagliProdotto?id=${prodotto.idProdotto}">
                         <img src="${prodotto.immagine}" alt="${prodotto.nome}" class="product-img">
                         <h3>${prodotto.nome}</h3>
                     </a>
