@@ -1,0 +1,144 @@
+/* Stili generali */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Stile per il contenitore del prodotto */
+.product-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-details h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #6A0DAD;
+}
+
+.product-description {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.add-to-cart-button {
+    background-color: #6A0DAD;
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-button:hover {
+    background-color: #9A32CD;
+}
+
+/* Stile per le recensioni */
+.reviews {
+    margin-top: 40px;
+}
+
+.reviews h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #6A0DAD;
+}
+
+.add-feedback-button {
+    background-color: #6A0DAD;
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-feedback-button:hover {
+    background-color: #9A32CD;
+}
+
+.feedback-form {
+    margin-top: 20px;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+
+.feedback-form button {
+    background-color: #6A0DAD;
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.review-item {
+    background-color: #FFF;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-item p {
+    margin: 5px 0;
+}
+
+.reviews-list {
+    margin-top: 20px; 
+}

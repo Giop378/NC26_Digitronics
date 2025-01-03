@@ -16,7 +16,7 @@ values
 ('Nokia XR25', 549.99, 'Smartphone rugged 2024 con resistenza agli urti e batteria a lunga durata.', './images/prodotti/nokiaxr25.png', false, 50, 'Smartphone'),
 ('Honor Magic 6 Pro', 1049.99, 'Smartphone Honor 2024 con design innovativo e fotocamera avanzata.', './images/prodotti/magic6pro.png', true, 22, 'Smartphone'),
 ('ZTE Axon 60 Ultra', 849.99, 'Smartphone ZTE 2024 con display AMOLED e fotocamera ad altissima risoluzione.', './images/prodotti/axon60ultra.png', false, 30, 'Smartphone'),
--- Inserimento di tablet
+
 ('Tablet XIAOMI Redmi Pad SE 4+128, 128 GB, 11', 179.00, 'Xiaomi Redmi Pad SE 4+128 Graphite Gray, tablet con display FHD+ da 11", Snapdragon 680, 90Hz, 4 altoparlanti Dolby Atmos, batteria 8000mAh, corpo in lega di alluminio', 'src/main/webapp/images/prodotti/Tablet1.jpg', 1, 100, 'Tablet'),
 ('Tablet SAMSUNG Tab A9+ WIFI 8+128GB, 128 GB, 11 ', 229.00, 'Samsung Galaxy Tab A9+  Gray con design in metallo, display fino a 11", 90Hz, 8GB RAM, 128GB espandibili, Dolby Atmos, e sicurezza Samsung Knox.', 'src/main/webapp/images/prodotti/Tablet2.jpg', 1, 90, 'Tablet'),
 ('Tablet SAMSUNG TAB S9 FE WIFI 6+128, 128 GB, 10,9 ', 379.00, 'Galaxy Tab S9 FE Gray : design elegante, S Pen inclusa, display vividi fino a 12,4, IP68, multitasking avanzato e sinergia con l`ecosistema Galaxy.', 'src/main/webapp/images/prodotti/Tablet3.jpg', 0, 130, 'Tablet'),
