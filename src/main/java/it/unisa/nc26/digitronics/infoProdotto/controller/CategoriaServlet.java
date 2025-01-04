@@ -1,7 +1,7 @@
 package it.unisa.nc26.digitronics.infoProdotto.controller;
 
-import it.unisa.nc26.digitronics.infoProdotto.service.CategoriaService;
-import it.unisa.nc26.digitronics.infoProdotto.service.CategoriaServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Categoria;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.utils.MyServletException;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @WebServlet(name = "CategoriaServlet", value = "/categoria")
 public class CategoriaServlet extends HttpServlet {
-    private CategoriaService categoriaService;
+    private ProdottoService prodottoService;
 
     public CategoriaServlet() {
-        this.categoriaService = new CategoriaServiceImpl();
+        this.prodottoService = new ProdottoServiceImpl();
     }
 
-    public void setCategoryService(CategoriaService categoryService) {
-        this.categoriaService= categoryService;
+    public void setCategoryService(ProdottoService prodottoService) {
+        this.prodottoService= prodottoService;
     }
 
     @Override
@@ -37,13 +37,13 @@ public class CategoriaServlet extends HttpServlet {
         }
 
         // Chiamate al Service
-        Categoria categoriaScelta = categoriaService.getCategoriaPerNome(nomeCategoria);
+        Categoria categoriaScelta = prodottoService.getCategoriaPerNome(nomeCategoria);
         if (categoriaScelta == null) {
             throw new MyServletException("La categoria non è stata trovata");
         }
 
-        List<Prodotto> prodottiPerCategoria = categoriaService.getProdottiPerCategoria(nomeCategoria);
-        List<Categoria> categorie = categoriaService.getAllCategorie();
+        List<Prodotto> prodottiPerCategoria = prodottoService.getProdottiPerCategoria(nomeCategoria);
+        List<Categoria> categorie = prodottoService.getAllCategorie();
 
         // Imposta gli attributi e inoltra la richiesta
         request.setAttribute("prodottiPerCategoria", prodottiPerCategoria);

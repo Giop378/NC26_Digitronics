@@ -55,6 +55,7 @@
 
 </div>
 
+
 <%@ include file="/WEB-INF/results/footer.jsp" %>
 <script src="./script/paging.js"></script>
 </body>

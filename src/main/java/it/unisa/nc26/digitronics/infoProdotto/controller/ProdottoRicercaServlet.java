@@ -1,7 +1,7 @@
 package it.unisa.nc26.digitronics.infoProdotto.controller;
 
-import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoRicercaService;
-import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoRicercaServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @WebServlet("/search")
 public class ProdottoRicercaServlet extends HttpServlet {
-    private ProdottoRicercaService prodottoRicercaService;
+    private ProdottoService prodottoService;
 
     public ProdottoRicercaServlet() {
-        this.prodottoRicercaService = new ProdottoRicercaServiceImpl();
+        this.prodottoService = new ProdottoServiceImpl();
     }
 
-    public void setProductSearchService(ProdottoRicercaService productSearchService) {
-        this.prodottoRicercaService = productSearchService;
+    public void setProductService(ProdottoService prodottoService) {
+        this.prodottoService = prodottoService;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ProdottoRicercaServlet extends HttpServlet {
         // Delegare la ricerca al service
         List<Prodotto> risultati;
         try {
-            risultati = prodottoRicercaService.cercaProdottoPerNome(query);
+            risultati = prodottoService.cercaProdottoPerNome(query);
         } catch (Exception e) {
             throw new ServletException("Errore nella ricerca dei prodotti", e);
         }
