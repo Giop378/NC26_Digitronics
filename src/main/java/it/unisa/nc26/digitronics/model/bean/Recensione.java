@@ -7,6 +7,7 @@ public class Recensione {
     private int punteggio;
     private int idProdotto;
     private int idUtente;
+    private Utente utente;
 
     public int getIdRecensione() {
         return idRecensione;
@@ -46,6 +47,15 @@ public class Recensione {
 
     public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
+    }
+
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public int getIdUtente() {

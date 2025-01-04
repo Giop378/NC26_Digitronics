@@ -1,5 +1,6 @@
 package it.unisa.nc26.digitronics.model.dao;
 
+import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.model.bean.Recensione;
 import it.unisa.nc26.digitronics.utils.ConPool;
 
@@ -52,12 +53,60 @@ public class RecensioneDAO {
                     recensione.setPunteggio(rs.getInt("Punteggio"));
                     recensione.setIdUtente(rs.getInt("idUtente"));
                     recensione.setIdProdotto(rs.getInt("idProdotto"));
+                    recensione.setUtente(new UtenteDAO().doRetrieveById(recensione.getIdUtente()));
                     recensioni.add(recensione);
                 }
             }
         }
         return recensioni;
     }
+
+    public Collection<Recensione> doRetrieveByUtente(int idUtente) throws SQLException{
+        String sql = "SELECT * FROM Recensione WHERE idUtente = ?";
+        List<Recensione> recensioni = new ArrayList<>();
+
+        try(Connection con = ConPool.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)){
+
+            ps.setInt(1, idUtente);
+
+            try(ResultSet rs = ps.executeQuery()){
+
+                while (rs.next()){
+                    Recensione recensione = new Recensione();
+                    recensione.setIdRecensione(rs.getInt("idRecensione"));
+                    recensione.setTitolo(rs.getString("Titolo"));
+                    recensione.setDescrizione(rs.getString("Descrizione"));
+                    recensione.setPunteggio(rs.getInt("Punteggio"));
+                    recensione.setIdUtente(rs.getInt("idUtente"));
+                    recensione.setIdProdotto(rs.getInt("idProdotto"));
+                    recensioni.add(recensione);
+                }
+            }
+        }
+        return recensioni;
+    }
+
+    public Double doRetrieveAveragePunteggio(int idProdotto) throws SQLException{
+
+        String sql = "SELECT AVG(punteggio) AS Media FROM Recensione WHERE idProdotto=?";
+        double result = 0;
+
+        try(Connection con = ConPool.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)){
+
+            ps.setInt(1, idProdotto);
+
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    result = rs.getDouble("Media");
+                }
+            }
+        }
+        return result;
+    }
+
+
 
 }
 
