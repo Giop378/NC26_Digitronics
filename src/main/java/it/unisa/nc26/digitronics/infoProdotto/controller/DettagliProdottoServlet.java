@@ -61,5 +61,6 @@ public class DettagliProdottoServlet extends HttpServlet {
             new MyServletException("Id prodotto non può essere vuoto!");
         }
     }
+
 }
 

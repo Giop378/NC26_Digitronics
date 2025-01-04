@@ -142,3 +142,85 @@ body {
 .reviews-list {
     margin-top: 20px; 
 }
+
+/* Stili per schermi di dimensioni grandi (desktop) */
+@media (min-width: 1200px) {
+    .product-container {
+        flex-direction: row;
+    }
+
+    .product-image img {
+        max-width: 300px;
+    }
+}
+
+/* Stili per schermi medi (tablet) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image img {
+        max-width: 80%;
+    }
+
+    .product-details {
+        text-align: center;
+    }
+}
+
+/* Stili per schermi piccoli (smartphone) */
+@media (max-width: 767px) {
+    .container {
+        padding: 10px;
+    }
+
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .product-image img {
+        max-width: 100%;
+    }
+
+    .product-details h1 {
+        font-size: 22px;
+    }
+
+    .product-description {
+        font-size: 14px;
+    }
+
+    .product-price {
+        font-size: 18px;
+    }
+
+    .add-to-cart-button,
+    .add-feedback-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .reviews h2 {
+        font-size: 20px;
+    }
+
+    .review-item {
+        padding: 15px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+        font-size: 14px;
+    }
+
+}
+

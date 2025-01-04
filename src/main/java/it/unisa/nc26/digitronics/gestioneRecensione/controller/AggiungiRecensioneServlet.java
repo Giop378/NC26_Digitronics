@@ -31,6 +31,7 @@ public class AggiungiRecensioneServlet extends HomeServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // Verifica sessione utente
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         if (utente == null) {
@@ -38,28 +39,46 @@ public class AggiungiRecensioneServlet extends HomeServlet {
             return;
         }
 
+        // Recupero parametri e validazione input
         String titolo = request.getParameter("title");
         String descrizione = request.getParameter("description");
-        int punteggio = Integer.parseInt(request.getParameter("score"));
-        int idUtente = utente.getIdUtente();
-        int idProduct = Integer.parseInt(request.getParameter("productId"));
+        String scoreParam = request.getParameter("score");
+        String productIdParam = request.getParameter("productId");
 
-        if(titolo == null || titolo.length() > 255 || descrizione == null || punteggio < 1 || punteggio > 5) {
-            throw new MyServletException("Recensione non valida");
+        if (titolo == null || titolo.isEmpty() || titolo.length() > 255 ||
+                descrizione == null || descrizione.isEmpty() ||
+                scoreParam == null || productIdParam == null) {
+
+            throw new MyServletException("Dati non validi.");
         }
-        
+
+        int punteggio;
+        int idProduct;
+        try {
+            punteggio = Integer.parseInt(scoreParam);
+            idProduct = Integer.parseInt(productIdParam);
+
+            if (punteggio < 1 || punteggio > 5) {
+                throw new MyServletException("Punteggio non valido.");
+            }
+        } catch (IllegalArgumentException e) {
+            throw new MyServletException("Punteggio non valido.");
+        }
+
+        // Creazione oggetto Recensione
         Recensione recensione = new Recensione();
         recensione.setTitolo(titolo);
         recensione.setDescrizione(descrizione);
         recensione.setPunteggio(punteggio);
-        recensione.setIdUtente(idUtente);
+        recensione.setIdUtente(utente.getIdUtente());
         recensione.setIdProdotto(idProduct);
 
+        // Salvataggio della recensione
         try {
             recensioneService.saveRecensione(recensione);
             response.sendRedirect("dettagliProdotto?id=" + idProduct);
         } catch (SQLException e) {
-            throw new MyServletException("Errore database:"+e.getMessage());
+            throw new MyServletException("Errore database: " + e.getMessage());
         }
     }
 }
