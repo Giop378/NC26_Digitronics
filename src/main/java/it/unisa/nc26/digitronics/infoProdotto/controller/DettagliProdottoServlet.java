@@ -45,20 +45,20 @@ public class DettagliProdottoServlet extends HttpServlet {
             try {
                 //Recupero il prodotto dal database
                 Prodotto product = infoProdottoService.fetchByIdProdotto(Integer.parseInt(idProduct));
-                List<Recensione> recensioni = (List<Recensione>) recensioneService.fetchByProduct(Integer.parseInt(idProduct));
                 if (product == null) {
-                    throw new MyServletException("Prodotto non trovato");
+                    throw new MyServletException("Id prodotto non valido");
                 }
+                List<Recensione> recensioni = (List<Recensione>) recensioneService.fetchByProduct(Integer.parseInt(idProduct));
                 req.setAttribute("product", product);
                 req.setAttribute("recensioni", recensioni);
                 getServletContext().getRequestDispatcher("/WEB-INF/results/dettagliProdotto.jsp").forward(req, resp);
             } catch (NumberFormatException e) {
-                throw new MyServletException("Id prodotto non valido");
+                throw new MyServletException("Id prodotto deve essere un numero!");
             } catch (SQLException e) {
-                throw new MyServletException("Errore nel recupero del prodotto");
+                throw new MyServletException("Errore database:"+e.getMessage());
             }
         } else {
-            resp.sendRedirect(getServletContext().getContextPath() + "/WEB-INF/results/home.jsp");
+            new MyServletException("Id prodotto non può essere vuoto!");
         }
     }
 }
