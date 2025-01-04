@@ -5,15 +5,16 @@ import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.model.dao.CategoriaDAO;
 import it.unisa.nc26.digitronics.model.dao.ProdottoDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class CategoriaServiceImpl implements CategoriaService {
-    private ProdottoDAO prodottoDAO;
-    private CategoriaDAO categoriaDAO;
+public class infoProdottoServiceImpl implements infoProdottoService {
+    ProdottoDAO prodottoDAO;
+    CategoriaDAO categoriaDAO;
 
-    public CategoriaServiceImpl() {
-        this.prodottoDAO = new ProdottoDAO();
-        this.categoriaDAO = new CategoriaDAO();
+    public infoProdottoServiceImpl() {
+        prodottoDAO = new ProdottoDAO();
+        categoriaDAO = new CategoriaDAO();
     }
 
     public void setProdottoDAO(ProdottoDAO prodottoDAO) {
@@ -22,6 +23,16 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     public void setCategoriaDAO(CategoriaDAO categoriaDAO) {
         this.categoriaDAO = categoriaDAO;
+    }
+
+    @Override
+    public Prodotto fetchByIdProdotto(int idProdotto) throws SQLException {
+        return prodottoDAO.doRetrieveById(idProdotto);
+    }
+
+    @Override
+    public List<Prodotto> cercaProdottoPerNome(String query) {
+        return prodottoDAO.doRetrieveByName(query);
     }
 
     @Override
@@ -39,4 +50,3 @@ public class CategoriaServiceImpl implements CategoriaService {
         return categoriaDAO.doRetrieveAll();
     }
 }
-

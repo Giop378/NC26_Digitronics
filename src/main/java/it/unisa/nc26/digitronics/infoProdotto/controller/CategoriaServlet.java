@@ -1,7 +1,7 @@
 package it.unisa.nc26.digitronics.infoProdotto.controller;
 
-import it.unisa.nc26.digitronics.infoProdotto.service.CategoriaService;
-import it.unisa.nc26.digitronics.infoProdotto.service.CategoriaServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Categoria;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.utils.MyServletException;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @WebServlet(name = "CategoriaServlet", value = "/categoria")
 public class CategoriaServlet extends HttpServlet {
-    private CategoriaService categoriaService;
+    private infoProdottoService infoProdottoService;
 
     public CategoriaServlet() {
-        this.categoriaService = new CategoriaServiceImpl();
+        this.infoProdottoService = new infoProdottoServiceImpl();
     }
 
-    public void setCategoryService(CategoriaService categoryService) {
-        this.categoriaService= categoryService;
+    public void setCategoryService(infoProdottoService infoProdottoService) {
+        this.infoProdottoService = infoProdottoService;
     }
 
     @Override
@@ -37,13 +37,13 @@ public class CategoriaServlet extends HttpServlet {
         }
 
         // Chiamate al Service
-        Categoria categoriaScelta = categoriaService.getCategoriaPerNome(nomeCategoria);
+        Categoria categoriaScelta = infoProdottoService.getCategoriaPerNome(nomeCategoria);
         if (categoriaScelta == null) {
             throw new MyServletException("La categoria non è stata trovata");
         }
 
-        List<Prodotto> prodottiPerCategoria = categoriaService.getProdottiPerCategoria(nomeCategoria);
-        List<Categoria> categorie = categoriaService.getAllCategorie();
+        List<Prodotto> prodottiPerCategoria = infoProdottoService.getProdottiPerCategoria(nomeCategoria);
+        List<Categoria> categorie = infoProdottoService.getAllCategorie();
 
         // Imposta gli attributi e inoltra la richiesta
         request.setAttribute("prodottiPerCategoria", prodottiPerCategoria);
