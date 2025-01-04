@@ -4,10 +4,9 @@ import it.unisa.nc26.digitronics.model.bean.Categoria;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
-public interface ProdottoService {
+public interface infoProdottoService {
     Prodotto fetchByIdProdotto(int idProdotto) throws SQLException;
     List<Prodotto> cercaProdottoPerNome(String query);
     List<Prodotto> getProdottiPerCategoria(String nomeCategoria);

@@ -2,8 +2,8 @@ package it.unisa.nc26.digitronics.infoProdotto.controller;
 
 import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneService;
 import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneServiceImpl;
-import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.ProdottoServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.model.bean.Recensione;
 import jakarta.servlet.ServletException;
@@ -19,11 +19,11 @@ import java.util.List;
 @WebServlet("/dettagliProdotto")
 public class DettagliProdottoServlet extends HttpServlet {
 
-    private ProdottoService prodottoService;
+    private infoProdottoService infoProdottoService;
     private RecensioneService recensioneService;
 
-    public void setProdottoService(ProdottoService prodottoService) {
-        this.prodottoService = prodottoService;
+    public void setProdottoService(infoProdottoService infoProdottoService) {
+        this.infoProdottoService = infoProdottoService;
     }
 
     public void setRecensioneService(RecensioneService recensioneService) {
@@ -31,7 +31,7 @@ public class DettagliProdottoServlet extends HttpServlet {
     }
 
     public DettagliProdottoServlet() {
-        this.prodottoService = new ProdottoServiceImpl();
+        this.infoProdottoService = new infoProdottoServiceImpl();
         this.recensioneService = new RecensioneServiceImpl();
     }
 
@@ -43,7 +43,7 @@ public class DettagliProdottoServlet extends HttpServlet {
         if (idProduct != null) {
             try {
                 //Recupero il prodotto dal database
-                Prodotto product = prodottoService.fetchByIdProdotto(Integer.parseInt(idProduct));
+                Prodotto product = infoProdottoService.fetchByIdProdotto(Integer.parseInt(idProduct));
                 List<Recensione> recensioni = (List<Recensione>) recensioneService.fetchByProduct(Integer.parseInt(idProduct));
                 if (product == null) {
                     req.setAttribute("errorMsg", "Id prodotto non valido");

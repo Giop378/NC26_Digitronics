@@ -6,14 +6,13 @@ import it.unisa.nc26.digitronics.model.dao.CategoriaDAO;
 import it.unisa.nc26.digitronics.model.dao.ProdottoDAO;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
-public class ProdottoServiceImpl implements ProdottoService {
+public class infoProdottoServiceImpl implements infoProdottoService {
     ProdottoDAO prodottoDAO;
     CategoriaDAO categoriaDAO;
 
-    public ProdottoServiceImpl() {
+    public infoProdottoServiceImpl() {
         prodottoDAO = new ProdottoDAO();
         categoriaDAO = new CategoriaDAO();
     }
