@@ -5,6 +5,7 @@ import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneServiceImp
 import it.unisa.nc26.digitronics.model.bean.Recensione;
 import it.unisa.nc26.digitronics.model.bean.Utente;
 import it.unisa.nc26.digitronics.utils.HomeServlet;
+import it.unisa.nc26.digitronics.utils.MyServletException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,9 +45,7 @@ public class AggiungiRecensioneServlet extends HomeServlet {
         int idProduct = Integer.parseInt(request.getParameter("productId"));
 
         if(titolo == null || titolo.length() > 255 || descrizione == null || punteggio < 1 || punteggio > 5) {
-            request.setAttribute("errorMsg", "Recensione non valida");
-            getServletContext().getRequestDispatcher("/WEB-INF/results/error.jsp").forward(request, response);
-            return;
+            throw new MyServletException("Recensione non valida");
         }
         
         Recensione recensione = new Recensione();
@@ -60,7 +59,7 @@ public class AggiungiRecensioneServlet extends HomeServlet {
             recensioneService.saveRecensione(recensione);
             response.sendRedirect("dettagliProdotto?id=" + idProduct);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new MyServletException("Errore database:"+e.getMessage());
         }
     }
 }

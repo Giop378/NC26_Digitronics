@@ -51,40 +51,41 @@ public class AutenticazioneServlet extends HttpServlet {
         }else if("register".equals(action)){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/register.jsp");
             requestDispatcher.forward(request, response);
-        }
-        //Ora ci si occupa dell'accesso vero e proprio
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        }else {
+            //Ora ci si occupa dell'accesso vero e proprio
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
 
-        if (email == null || password == null) {
-            throw new MyServletException("Parametri in input non validi");
-        }
-        Utente utente = autenticazioneService.retrieveUtenteEmailPassword(email, password);
-        request.getSession().setAttribute("utente", utente);
-
-        if (utente == null) {//nel caso provo a fare login ma l'utente non esiste lo si rimanda alla pagina di login perchè l'utente non esiste
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/login.jsp");
-            requestDispatcher.forward(request, response);
-
-        } else if (utente.isRuolo()) {//se l'utente esiste nel database ed è admin deve andare alla pagina admin
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/admin.jsp");
-            requestDispatcher.forward(request, response);
-
-        } else {//se l'utente esiste e non è admin deve andare alla pagina profilo utente
-            //questa parte si occupa di prendere i prodotti del carrello da DB e unirli con quelli in sessione
-            List<ItemCarrello> carrelloSession = (List<ItemCarrello>) request.getSession().getAttribute("carrello");
-            if (carrelloSession == null) {
-                carrelloSession = new ArrayList<ItemCarrello>();
+            if (email == null || password == null) {
+                throw new MyServletException("Parametri in input non validi");
             }
-            List<ItemCarrello> carrelloDB = autenticazioneService.retrieveCarrelloUtente(utente.getIdUtente());
-            //prima di unire i due carrelli devo impostare l'id utente ai vari prodotti del carrello che al momento sono ancora null perchè sono stati aggiunti prima del login
-            for (ItemCarrello carrello : carrelloSession) {
-                carrello.setIdUtente(utente.getIdUtente());
+            Utente utente = autenticazioneService.retrieveUtenteEmailPassword(email, password);
+            request.getSession().setAttribute("utente", utente);
+
+            if (utente == null) {//nel caso provo a fare login ma l'utente non esiste lo si rimanda alla pagina di login perchè l'utente non esiste
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/login.jsp");
+                requestDispatcher.forward(request, response);
+
+            } else if (utente.isRuolo()) {//se l'utente esiste nel database ed è admin deve andare alla pagina admin
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/admin.jsp");
+                requestDispatcher.forward(request, response);
+
+            } else {//se l'utente esiste e non è admin deve andare alla pagina profilo utente
+                //questa parte si occupa di prendere i prodotti del carrello da DB e unirli con quelli in sessione
+                List<ItemCarrello> carrelloSession = (List<ItemCarrello>) request.getSession().getAttribute("carrello");
+                if (carrelloSession == null) {
+                    carrelloSession = new ArrayList<ItemCarrello>();
+                }
+                List<ItemCarrello> carrelloDB = autenticazioneService.retrieveCarrelloUtente(utente.getIdUtente());
+                //prima di unire i due carrelli devo impostare l'id utente ai vari prodotti del carrello che al momento sono ancora null perchè sono stati aggiunti prima del login
+                for (ItemCarrello carrello : carrelloSession) {
+                    carrello.setIdUtente(utente.getIdUtente());
+                }
+                mergeCarrello(carrelloDB, carrelloSession);
+                request.getSession().setAttribute("carrello", carrelloDB);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/profile.jsp");
+                requestDispatcher.forward(request, response);
             }
-            mergeCarrello(carrelloDB, carrelloSession);
-            request.getSession().setAttribute("carrello", carrelloDB);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/profile.jsp");
-            requestDispatcher.forward(request, response);
         }
     }
 
