@@ -6,6 +6,7 @@ import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
 import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.model.bean.Recensione;
+import it.unisa.nc26.digitronics.utils.MyServletException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,22 +45,20 @@ public class DettagliProdottoServlet extends HttpServlet {
             try {
                 //Recupero il prodotto dal database
                 Prodotto product = infoProdottoService.fetchByIdProdotto(Integer.parseInt(idProduct));
-                List<Recensione> recensioni = (List<Recensione>) recensioneService.fetchByProduct(Integer.parseInt(idProduct));
                 if (product == null) {
-                    req.setAttribute("errorMsg", "Id prodotto non valido");
-                    getServletContext().getRequestDispatcher("/WEB-INF/results/error.jsp").forward(req, resp);
+                    throw new MyServletException("Id prodotto non valido");
                 }
+                List<Recensione> recensioni = (List<Recensione>) recensioneService.fetchByProduct(Integer.parseInt(idProduct));
                 req.setAttribute("product", product);
                 req.setAttribute("recensioni", recensioni);
                 getServletContext().getRequestDispatcher("/WEB-INF/results/dettagliProdotto.jsp").forward(req, resp);
             } catch (NumberFormatException e) {
-                resp.sendError(400);
+                throw new MyServletException("Id prodotto deve essere un numero!");
             } catch (SQLException e) {
-                e.printStackTrace();
-                resp.sendError(500);
+                throw new MyServletException("Errore database:"+e.getMessage());
             }
         } else {
-            resp.sendRedirect(getServletContext().getContextPath() + "/WEB-INF/results/home.jsp");
+            new MyServletException("Id prodotto non può essere vuoto!");
         }
     }
 }
