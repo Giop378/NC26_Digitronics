@@ -2,8 +2,6 @@ package it.unisa.nc26.digitronics.gestioneRecensione.controller;
 
 import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneService;
 import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneServiceImpl;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Recensione;
 import it.unisa.nc26.digitronics.model.bean.Utente;
 import it.unisa.nc26.digitronics.utils.HomeServlet;
@@ -21,23 +19,17 @@ import java.sql.SQLException;
 public class AggiungiRecensioneServlet extends HomeServlet {
 
     private RecensioneService recensioneService;
-    private infoProdottoService infoProdottoService;
 
     public void setRecensioneService(RecensioneService recensioneService) {
         this.recensioneService = new RecensioneServiceImpl();
     }
 
-    public void setInfoProdottoService(infoProdottoService infoProdottoService) {
-        this.infoProdottoService = infoProdottoService;
-    }
-
     public AggiungiRecensioneServlet() {
         this.recensioneService = new RecensioneServiceImpl();
-        this.infoProdottoService = new infoProdottoServiceImpl();
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Verifica sessione utente
         Utente utente = (Utente) request.getSession().getAttribute("utente");
@@ -56,9 +48,10 @@ public class AggiungiRecensioneServlet extends HomeServlet {
         if (titolo == null || titolo.isEmpty() || titolo.length() > 255 ||
                 descrizione == null || descrizione.isEmpty() ||
                 scoreParam == null || productIdParam == null) {
-            throw new MyServletException("Parametri in input non validi");
+
+            throw new MyServletException("Dati non validi.");
         }
-        
+
         int punteggio;
         int idProduct;
         try {
@@ -66,18 +59,10 @@ public class AggiungiRecensioneServlet extends HomeServlet {
             idProduct = Integer.parseInt(productIdParam);
 
             if (punteggio < 1 || punteggio > 5) {
-                throw new MyServletException("Il punteggio deve essere compreso tra 1 e 5");
+                throw new MyServletException("Punteggio non valido.");
             }
         } catch (IllegalArgumentException e) {
-            throw new MyServletException("Parametri in input non validi");
-        }
-
-        try {
-            if(infoProdottoService.fetchByIdProdotto(idProduct) == null) {
-                throw new MyServletException("Prodotto non trovato");
-            }
-        } catch (SQLException e) {
-            throw new MyServletException("Errore nel recupero del prodotto");
+            throw new MyServletException("Punteggio non valido.");
         }
 
         // Creazione oggetto Recensione
@@ -93,8 +78,7 @@ public class AggiungiRecensioneServlet extends HomeServlet {
             recensioneService.saveRecensione(recensione);
             response.sendRedirect("dettagliProdotto?id=" + idProduct);
         } catch (SQLException e) {
-            throw new MyServletException("Errore nel salvataggio della recensione");
+            throw new MyServletException("Errore database: " + e.getMessage());
         }
     }
-
 }
