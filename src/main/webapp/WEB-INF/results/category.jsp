@@ -52,6 +52,7 @@
         <button id="pagina-successiva" onclick="cambiaPagina(1)">Successiva</button>
     </div>
 
+
 </div>
 
 <%@ include file="/WEB-INF/results/footer.jsp" %>
