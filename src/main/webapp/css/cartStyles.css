@@ -1,0 +1,156 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f5f3fa;
+    color: #4b0082;
+}
+
+.content-wrapper {
+    flex: 1;
+    padding-bottom: 100px;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #e6e0f8;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1);
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #b19cd9;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.product-details {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.product-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.product-quantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-quantity input[type="number"] {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.product-quantity button {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline;
+}
+
+.product-quantity .update-button {
+    padding: 5px 10px;
+    background-color: #9370db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.product-quantity .update-button:hover {
+    background-color: #4b0082;
+}
+
+.product-quantity .remove-button:hover {
+    background-color: darkred;
+}
+
+.product-price {
+    font-weight: bold;
+}
+
+.total {
+    text-align: right;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.checkout {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.checkout button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #9370db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkout button:hover {
+    background-color: #4b0082;
+}
+
+@media screen and (max-width: 576px) {
+    .product {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+
+    .product-details, .product-action {
+        text-align: center;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}

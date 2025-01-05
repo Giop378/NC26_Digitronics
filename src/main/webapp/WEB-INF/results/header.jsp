@@ -21,7 +21,7 @@
     <a href="autenticazione-servlet?action=login" class="icon-access" aria-label="Accedi">
       <img src="./images/login.png" alt="Accedi" class="icon-img">
     </a>
-    <a href="carrello" class="icon-cart" aria-label="Carrello">
+    <a href="mostra-carrello" class="icon-cart" aria-label="Carrello">
       <img src="./images/carrello.png" alt="Carrello" class="icon-img">
     </a>
   </div>

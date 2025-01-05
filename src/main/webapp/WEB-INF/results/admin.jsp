@@ -20,7 +20,7 @@
 <body>
 <div class="header-admin">
     <a href="index.html" class="logo" aria-label="Home">
-        <img src="./images/logo.png" alt="FrostCampania Logo" class="logo-img">
+        <img src="./images/logo.png" alt="Digitronics Logo" class="logo-img">
     </a>
 </div>
 <h1>Area Amministratore</h1>

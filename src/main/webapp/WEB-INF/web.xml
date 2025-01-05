@@ -3,8 +3,34 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <!--Gestione eccezioni riscontrate all'interno della servlet con pagina apposita -->
     <error-page>
         <exception-type>it.unisa.nc26.digitronics.utils.MyServletException</exception-type>
         <location>/WEB-INF/results/general-error.jsp</location>
     </error-page>
+    <!--Per difesa da XSS e Clickjacking-->
+    <filter>
+        <filter-name>httpHeaderSecurity</filter-name>
+        <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+        <init-param><param-name>xssProtectionEnabled</param-name><param-value>true</param-value>
+        </init-param>
+        <init-param><param-name>antiClickJackingEnabled</param-name><param-value>true</param-value>
+        </init-param>
+        <init-param><param-name>antiClickJackingOption</param-name><param-value>DENY</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>httpHeaderSecurity</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--Permette di rendere le pagine accessibili solo tramite https-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>All</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>

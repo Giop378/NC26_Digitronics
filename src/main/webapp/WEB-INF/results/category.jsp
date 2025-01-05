@@ -35,7 +35,7 @@
                     </a>
                     <p>Prezzo: <fmt:formatNumber value="${prodotto.prezzo}" type="currency" currencySymbol="€" maxFractionDigits="2"/></p>
                     <div class="add-to-cart">
-                        <form action="add-product-cart" method="post">
+                        <form action="aggiungi-prodotto-carrello" method="post">
                             <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
                             <input type="number" name="quantità" value="1" min="1" step="1" class="quantity-input" aria-labelledby="aggiungi-carrello">
                             <button id="aggiungi-carrello" type="submit" class="add-to-cart-button">Aggiungi al carrello</button>

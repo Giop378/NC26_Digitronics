@@ -1,16 +1,20 @@
 /* Stili generali */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Georgia', serif;
     margin: 0;
     padding: 0;
-    background-color: #F9F9F9;
-    color: #333;
+    background-color: #f5f3fa;
+    color: #4b0082;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
+    background-color: #e6e0f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1);
+    box-sizing: border-box;
 }
 
 /* Stile per il contenitore del prodotto */
@@ -22,6 +26,11 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-image img {
@@ -39,6 +48,11 @@ body {
     font-size: 28px;
     margin-bottom: 10px;
     color: #6A0DAD;
+    transition: color 0.3s ease;
+}
+
+.product-details h1:hover {
+    color: #4b0082;
 }
 
 .product-description {
@@ -51,22 +65,45 @@ body {
 .product-price {
     font-size: 20px;
     font-weight: bold;
-    color: #000;
+    color: #2e0854;
     margin-bottom: 20px;
 }
 
-.add-to-cart-button {
-    background-color: #6A0DAD;
-    color: #FFF;
-    border: none;
-    padding: 10px 20px;
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.quantity-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #b19cd9;
     border-radius: 5px;
+    background-color: #f5f3fa;
+    color: #4b0082;
+    font-size: 16px;
+}
+
+.add-to-cart-button {
+    padding: 10px 20px;
+    background-color: #9370db;
+    border: none;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    align-self: flex-start;
 }
 
 .add-to-cart-button:hover {
-    background-color: #9A32CD;
+    background-color: #4b0082;
 }
 
 /* Stile per le recensioni */
@@ -78,6 +115,7 @@ body {
     font-size: 24px;
     margin-bottom: 20px;
     color: #6A0DAD;
+    text-align: center;
 }
 
 .add-feedback-button {
@@ -88,6 +126,8 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin: 0 auto;
+    display: block;
 }
 
 .add-feedback-button:hover {
@@ -99,7 +139,7 @@ body {
     background-color: #FFF;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.1);
 }
 
 .feedback-form label {
@@ -114,8 +154,11 @@ body {
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border: 1px solid #CCC;
+    border: 1px solid #b19cd9;
     border-radius: 5px;
+    background-color: #f5f3fa;
+    color: #4b0082;
+    font-size: 16px;
 }
 
 .feedback-form button {
@@ -125,6 +168,12 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.feedback-form button:hover {
+    background-color: #4b0082;
 }
 
 .review-item {
@@ -132,7 +181,7 @@ body {
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(75, 0, 130, 0.1);
 }
 
 .review-item p {
@@ -140,8 +189,10 @@ body {
 }
 
 .reviews-list {
-    margin-top: 20px; 
+    margin-top: 20px;
 }
+
+/* Responsive CSS */
 
 /* Stili per schermi di dimensioni grandi (desktop) */
 @media (min-width: 1200px) {
@@ -171,6 +222,22 @@ body {
 
     .product-details {
         text-align: center;
+    }
+
+    .quantity-container {
+        justify-content: center;
+    }
+
+    .add-to-cart-button {
+        align-self: center;
+    }
+
+    .reviews h2 {
+        text-align: center;
+    }
+
+    .add-feedback-button {
+        margin: 0 auto;
     }
 }
 
@@ -222,5 +289,16 @@ body {
         font-size: 14px;
     }
 
-}
+    .quantity-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .quantity-container label {
+        margin-bottom: 5px;
+    }
+
+    .quantity-input {
+        width: 80%;
+    }
+}

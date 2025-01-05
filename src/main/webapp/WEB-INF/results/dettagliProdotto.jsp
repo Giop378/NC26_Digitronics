@@ -39,7 +39,11 @@
             <h1>${product.nome}</h1>
             <p class="product-description">${product.descrizione}</p>
             <p class="product-price"><strong>Prezzo:</strong> ${product.prezzo} €</p>
-            <button class="add-to-cart-button">Aggiungi al carrello</button>
+            <form action="aggiungi-prodotto-carrello" method="post">
+                <input type="hidden" name="idProdotto" value="${product.idProdotto}">
+                <input type="number" name="quantità" value="1" min="1" step="1" class="quantity-input" aria-labelledby="aggiungi-carrello">
+                <button id="aggiungi-carrello" type="submit" class="add-to-cart-button">Aggiungi al carrello</button>
+            </form>
         </div>
     </div>
 

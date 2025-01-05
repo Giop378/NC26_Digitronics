@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: pomic
-  Date: 11/07/2024
-  Time: 14:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -18,7 +11,7 @@
 <body>
 <div class="header-admin">
     <a href="index.html" class="logo" aria-label="Home">
-        <img src="./images/logo.png" alt="FrostCampania Logo" class="logo-img">
+        <img src="./images/logo.png" alt="Digitronics Logo" class="logo-img">
     </a>
 </div>
 <h1>Operazione Riuscita</h1>
