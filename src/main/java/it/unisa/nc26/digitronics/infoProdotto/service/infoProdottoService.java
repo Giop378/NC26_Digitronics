@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface infoProdottoService {
-    Prodotto fetchByIdProdotto(int idProdotto) throws SQLException;
+    Prodotto fetchByIdProdotto(int idProdotto);
     List<Prodotto> cercaProdottoPerNome(String query);
     List<Prodotto> getProdottiPerCategoria(String nomeCategoria);
     Categoria getCategoriaPerNome(String nomeCategoria);

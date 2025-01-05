@@ -26,7 +26,7 @@ public class infoProdottoServiceImpl implements infoProdottoService {
     }
 
     @Override
-    public Prodotto fetchByIdProdotto(int idProdotto) throws SQLException {
+    public Prodotto fetchByIdProdotto(int idProdotto) {
         return prodottoDAO.doRetrieveById(idProdotto);
     }
 
