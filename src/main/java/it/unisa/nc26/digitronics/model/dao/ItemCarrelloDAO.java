@@ -45,7 +45,7 @@ public class ItemCarrelloDAO {
         try (Connection con = ConPool.getConnection()) {
             for (ItemCarrello carrello : carrelli) {
                 PreparedStatement ps = con.prepareStatement(
-                        "INSERT INTO carrello (IdUtente, IdProdotto, quantità) VALUES(?,?,?)"
+                        "INSERT INTO itemcarrello (IdUtente, IdProdotto, quantità) VALUES(?,?,?)"
                 );
                 ps.setInt(1, carrello.getIdUtente());
                 ps.setInt(2, carrello.getIdProdotto());
@@ -62,7 +62,7 @@ public class ItemCarrelloDAO {
     public synchronized void doDelete(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM carrello WHERE IdUtente = ?"
+                    "DELETE FROM itemcarrello WHERE IdUtente = ?"
             );
             ps.setInt(1, idUtente);
             int rowsDeleted = ps.executeUpdate();

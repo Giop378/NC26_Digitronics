@@ -45,10 +45,10 @@ public class AutenticazioneServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/profile.jsp");
                 requestDispatcher.forward(request, response);
             }
-        }else if("login".equals(action)){
+        }else if("login".equals(action)){//Caso in cui l'utente non ha fatto l'accesso e vuole fare la login
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/login.jsp");
             requestDispatcher.forward(request, response);
-        }else if("register".equals(action)){
+        }else if("register".equals(action)){//Caso in cui l'utente non ha fatto la registrazione e vuole fare la registrazione
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/register.jsp");
             requestDispatcher.forward(request, response);
         }else {

@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f5f3fa; /* Colore di sfondo viola chiaro */
+    color: #4b0082; /* Colore del testo viola scuro */
+    min-height: 100vh;
+}
+
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e6e0f8; /* Viola pastello */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1); /* Ombra viola trasparente */
+    max-width: 800px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2e0854; /* Viola scurissimo */
+}
+
+.table-container {
+    overflow-x: auto; /* Per rendere la tabella scrollabile orizzontalmente sui dispositivi piccoli */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #b19cd9; /* Viola medio */
+}
+
+th {
+    background-color: #9370db; /* Viola chiaro */
+    color: #fff;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+.total {
+    text-align: right;
+    font-weight: bold;
+    color: #4b0082;
+}
+
+.product-img {
+    width: 100px;
+    height: auto;
+    max-height: 100px;
+    object-fit: cover;
+    border: 1px solid #b19cd9; /* Viola medio */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #4b0082;
+}
+
+/* Responsive CSS */
+@media screen and (max-width: 1024px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap; /* Il testo non andrà a capo */
+    }
+
+    th, td {
+        display: table-cell;
+        vertical-align: top;
+        border: 1px solid #b19cd9; /* Viola medio */
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 0.9em;
+    }
+
+    .product-img {
+        width: 80px;
+        max-height: 80px;
+    }
+}
+

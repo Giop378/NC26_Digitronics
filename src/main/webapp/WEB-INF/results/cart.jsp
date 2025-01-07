@@ -56,7 +56,7 @@
     </div>
 
     <div class="checkout">
-      <form action="checkout-servlet" method="post">
+      <form action="inizio-checkout" method="post">
         <button type="submit">Procedi con il checkout</button>
       </form>
     </div>

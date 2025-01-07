@@ -7,7 +7,7 @@ public class Ordine {
     private int idOrdine;
     private double totale;
     private int idUtente;
-    private int cap;
+    private String cap;
     private int numeroCivico;
     private String nome;
     private String cognome;
@@ -15,6 +15,7 @@ public class Ordine {
     private String telefono;
     private String nomeMetodoSpedizione ;
     private Date dataOrdine;
+    private String città;
 
     public int getIdOrdine() {
         return idOrdine;
@@ -40,11 +41,11 @@ public class Ordine {
         this.idUtente = idUtente;
     }
 
-    public int getCap() {
+    public String getCap() {
         return cap;
     }
 
-    public void setCap(int cap) {
+    public void setCap(String cap) {
         this.cap = cap;
     }
 
@@ -102,5 +103,13 @@ public class Ordine {
 
     public void setDataOrdine(Date dataOrdine) {
         this.dataOrdine = dataOrdine;
+    }
+
+    public String getCittà() {
+        return città;
+    }
+
+    public void setCittà(String città) {
+        this.città = città;
     }
 }
