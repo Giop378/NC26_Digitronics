@@ -15,6 +15,7 @@ public class Ordine {
     private String telefono;
     private String nomeMetodoSpedizione ;
     private Date dataOrdine;
+    private String città;
 
     public int getIdOrdine() {
         return idOrdine;
@@ -102,5 +103,13 @@ public class Ordine {
 
     public void setDataOrdine(Date dataOrdine) {
         this.dataOrdine = dataOrdine;
+    }
+
+    public String getCittà() {
+        return città;
+    }
+
+    public void setCittà(String città) {
+        this.città = città;
     }
 }

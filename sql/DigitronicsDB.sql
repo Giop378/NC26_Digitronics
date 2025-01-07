@@ -50,6 +50,7 @@ create table ordine  (
     totale decimal(10, 2) not null,
     IdUtente int(10) zerofill,
     cap int(5) zerofill not null,
+    città varchar(255) not null,
     numerocivico int not null, 
     nome varchar(255) not null,
     cognome varchar(255) not null,

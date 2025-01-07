@@ -25,12 +25,13 @@
     <%
         Ordine ordine = (Ordine) request.getAttribute("ordine");
     %>
-    <p>Nome: <%= ordine.getNome() %> <%= ordine.getCognome() %></p>
-    <p>Indirizzo: <%= ordine.getVia() %>, <%= ordine.getNumeroCivico() %></p>
-    <p>CAP: <%= ordine.getCap() %></p>
-    <p>Telefono: <%= ordine.getTelefono() %></p>
-    <p>Metodo di Spedizione: <%= ordine.getNomeMetodoSpedizione() %></p>
-    <p>Prezzo Totale: €<%= String.format("%.2f", ordine.getTotale()).replace('.', ',') %></p>
+    <p><b>Nome:</b> <%= ordine.getNome() %> <%= ordine.getCognome() %></p>
+    <p><b>Indirizzo:</b> <%= ordine.getVia() %>, <%= ordine.getNumeroCivico() %>, <%= ordine.getCittà() %></p>
+    <p><b>CAP:</b> <%= ordine.getCap() %></p>
+    <p><b>Telefono:</b> <%= ordine.getTelefono() %></p>
+    <p><b>Metodo di Spedizione:</b> <%= ordine.getNomeMetodoSpedizione() %></p>
+    <p><b>Data ordine:</b> <%= ordine.getDataOrdine() %></p>
+    <p><b>Prezzo Totale:</b> €<%= String.format("%.2f", ordine.getTotale()).replace('.', ',') %></p>
 
     <h2>Item Ordine</h2>
     <div class="table-container">

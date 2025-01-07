@@ -7,6 +7,5 @@ INSERT INTO categoria (nome, descrizione, immagine) VALUES
 
 -- Inserimento metodi di spedizione
 INSERT INTO metodospedizione (nome, descrizione, costo) VALUES
-('Ritiro in negozio', 'Ritiro gratuito presso il nostro negozio.', 0),
 ('Standard', 'Spedizione standard con consegna in 5-7 giorni lavorativi.', 5.00),
 ('Express', 'Spedizione express con consegna in 1-2 giorni lavorativi.', 15.00);

@@ -15,4 +15,5 @@ public interface GestioneOrdineService {
     void updateQuantitàProdotto(Prodotto prodotto);
     void rimuoviCarrelloServletByIdUtente(int idUtente);
     void saveItemOrdine(ItemOrdine itemOrdine);
+    boolean verificaIndirizzo(String via, int cap, String città);
 }

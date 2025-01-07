@@ -1,5 +1,7 @@
 package it.unisa.nc26.digitronics.gestioneOrdine.service;
 
+import it.unisa.nc26.digitronics.gestioneOrdine.service.paymentAdapter.OpenStreetMapVerificaIndirizzoApiAdapterImpl;
+import it.unisa.nc26.digitronics.gestioneOrdine.service.paymentAdapter.VerificaIndirizzoApiAdapter;
 import it.unisa.nc26.digitronics.model.bean.ItemOrdine;
 import it.unisa.nc26.digitronics.model.bean.MetodoSpedizione;
 import it.unisa.nc26.digitronics.model.bean.Ordine;
@@ -14,6 +16,7 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
     private OrdineDAO ordineDAO;
     private ItemCarrelloDAO itemCarrelloDAO;
     private ItemOrdineDAO itemOrdineDAO;
+    private VerificaIndirizzoApiAdapter verificaIndirizzoApiAdapter;
 
     public GestioneOrdineServiceImpl() {
         this.prodottoDAO = new ProdottoDAO();
@@ -21,6 +24,7 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
         this.ordineDAO = new OrdineDAO();
         this.itemCarrelloDAO = new ItemCarrelloDAO();
         this.itemOrdineDAO = new ItemOrdineDAO();
+        this.verificaIndirizzoApiAdapter = new OpenStreetMapVerificaIndirizzoApiAdapterImpl();
     }
 
     public void setProdottoDAO(ProdottoDAO prodottoDAO) {
@@ -41,6 +45,10 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
 
     public void setItemOrdineDAO(ItemOrdineDAO itemOrdineDAO) {
         this.itemOrdineDAO = itemOrdineDAO;
+    }
+
+    public void setVerificaIndirizzoApiAdapter(VerificaIndirizzoApiAdapter verificaIndirizzoApiAdapter) {
+        this.verificaIndirizzoApiAdapter = verificaIndirizzoApiAdapter;
     }
 
     @Override
@@ -75,5 +83,11 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
 
     @Override
     public void saveItemOrdine(ItemOrdine itemOrdine) {
-        itemOrdineDAO.doSave(itemOrdine);    }
+        itemOrdineDAO.doSave(itemOrdine);
+    }
+
+    @Override
+    public boolean verificaIndirizzo(String via, int cap, String città) {
+        return true;
+    }
 }
