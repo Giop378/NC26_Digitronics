@@ -90,4 +90,23 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
     public boolean verificaIndirizzo(String via, String cap, String città) {
         return verificaIndirizzoApiAdapter.verifica(via, cap, città);
     }
+
+    public List<Ordine> fetchByIdUtente(int idUtente) {
+        return ordineDAO.doRetrieveByCustomer(idUtente);
+    }
+
+    public List<Ordine> fetchAllOrders() {
+        return ordineDAO.doRetrieveAll();
+    }
+
+    @Override
+    public List<ItemOrdine> fetchItemOrder(int idOrdine) {
+        return itemOrdineDAO.doRetrieveByOrdine(idOrdine);
+    }
+
+    @Override
+    public Ordine fetchByIdOrder(int idOrdine) {
+        return ordineDAO.doRetrieveByIdOrder(idOrdine);
+    }
+
 }

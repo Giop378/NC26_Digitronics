@@ -16,4 +16,8 @@ public interface GestioneOrdineService {
     void rimuoviCarrelloServletByIdUtente(int idUtente);
     void saveItemOrdine(ItemOrdine itemOrdine);
     boolean verificaIndirizzo(String via, String cap, String città);
+    List<Ordine> fetchByIdUtente(int idUtente);
+    List<Ordine> fetchAllOrders();
+    List<ItemOrdine> fetchItemOrder(int idOrdine);
+    Ordine fetchByIdOrder(int idOrdine);
 }
