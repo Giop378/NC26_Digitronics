@@ -2,6 +2,7 @@ package it.unisa.nc26.digitronics.model.bean;
 
 import java.time.LocalDate;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Ordine {
     private int idOrdine;
@@ -111,5 +112,18 @@ public class Ordine {
 
     public void setCittà(String città) {
         this.città = città;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ordine ordine = (Ordine) o;
+        return idOrdine == ordine.idOrdine;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idOrdine);
     }
 }

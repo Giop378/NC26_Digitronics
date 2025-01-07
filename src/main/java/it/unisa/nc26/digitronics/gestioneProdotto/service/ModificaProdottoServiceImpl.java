@@ -54,5 +54,10 @@ public class ModificaProdottoServiceImpl implements ModificaProdottoService{
         prodottoDAO.doSave(prodotto);
     }
 
+    @Override
+    public void eliminaProdotto(int idProdotto) {
+        prodottoDAO.doDelete(idProdotto);
+    }
+
 }
 

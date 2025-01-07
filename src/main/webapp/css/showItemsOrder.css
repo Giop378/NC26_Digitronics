@@ -1,0 +1,117 @@
+/* Stili generali */
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f3fa;
+    color: #4b0082;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e6e0f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(75, 0, 130, 0.1);
+    box-sizing: border-box;
+}
+
+.main {
+    padding: 20px;
+}
+
+/* Stile per le schede degli articoli */
+.item-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.item-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.item-card img {
+    max-width: 150px;
+    border-radius: 10px;
+}
+
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-details h2 {
+    font-size: 22px;
+    color: #6A0DAD;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.item-details h2:hover {
+    color: #4b0082;
+}
+
+.item-details p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Responsive CSS */
+
+/* Stili per schermi medi (tablet) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .content-wrapper {
+        padding: 15px;
+    }
+
+    .item-card {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .item-card img {
+        max-width: 80%;
+    }
+
+    .item-details h2 {
+        text-align: center;
+    }
+}
+
+/* Stili per schermi piccoli (smartphone) */
+@media (max-width: 767px) {
+    .content-wrapper {
+        padding: 10px;
+    }
+
+    .item-card {
+        padding: 15px;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .item-card img {
+        max-width: 100%;
+    }
+
+    .item-details h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .item-details p {
+        font-size: 14px;
+    }
+}

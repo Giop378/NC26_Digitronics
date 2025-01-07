@@ -39,7 +39,7 @@
             <input type="hidden" name="action" value="logout">
             <button type="submit" class="profile-button">Logout</button>
         </form>
-        <form action="show-orders" method="get">
+        <form action="${pageContext.request.contextPath}/storicoOrdini" method="get">
             <button type="submit" class="profile-button">Storico Ordini</button>
         </form>
     </div>
