@@ -87,7 +87,7 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
     }
 
     @Override
-    public boolean verificaIndirizzo(String via, int cap, String città) {
-        return true;
+    public boolean verificaIndirizzo(String via, String cap, String città) {
+        return verificaIndirizzoApiAdapter.verifica(via, cap, città);
     }
 }

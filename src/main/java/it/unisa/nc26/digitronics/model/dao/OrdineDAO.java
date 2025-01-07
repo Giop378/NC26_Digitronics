@@ -28,7 +28,7 @@ public class OrdineDAO {
                 c.setIdOrdine(rs.getInt(1));
                 c.setTotale(rs.getDouble(2));
                 c.setIdUtente(rs.getInt(3));
-                c.setCap(rs.getInt(4));
+                c.setCap(rs.getString(4));
                 c.setNumeroCivico(rs.getInt(5));
                 c.setNome(rs.getString(6));
                 c.setCognome(rs.getString(7));
@@ -67,7 +67,7 @@ public class OrdineDAO {
                 o.setIdOrdine(rs.getInt(1));
                 o.setTotale(rs.getDouble(2));
                 o.setIdUtente(rs.getInt(3));
-                o.setCap(rs.getInt(4));
+                o.setCap(rs.getString(4));
                 o.setNumeroCivico(rs.getInt(5));
                 o.setNome(rs.getString(6));
                 o.setCognome(rs.getString(7));
@@ -105,7 +105,7 @@ public class OrdineDAO {
                 o.setIdOrdine(rs.getInt(1));
                 o.setTotale(rs.getDouble(2));
                 o.setIdUtente(rs.getInt(3));
-                o.setCap(rs.getInt(4));
+                o.setCap(rs.getString(4));
                 o.setNumeroCivico(rs.getInt(5));
                 o.setNome(rs.getString(6));
                 o.setCognome(rs.getString(7));
@@ -134,7 +134,7 @@ public class OrdineDAO {
 
             ps.setDouble(1, ordine.getTotale());
             ps.setInt(2, ordine.getIdUtente());
-            ps.setInt(3, ordine.getCap());
+            ps.setString(3, ordine.getCap());
             ps.setInt(4, ordine.getNumeroCivico());
             ps.setString(5, ordine.getNome());
             ps.setString(6, ordine.getCognome());

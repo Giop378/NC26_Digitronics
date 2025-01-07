@@ -1,5 +1,5 @@
 package it.unisa.nc26.digitronics.gestioneOrdine.service.paymentAdapter;
 
 public interface VerificaIndirizzoApiAdapter {
-    String verifica(String indirizzo);
+    boolean verifica(String via, String cap, String città);
 }

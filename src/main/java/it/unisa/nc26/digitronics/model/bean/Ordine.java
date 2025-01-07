@@ -7,7 +7,7 @@ public class Ordine {
     private int idOrdine;
     private double totale;
     private int idUtente;
-    private int cap;
+    private String cap;
     private int numeroCivico;
     private String nome;
     private String cognome;
@@ -41,11 +41,11 @@ public class Ordine {
         this.idUtente = idUtente;
     }
 
-    public int getCap() {
+    public String getCap() {
         return cap;
     }
 
-    public void setCap(int cap) {
+    public void setCap(String cap) {
         this.cap = cap;
     }
 

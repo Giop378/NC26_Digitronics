@@ -78,8 +78,8 @@ public class GestioneOrdineServlet extends HttpServlet {
                     break;
                 case "/procedi-al-pagamento":
                     // Recupera i dettagli della spedizione dell'ordine dal form e controlla se sono corretti
-                    String nome, cognome, via, città, telefono, numeroCarta, nomeIntestatario, scadenzaCarta, cvv;
-                    int numeroCivico, cap;
+                    String nome, cognome, via, città, telefono, numeroCarta, nomeIntestatario, scadenzaCarta, cvv, cap;
+                    int numeroCivico;
                     MetodoSpedizione metodoSpedizione;
 
                     try {
@@ -87,7 +87,7 @@ public class GestioneOrdineServlet extends HttpServlet {
                         cognome = request.getParameter("cognome");
                         via = request.getParameter("via");
                         String numeroCivicoStr = request.getParameter("numerocivico");
-                        String capStr = request.getParameter("cap");
+                        cap = request.getParameter("cap");
                         città = request.getParameter("città");
                         telefono = request.getParameter("telefono");
                         numeroCarta = request.getParameter("numeroCarta");
@@ -97,7 +97,7 @@ public class GestioneOrdineServlet extends HttpServlet {
                         metodoSpedizione = gestioneOrdineService.fetchMetodoSpedizioneByNome(request.getParameter("metodoSpedizione"));
 
                         if (nome == null || cognome == null || via == null || telefono == null || metodoSpedizione == null || città == null ||
-                                capStr == null || numeroCivicoStr == null || numeroCarta == null || nomeIntestatario == null ||
+                                cap == null || numeroCivicoStr == null || numeroCarta == null || nomeIntestatario == null ||
                                 scadenzaCarta == null || cvv == null) {
                             throw new MyServletException("Tutti i campi sono obbligatori");
                         }
@@ -106,11 +106,11 @@ public class GestioneOrdineServlet extends HttpServlet {
                         if (!nome.matches("[a-zA-Z ]+") || !cognome.matches("[a-zA-Z ]+")) {
                             throw new MyServletException("Nome o cognome non validi.");
                         }
-                        if (!numeroCivicoStr.matches("[0-9]{1,4}") || !capStr.matches("[0-9]{5}")) {
+                        if (!numeroCivicoStr.matches("[0-9]{1,4}") || !cap.matches("[0-9]{5}")) {
                             throw new MyServletException("Numero civico o CAP non validi.");
                         }
                         numeroCivico = Integer.parseInt(numeroCivicoStr);
-                        cap = Integer.parseInt(capStr);
+
                         if (telefono != null && !telefono.matches("[0-9]{9,15}")) {
                             throw new MyServletException("Numero di telefono non valido.");
                         }
