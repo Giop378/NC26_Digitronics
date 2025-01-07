@@ -42,14 +42,39 @@ public class ModificaProdottoServlet extends HttpServlet {
             int idProdotto = Integer.parseInt(request.getParameter("id"));
             String nome = request.getParameter("nome");
             String descrizione = request.getParameter("descrizione");
-            double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+            double prezzo;
+            String prezzoStr = request.getParameter("prezzo");
             boolean inVetrina = request.getParameter("vetrina") != null; // checkbox
             int quantita = Integer.parseInt(request.getParameter("quantita"));
             String nomeCategoria = request.getParameter("nomecategoria");
 
-            // Controllo valori null
-            if (nome == null || descrizione == null || nomeCategoria == null) {
-                throw new MyServletException("Non sono accettati valori null");
+            // Validazione parametro Nome Prodotto
+            if (nome == null || nome.trim().isEmpty() || nome.length() > 255) {
+                throw new MyServletException("Il nome del prodotto deve avere una lunghezza tra 1 e 255 caratteri");
+            }
+
+            // Validazione parametro Descrizione
+            if (descrizione == null || descrizione.trim().isEmpty()) {
+                throw new MyServletException("La descrizione del prodotto non può essere vuota");
+            }
+
+            // Validazioni Prezzo
+            if (prezzoStr == null || !prezzoStr.matches("^(?!0\\.00$)\\d+(\\.\\d{2,})$")) {
+                throw new MyServletException("Il prezzo deve essere un valore numerico valido con almeno due cifre decimali (es. 10.00)");
+            }
+            prezzo = Double.parseDouble(prezzoStr);
+            if (prezzo <= 0) {
+                throw new MyServletException("Il prezzo deve essere maggiore di zero");
+            }
+
+            // Validazioni Quantità
+            if (quantita <= 0) {
+                throw new MyServletException("La quantità deve essere maggiore di zero");
+            }
+
+            // Validazioni Categoria
+            if (nomeCategoria == null || nomeCategoria.trim().isEmpty() || nomeCategoria.length() > 255) {
+                throw new MyServletException("La categoria deve avere una lunghezza compresa tra 1 e 255 caratteri");
             }
 
             // Creazione prodotto da modificare

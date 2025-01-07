@@ -35,14 +35,6 @@ public class ModificaProdottoServiceImpl implements ModificaProdottoService{
             throw new MyServletException("Categoria non esistente");
         }
 
-        // Controlli sui valori
-        if (prodottoModificato.getNome() == null || prodottoModificato.getDescrizione() == null) {
-            throw new MyServletException("Nome o descrizione non possono essere null");
-        }
-        if (prodottoModificato.getPrezzo() <= 0  || prodottoModificato.getQuantità() <= 0) {
-            throw new MyServletException("Valori di prezzo, sconto o quantità non validi");
-        }
-
         // Mantieni l'immagine se non fornita
         if (prodottoModificato.getImmagine() == null || prodottoModificato.getImmagine().isEmpty()) {
             prodottoModificato.setImmagine(prodottoEsistente.getImmagine());
@@ -51,5 +43,16 @@ public class ModificaProdottoServiceImpl implements ModificaProdottoService{
         // Aggiorna il prodotto nel database
         prodottoDAO.doUpdate(prodottoModificato);
     }
+
+    public void aggiungiProdotto(Prodotto prodotto) throws Exception {
+        // Verifica che la categoria esista
+        if (categoriaDAO.doRetrieveByNomeCategoria(prodotto.getNomeCategoria()) == null) {
+            throw new MyServletException("Categoria non esistente");
+        }
+
+        // Aggiungi il nuovo prodotto al database
+        prodottoDAO.doSave(prodotto);
+    }
+
 }
 
