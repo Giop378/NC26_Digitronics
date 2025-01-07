@@ -5,6 +5,7 @@ import it.unisa.nc26.digitronics.model.bean.Utente;
 import it.unisa.nc26.digitronics.model.dao.ItemCarrelloDAO;
 import it.unisa.nc26.digitronics.model.dao.UtenteDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class AutenticazioneServiceImpl implements AutenticazioneService{
@@ -32,5 +33,15 @@ public class AutenticazioneServiceImpl implements AutenticazioneService{
     @Override
     public List<ItemCarrello> retrieveCarrelloUtente(int id) {
         return itemCarrelloDAO.doRetrieveByIdUtente(id);
+    }
+
+    @Override
+    public void clearCarrelloUtente(int idUtente) throws SQLException {
+        itemCarrelloDAO.doDelete(idUtente);
+    }
+
+    @Override
+    public void saveCarrelloUtente(List<ItemCarrello> carrelli) throws SQLException {
+        itemCarrelloDAO.doSave(carrelli);
     }
 }
