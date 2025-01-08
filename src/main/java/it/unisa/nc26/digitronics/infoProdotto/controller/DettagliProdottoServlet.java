@@ -21,19 +21,13 @@ import java.util.List;
 public class DettagliProdottoServlet extends HttpServlet {
 
     private infoProdottoService infoProdottoService;
-    private RecensioneService recensioneService;
 
     public void setProdottoService(infoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 
-    public void setRecensioneService(RecensioneService recensioneService) {
-        this.recensioneService = recensioneService;
-    }
-
     public DettagliProdottoServlet() {
         this.infoProdottoService = new infoProdottoServiceImpl();
-        this.recensioneService = new RecensioneServiceImpl();
     }
 
     @Override
@@ -48,7 +42,7 @@ public class DettagliProdottoServlet extends HttpServlet {
                 if (product == null) {
                     throw new MyServletException("Id prodotto non valido");
                 }
-                List<Recensione> recensioni = (List<Recensione>) recensioneService.fetchByProduct(Integer.parseInt(idProduct));
+                List<Recensione> recensioni = infoProdottoService.fetchRecensioniByIdProdotto(Integer.parseInt(idProduct));
                 req.setAttribute("product", product);
                 req.setAttribute("recensioni", recensioni);
                 getServletContext().getRequestDispatcher("/WEB-INF/results/dettagliProdotto.jsp").forward(req, resp);
@@ -58,7 +52,7 @@ public class DettagliProdottoServlet extends HttpServlet {
                 throw new MyServletException("Errore database:"+e.getMessage());
             }
         } else {
-            new MyServletException("Id prodotto non può essere vuoto!");
+            throw new MyServletException("Id prodotto non può essere vuoto!");
         }
     }
 
