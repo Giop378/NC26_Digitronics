@@ -98,7 +98,7 @@ public class ModificaProdottoServlet extends HttpServlet {
 
         } catch (NumberFormatException e) {
             throw new MyServletException("Uno o più parametri errati nel form");
-        } catch (Exception e) {
+        } catch (MyServletException e) {
             throw new MyServletException(e.getMessage());
         }
     }

@@ -36,12 +36,12 @@ public class AutenticazioneServiceImpl implements AutenticazioneService{
     }
 
     @Override
-    public void clearCarrelloUtente(int idUtente) throws SQLException {
+    public void clearCarrelloUtente(int idUtente){
         itemCarrelloDAO.doDelete(idUtente);
     }
 
     @Override
-    public void saveCarrelloUtente(List<ItemCarrello> carrelli) throws SQLException {
+    public void saveCarrelloUtente(List<ItemCarrello> carrelli){
         itemCarrelloDAO.doSave(carrelli);
     }
 }

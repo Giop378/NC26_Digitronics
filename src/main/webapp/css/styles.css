@@ -45,8 +45,9 @@ h2 {
 }
 
 .product-img {
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    height: auto;
+    max-height: 250px;
     object-fit: cover;
     border-bottom: 1px solid #b19cd9;
     margin-bottom: 10px;
