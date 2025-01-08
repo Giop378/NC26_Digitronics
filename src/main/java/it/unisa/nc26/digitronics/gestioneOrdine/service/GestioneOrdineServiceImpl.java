@@ -91,10 +91,12 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
         return verificaIndirizzoApiAdapter.verifica(via, cap, città);
     }
 
+    @Override
     public List<Ordine> fetchByIdUtente(int idUtente) {
         return ordineDAO.doRetrieveByCustomer(idUtente);
     }
 
+    @Override
     public List<Ordine> fetchAllOrders() {
         return ordineDAO.doRetrieveAll();
     }

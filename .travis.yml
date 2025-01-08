@@ -1,0 +1,6 @@
+language: java
+jdk:
+  - openjdk21
+
+script:
+  - ./mvnw clean verify

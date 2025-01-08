@@ -23,7 +23,7 @@ public class ModificaProdottoServiceImpl implements ModificaProdottoService{
     }
 
     @Override
-    public void modificaProdotto(Prodotto prodottoModificato) throws Exception {
+    public void modificaProdotto(Prodotto prodottoModificato) throws MyServletException {
         // Verifica che il prodotto esista
         Prodotto prodottoEsistente = prodottoDAO.doRetrieveById(prodottoModificato.getIdProdotto());
         if (prodottoEsistente == null) {
@@ -44,7 +44,7 @@ public class ModificaProdottoServiceImpl implements ModificaProdottoService{
         prodottoDAO.doUpdate(prodottoModificato);
     }
 
-    public void aggiungiProdotto(Prodotto prodotto) throws Exception {
+    public void aggiungiProdotto(Prodotto prodotto) throws MyServletException {
         // Verifica che la categoria esista
         if (categoriaDAO.doRetrieveByNomeCategoria(prodotto.getNomeCategoria()) == null) {
             throw new MyServletException("Categoria non esistente");

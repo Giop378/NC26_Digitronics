@@ -9,6 +9,6 @@ import java.util.List;
 public interface AutenticazioneService {
     Utente retrieveUtenteEmailPassword(String email, String password);
     List<ItemCarrello> retrieveCarrelloUtente(int id);
-    void clearCarrelloUtente(int idUtente) throws SQLException; // Firma del metodo per eliminare il carrello
-    void saveCarrelloUtente(List<ItemCarrello> carrelli) throws SQLException;
+    void clearCarrelloUtente(int idUtente); // Firma del metodo per eliminare il carrello
+    void saveCarrelloUtente(List<ItemCarrello> carrelli);
 }
