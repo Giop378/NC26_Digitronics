@@ -35,8 +35,7 @@ public class AggiungiRecensioneServlet extends HomeServlet {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         if (utente == null) {
-            response.sendRedirect("login.jsp");
-            return;
+            throw new MyServletException("Devi essere registrato per effettuare una recensione");
         }
 
         // Recupero parametri e validazione input
@@ -48,7 +47,6 @@ public class AggiungiRecensioneServlet extends HomeServlet {
         if (titolo == null || titolo.isEmpty() || titolo.length() > 255 ||
                 descrizione == null || descrizione.isEmpty() ||
                 scoreParam == null || productIdParam == null) {
-
             throw new MyServletException("Dati non validi.");
         }
 
