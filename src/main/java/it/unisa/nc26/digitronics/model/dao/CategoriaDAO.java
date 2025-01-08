@@ -36,7 +36,7 @@ public class CategoriaDAO {
 
         } catch (SQLException e) {
 
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso alle categorie, riprova più tardi");
         }
     }
     //restituisce un oggetto categoria dando il nome
@@ -55,7 +55,7 @@ public class CategoriaDAO {
             }
             return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso alle categorie, riprova più tardi");
         }
     }
     //Salva una categoria
@@ -70,7 +70,7 @@ public class CategoriaDAO {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso alle categorie, riprova più tardi");
         }
     }
 }

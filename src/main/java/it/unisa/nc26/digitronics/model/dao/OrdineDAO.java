@@ -45,7 +45,7 @@ public class OrdineDAO {
 
         } catch (SQLException e) {
 
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso agli ordini, riprova più tardi");
         }
     }
 
@@ -83,7 +83,7 @@ public class OrdineDAO {
             return null;
 
         } catch (SQLException s) {
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante l'accesso ad un ordine con ID specifico, riprova più tardi");
         }
     }
 
@@ -121,7 +121,7 @@ public class OrdineDAO {
             return ordini;
 
         } catch (SQLException s) {
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante l'accesso agli ordini di un utente, riprova più tardi");
         }
     }
 
@@ -153,12 +153,12 @@ public class OrdineDAO {
                 if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
                 } else {
-                    throw new RuntimeException("Failed to retrieve generated ID.");
+                    throw new RuntimeException("Non è stato possibile recuperare dal database l'id generato");
                 }
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante il salvataggio dell'ordine, riprova più tardi");
         }
     }
 }

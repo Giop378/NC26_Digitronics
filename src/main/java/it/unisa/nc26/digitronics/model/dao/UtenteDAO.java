@@ -41,7 +41,7 @@ public class UtenteDAO {
                     statement.close();
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Errore del database durante l'accesso, riprova più tardi");
             }
         }
 
@@ -69,11 +69,11 @@ public class UtenteDAO {
                 if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
                 } else {
-                    throw new RuntimeException("Failed to retrieve generated ID.");
+                    throw new RuntimeException("Non è stato possibile recuperare l'id utente generato dal database, riprova più tardi");
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Salvataggio dell'utente nel database non riuscito, riprova più tardi");
         }
     }
 
@@ -110,7 +110,7 @@ public class UtenteDAO {
                     statement.close();
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Recupero dell'utente dal database non riuscito, riprova più tardi");
             }
         }
 

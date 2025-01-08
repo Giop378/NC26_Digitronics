@@ -37,7 +37,7 @@ public class ProdottoDAO {
 
         } catch (SQLException s) {
 
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante il recupero di tutti i prodotti, riprova più tardi");
         }
     }
     //Restituisce tutti i prodotti di una determinata categoria
@@ -65,7 +65,7 @@ public class ProdottoDAO {
 
         } catch (SQLException s) {
 
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante l'accesso dei prodotti di una determinata categoria, riprova più tardi");
         }
     }
     //restituisce gli elementi della vetrina
@@ -93,7 +93,7 @@ public class ProdottoDAO {
 
         } catch (SQLException s) {
 
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante il recupero dei prodotti della home, riprova più tardi");
         }
     }
     //Prende i dati di un singolo prodotto dal database
@@ -118,7 +118,7 @@ public class ProdottoDAO {
 
         } catch (SQLException s) {
 
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante il recupero di un prodotto tramite id, riprova più tardi");
         }
     }
     //Salva un prodotto nel database
@@ -134,11 +134,11 @@ public class ProdottoDAO {
             ps.setString(7, prodotto.getNomeCategoria());
 
             if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("INSERT error.");
+                throw new RuntimeException("Errore nel salvataggio del prodotto");
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante il salvataggio del prodotto nel database, riprova più tardi");
         }
     }
     //Aggiorna un prodotto nel database
@@ -155,7 +155,7 @@ public class ProdottoDAO {
             ps.setInt(8, prodotto.getIdProdotto());
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante la modifica del prodotto nel database, riprova più tardi");
         }
     }
     public List<Prodotto> doRetrieveByName(String nomeProdotto) {
@@ -183,7 +183,7 @@ public class ProdottoDAO {
 
         } catch (SQLException s) {
 
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante il recupero del prodotto dal database tramite nome, riprova più tardi");
         }
     }
 
@@ -197,7 +197,7 @@ public class ProdottoDAO {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante la cancellazione del prodotto dal database, riprova più tardi");
         }
     }
 
