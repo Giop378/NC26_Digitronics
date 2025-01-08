@@ -30,7 +30,7 @@ public class ItemOrdineDAO {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso agli oggetti dell'ordine, riprova più tardi");
         }
     }
 
@@ -63,7 +63,7 @@ public class ItemOrdineDAO {
             return itemOrdini;
 
         } catch (SQLException s) {
-            throw new RuntimeException(s);
+            throw new RuntimeException("Errore durante l'accesso agli oggetti dell'ordine, riprova più tardi");
         }
     }
 }

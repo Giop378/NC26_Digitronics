@@ -33,7 +33,7 @@ public class ItemCarrelloDAO {
                 carrelli.add(carrello);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso al carrello, riprova più tardi");
         }
         return carrelli;
     }
@@ -51,7 +51,7 @@ public class ItemCarrelloDAO {
                 ps.setInt(2, carrello.getIdProdotto());
                 ps.setInt(3, carrello.getQuantità());
                 if (ps.executeUpdate() != 1) {
-                    throw new RuntimeException("INSERT error.");
+                    throw new RuntimeException("Errore durante l'accesso al carrello, riprova più tardi");
                 }
             }
         } catch (SQLException e) {
@@ -68,7 +68,7 @@ public class ItemCarrelloDAO {
             int rowsDeleted = ps.executeUpdate();
             System.out.println("Deleted " + rowsDeleted + " rows."); // Opzionale: log per controllo
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso al carrello, riprova più tardi");
         }
     }
 }

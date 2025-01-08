@@ -5,7 +5,11 @@
          version="6.0">
     <!--Gestione eccezioni riscontrate all'interno della servlet con pagina apposita -->
     <error-page>
-        <exception-type>it.unisa.nc26.digitronics.utils.MyServletException</exception-type>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/WEB-INF/results/general-error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
         <location>/WEB-INF/results/general-error.jsp</location>
     </error-page>
     <!--Per difesa da XSS e Clickjacking-->

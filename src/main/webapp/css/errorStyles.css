@@ -53,7 +53,7 @@ header, footer {
 }
 
 .error-container h4 {
-    color: #ff4500; /* Rosso per evidenziare il messaggio di errore */
+    color: black;
     margin: 20px 0;
 }
 

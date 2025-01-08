@@ -1,11 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
-<html>
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Title</title>
     <title>Errore generale</title>
-    <link rel="stylesheet" href="./css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -13,7 +10,7 @@
 <div class="error-container">
     <h1>Qualcosa è andato storto!!</h1>
     <p>Ci scusiamo per l'inconveniente. Si è verificato un errore imprevisto.</p>
-    <h4><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "Errore sconosciuto"%></h4>
+    <h4><%= exception.getMessage()%></h4>
     <p>Per favore, prova a:</p>
 
     <p>Tornare alla <a href="index.html">pagina iniziale</a></p>

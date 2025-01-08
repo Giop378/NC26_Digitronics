@@ -40,7 +40,7 @@ public class MetodoSpedizioneDAO {
 
         } catch (SQLException e) {
 
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'accesso ai metodi di spedizione, riprova più tardi");
         }
     }
 
