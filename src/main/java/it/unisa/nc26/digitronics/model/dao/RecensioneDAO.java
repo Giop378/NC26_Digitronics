@@ -9,8 +9,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
+/**
+ * DAO per gestire le operazioni sulle recensioni.
+ * Contiene metodi per salvare, recuperare e calcolare statistiche sulle recensioni nel database.
+ */
 public class RecensioneDAO {
 
+
+    /**
+     * Salva una nuova recensione nel database.
+     *
+     * @param recensione Oggetto {@link Recensione} contenente i dettagli della recensione da salvare.
+     *                   L'ID generato automaticamente viene impostato nell'oggetto fornito.
+     * @throws SQLException Se si verifica un errore durante l'operazione sul database.
+     */
     public void doSave(Recensione recensione) throws SQLException {
         String sql = "INSERT INTO Recensione (Titolo, Descrizione, Punteggio, idUtente, idProdotto) VALUES(?, ?, ?, ?, ?)";
 
@@ -34,6 +47,13 @@ public class RecensioneDAO {
         }
     }
 
+    /**
+     * Recupera tutte le recensioni associate a un prodotto specifico.
+     *
+     * @param product ID del prodotto di cui recuperare le recensioni.
+     * @return Una collezione di oggetti {@link Recensione} associati al prodotto specificato.
+     * @throws SQLException Se si verifica un errore durante l'operazione sul database.
+     */
     public Collection<Recensione> doRetrieveByProduct(int product) throws SQLException{
         String sql = "SELECT * FROM Recensione WHERE idProdotto = ?";
         List<Recensione> recensioni = new ArrayList<>();
@@ -61,6 +81,13 @@ public class RecensioneDAO {
         return recensioni;
     }
 
+    /**
+     * Recupera tutte le recensioni effettuate da un utente specifico.
+     *
+     * @param idUtente ID dell'utente di cui recuperare le recensioni.
+     * @return Una collezione di oggetti {@link Recensione} effettuati dall'utente specificato.
+     * @throws SQLException Se si verifica un errore durante l'operazione sul database.
+     */
     public Collection<Recensione> doRetrieveByUtente(int idUtente) throws SQLException{
         String sql = "SELECT * FROM Recensione WHERE idUtente = ?";
         List<Recensione> recensioni = new ArrayList<>();
@@ -87,6 +114,14 @@ public class RecensioneDAO {
         return recensioni;
     }
 
+    /**
+     * Calcola il punteggio medio delle recensioni per un prodotto specifico.
+     *
+     * @param idProdotto ID del prodotto di cui calcolare il punteggio medio.
+     * @return Il punteggio medio come valore {@code Double}.
+     *         Restituisce 0.0 se non ci sono recensioni per il prodotto.
+     * @throws SQLException Se si verifica un errore durante l'operazione sul database.
+     */
     public Double doRetrieveAveragePunteggio(int idProdotto) throws SQLException{
 
         String sql = "SELECT AVG(punteggio) AS Media FROM Recensione WHERE idProdotto=?";
