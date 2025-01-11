@@ -5,8 +5,20 @@ import it.unisa.nc26.digitronics.utils.ConPool;
 
 import java.sql.*;
 
+/**
+ * Classe DAO per la gestione delle operazioni sul database relative agli utenti.
+ * Fornisce metodi per il recupero e il salvataggio di oggetti {@link Utente} nel database.
+ */
 public class UtenteDAO {
 
+    /**
+     * Recupera un utente dal database in base all'email e alla password (hash).
+     *
+     * @param email L'email dell'utente.
+     * @param passwordhash L'hash della password dell'utente.
+     * @return Un oggetto {@link Utente} se trovato, altrimenti {@code null}.
+     * @throws RuntimeException Se si verifica un errore durante l'accesso al database.
+     */
     public Utente doRetrieveByEmailPassword(String email, String passwordhash) {
 
         PreparedStatement statement = null;
@@ -30,11 +42,11 @@ public class UtenteDAO {
                 utente.setRuolo(rs.getBoolean("ruolo"));
             }
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (rs!= null) {
+                if (rs != null) {
                     rs.close();
                 }
                 if (statement != null) {
@@ -48,6 +60,13 @@ public class UtenteDAO {
         return utente;
     }
 
+    /**
+     * Salva un nuovo utente nel database.
+     *
+     * @param utente Un oggetto {@link Utente} contenente le informazioni da salvare.
+     * @return L'ID generato per l'utente salvato.
+     * @throws RuntimeException Se si verifica un errore durante il salvataggio o nel recupero dell'ID generato.
+     */
     public synchronized int doSave(Utente utente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
@@ -77,6 +96,13 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Recupera un utente dal database in base al suo ID.
+     *
+     * @param idUtente L'ID dell'utente da recuperare.
+     * @return Un oggetto {@link Utente} se trovato, altrimenti {@code null}.
+     * @throws RuntimeException Se si verifica un errore durante l'accesso al database.
+     */
     public Utente doRetrieveById(int idUtente) {
 
         PreparedStatement statement = null;
@@ -99,11 +125,11 @@ public class UtenteDAO {
                 utente.setRuolo(rs.getBoolean("ruolo"));
             }
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (rs!= null) {
+                if (rs != null) {
                     rs.close();
                 }
                 if (statement != null) {
