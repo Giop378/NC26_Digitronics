@@ -17,13 +17,30 @@ import java.util.Collection;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test della classe {@link RecensioneServiceImpl}.
+ *
+ * Questa classe verifica il corretto funzionamento dei metodi di business della classe di servizio
+ * che gestisce le recensioni, utilizzando Mockito per simulare il comportamento
+ * dei DAO sottostanti.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class RecensioneServiceImplTest {
+    /** Istanza del servizio sotto test. */
     private RecensioneServiceImpl recensioneService;
+
+    /** Mock del DAO per la gestione delle recensioni. */
     @Mock
     private RecensioneDAO mockRecensioneDAO;
+
+    /** Mock del DAO per la gestione dei prodotti. */
     @Mock
     private ProdottoDAO mockProdottoDAO;
+
+    /**
+     * Configura l'ambiente di test prima di ogni esecuzione.
+     * Inizializza il servizio e assegna i DAO simulati.
+     */
     @Before
     public void setUp() {
         recensioneService = new RecensioneServiceImpl();
@@ -31,6 +48,12 @@ public class RecensioneServiceImplTest {
         recensioneService.setProdottoDAO(mockProdottoDAO);
     }
 
+    /**
+     * Verifica che il metodo {@link RecensioneServiceImpl#saveRecensione(Recensione)}
+     * invochi correttamente il metodo di salvataggio sul DAO.
+     *
+     * @throws SQLException se si verifica un errore durante l'esecuzione del metodo DAO.
+     */
     @Test
     public void testSaveRecensione() throws SQLException {
         Recensione recensione = new Recensione();
@@ -38,6 +61,12 @@ public class RecensioneServiceImplTest {
         verify(mockRecensioneDAO, times(1)).doSave(recensione);
     }
 
+    /**
+     * Verifica che il metodo {@link RecensioneServiceImpl#fetchByProduct(int)}
+     * recuperi correttamente le recensioni di un prodotto specifico.
+     *
+     * @throws SQLException se si verifica un errore durante l'esecuzione del metodo DAO.
+     */
     @Test
     public void testFetchByProduct() throws SQLException {
         int idProdotto = 1;
@@ -50,7 +79,12 @@ public class RecensioneServiceImplTest {
         verify(mockRecensioneDAO, times(1)).doRetrieveByProduct(idProdotto);
     }
 
-
+    /**
+     * Verifica che il metodo {@link RecensioneServiceImpl#fetchByUtente(int)}
+     * recuperi correttamente le recensioni di un utente specifico.
+     *
+     * @throws SQLException se si verifica un errore durante l'esecuzione del metodo DAO.
+     */
     @Test
     public void testFetchByUtente() throws SQLException {
         int idUtente = 1;
@@ -63,6 +97,12 @@ public class RecensioneServiceImplTest {
         verify(mockRecensioneDAO, times(1)).doRetrieveByUtente(idUtente);
     }
 
+    /**
+     * Verifica che il metodo {@link RecensioneServiceImpl#saveRecensione(Recensione)}
+     * sollevi una {@link SQLException} in caso di errore nel DAO.
+     *
+     * @throws SQLException se si verifica un errore simulato.
+     */
     @Test(expected = SQLException.class)
     public void testSaveRecensioneThrowsSQLException() throws SQLException {
         Recensione recensione = new Recensione();
@@ -71,6 +111,12 @@ public class RecensioneServiceImplTest {
         recensioneService.saveRecensione(recensione);
     }
 
+    /**
+     * Verifica che il metodo {@link RecensioneServiceImpl#fetchByProduct(int)}
+     * sollevi una {@link SQLException} in caso di errore nel DAO.
+     *
+     * @throws SQLException se si verifica un errore simulato.
+     */
     @Test(expected = SQLException.class)
     public void testFetchByProductThrowsSQLException() throws SQLException {
         int idProdotto = 1;
@@ -79,6 +125,12 @@ public class RecensioneServiceImplTest {
         recensioneService.fetchByProduct(idProdotto);
     }
 
+    /**
+     * Verifica che il metodo {@link RecensioneServiceImpl#fetchByUtente(int)}
+     * sollevi una {@link SQLException} in caso di errore nel DAO.
+     *
+     * @throws SQLException se si verifica un errore simulato.
+     */
     @Test(expected = SQLException.class)
     public void testFetchByUtenteThrowsSQLException() throws SQLException {
         int idUtente = 1;
@@ -86,5 +138,5 @@ public class RecensioneServiceImplTest {
 
         recensioneService.fetchByUtente(idUtente);
     }
-    
 }
+
