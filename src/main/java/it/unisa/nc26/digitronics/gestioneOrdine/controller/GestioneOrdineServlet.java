@@ -18,34 +18,56 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * GestioneOrdineServlet è una servlet che gestisce le operazioni descritte nello use case Checkout Prodotti UC_GAC_1
+ * Viene gestito sia l'inizio del checkout in cui viene mostrato il form che
+ * procedi al pagamento che si occupa di verificare i dati del form ed effettuare l'ordine
+ */
 @WebServlet(urlPatterns = {"/inizio-checkout", "/procedi-al-pagamento"})
 public class GestioneOrdineServlet extends HttpServlet {
     private GestioneOrdineService gestioneOrdineService;
 
+    /**
+     * Costruttore della servlet che inizializza il servizio di gestione degli ordini.
+     */
     public GestioneOrdineServlet() {
         this.gestioneOrdineService = new GestioneOrdineServiceImpl();
     }
 
+    /**
+     * Imposta un'implementazione personalizzata del servizio di gestione degli ordini.
+     *
+     * @param gestioneOrdineService il servizio di gestione degli ordini
+     */
     public void setGestioneOrdineService(GestioneOrdineService gestioneOrdineService) {
         this.gestioneOrdineService = gestioneOrdineService;
     }
 
-    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws
+    /**
+     * Gestisce le richieste HTTP GET.
+     * Implementa le funzionalità di checkout e pagamento basate sul path specificato.
+     *
+     * @param request  l'oggetto HttpServletRequest che contiene la richiesta del client
+     * @param response l'oggetto HttpServletResponse che contiene la risposta al client
+     * @throws ServletException in caso di errore durante la gestione della richiesta
+     * @throws IOException      in caso di errore di input/output
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         HttpSession session = request.getSession();
 
         //Se l'utente è un admin o non è registrato non possono accedere alle funzionalità presenti nella servlet
         Utente utenteSession = (Utente) request.getSession().getAttribute("utente");
         List<ItemCarrello> carrelloSession = (List<ItemCarrello>) session.getAttribute("carrello");
-        if(utenteSession==null){
+        if (utenteSession == null) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/login.jsp");
             requestDispatcher.forward(request, response);
-        } else if(utenteSession.isRuolo()){
+        } else if (utenteSession.isRuolo()) {
             throw new MyServletException("Non puoi accedere a questa funzionalità");
-        }else if (carrelloSession.isEmpty() || carrelloSession==null ){
+        } else if (carrelloSession.isEmpty() || carrelloSession == null) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/cart.jsp");
             requestDispatcher.forward(request, response);
-        } else{
+        } else {
             //Se l'utente è registrato può fare varie operazioni che saranno riconosciute dal path
             String path = request.getServletPath();
 
@@ -55,13 +77,13 @@ public class GestioneOrdineServlet extends HttpServlet {
                 case "/inizio-checkout":
                     //Calcolo il prezzo totale (spedizione esclusa)
                     prezzoTotale = 0;
-                    for(ItemCarrello c : carrelloSession){
+                    for (ItemCarrello c : carrelloSession) {
                         int idProdotto = c.getIdProdotto();
                         //devo controllare se la quantità inserita nel carrello dall'utente è effettivamente presente
-                        int quantitàNelCarrello= c.getQuantità();
+                        int quantitàNelCarrello = c.getQuantità();
                         Prodotto prodotto = gestioneOrdineService.fetchByIdProdotto(idProdotto);
 
-                        if(quantitàNelCarrello > prodotto.getQuantità()){
+                        if (quantitàNelCarrello > prodotto.getQuantità()) {
                             c.setQuantità(prodotto.getQuantità());
                             throw new MyServletException("Quantità selezionata del prodotto non presente in magazzino");
                         }
@@ -78,59 +100,84 @@ public class GestioneOrdineServlet extends HttpServlet {
                     break;
                 case "/procedi-al-pagamento":
                     // Recupera i dettagli della spedizione dell'ordine dal form e controlla se sono corretti
-                    String nome, cognome, via, città, telefono, numeroCarta, nomeIntestatario, scadenzaCarta, cvv, cap;
-                    int numeroCivico;
+                    String nome, cognome, via, città, telefono, numeroCarta, nomeIntestatario, scadenzaCarta, cvv, cap, numeroCivico;
                     MetodoSpedizione metodoSpedizione;
 
-                    try {
-                        nome = request.getParameter("nome");
-                        cognome = request.getParameter("cognome");
-                        via = request.getParameter("via");
-                        String numeroCivicoStr = request.getParameter("numerocivico");
-                        cap = request.getParameter("cap");
-                        città = request.getParameter("città");
-                        telefono = request.getParameter("telefono");
-                        numeroCarta = request.getParameter("numeroCarta");
-                        nomeIntestatario = request.getParameter("nomeIntestatario");
-                        scadenzaCarta = request.getParameter("scadenzaCarta");
-                        cvv = request.getParameter("cvv");
-                        metodoSpedizione = gestioneOrdineService.fetchMetodoSpedizioneByNome(request.getParameter("metodoSpedizione"));
+                    nome = request.getParameter("nome");
+                    cognome = request.getParameter("cognome");
+                    via = request.getParameter("via");
+                    numeroCivico = request.getParameter("numerocivico");
+                    cap = request.getParameter("cap");
+                    città = request.getParameter("città");
+                    telefono = request.getParameter("telefono");
+                    numeroCarta = request.getParameter("numeroCarta");
+                    nomeIntestatario = request.getParameter("nomeIntestatario");
+                    scadenzaCarta = request.getParameter("scadenzaCarta");
+                    cvv = request.getParameter("cvv");
+                    metodoSpedizione = gestioneOrdineService.fetchMetodoSpedizioneByNome(request.getParameter("metodoSpedizione"));
 
-                        if (nome == null || cognome == null || via == null || telefono == null || metodoSpedizione == null || città == null ||
-                                cap == null || numeroCivicoStr == null || numeroCarta == null || nomeIntestatario == null ||
-                                scadenzaCarta == null || cvv == null) {
-                            throw new MyServletException("Tutti i campi sono obbligatori");
-                        }
-
-                        // Controllo dei formati per i campi della spedizione
-                        if (!nome.matches("[a-zA-Z ]+") || !cognome.matches("[a-zA-Z ]+")) {
-                            throw new MyServletException("Nome o cognome non validi.");
-                        }
-                        if (!numeroCivicoStr.matches("[0-9]{1,4}") || !cap.matches("[0-9]{5}")) {
-                            throw new MyServletException("Numero civico o CAP non validi.");
-                        }
-                        numeroCivico = Integer.parseInt(numeroCivicoStr);
-
-                        if (telefono != null && !telefono.matches("[0-9]{9,15}")) {
-                            throw new MyServletException("Numero di telefono non valido.");
-                        }
-
-                        // Controllo dei formati per i campi della carta di credito
-                        if (!nomeIntestatario.matches("[a-zA-Z ]+")) {
-                            throw new MyServletException("Nome dell'intestatario della carta non valido.");
-                        }
-                        if (!cvv.matches("[0-9]{3}")) {
-                            throw new MyServletException("CVV non valido. Deve essere di 3 cifre.");
-                        }
-                        //Controlli necessari per il numero della carta
-                        if (!numeroCarta.replaceAll(" ", "").matches("[0-9]{16}")) {
-                            throw new MyServletException("Numero della carta di credito non valido. Deve essere di 16 cifre.");
-                        }
-                        //Controlli necessari per la data di scadenza
-                    } catch (NumberFormatException ex) {
-                        throw new MyServletException("Parametri in input non validi");
+                    if (nome == null || cognome == null || via == null || telefono == null || metodoSpedizione == null || città == null ||
+                            cap == null || numeroCivico == null || numeroCarta == null || nomeIntestatario == null ||
+                            scadenzaCarta == null || cvv == null) {
+                        throw new MyServletException("Tutti i campi sono obbligatori");
                     }
 
+                    // Controllo dei formati per i campi della spedizione
+                    if (!nome.matches("^(?!\\s*$)[a-zA-Zà-ÿÀ-Ÿ\\s']{1,255}$")) {
+                        throw new MyServletException("Nome non valido. Deve contenere solo lettere, spazi e apostrofi, con una lunghezza massima di 255 caratteri.");
+                    }
+
+                    if (!cognome.matches("^(?!\\s*$)[a-zA-Zà-ÿÀ-Ÿ\\s']{1,255}$")) {
+                        throw new MyServletException("Cognome non valido. Deve contenere solo lettere, spazi e apostrofi, con una lunghezza massima di 255 caratteri.");
+                    }
+
+                    if (!via.matches("^.{1,255}$")) {
+                        throw new MyServletException("La via deve contenere tra 1 e 255 caratteri.");
+                    }
+
+                    if (!cap.matches("^\\d{5}$")) {
+                        throw new MyServletException("CAP non valido. Deve contenere esattamente 5 caratteri numerici");
+                    }
+
+                    if (!città.matches("^(?!\\s*$)[a-zA-Zà-ÿÀ-Ÿ\\s']{1,255}$")) {
+                        throw new MyServletException("Il nome della città non è valido. Deve contenere solo lettere, spazi e apostrofi, con una lunghezza massima di 255 caratteri.");
+                    }
+
+                    if (!numeroCivico.matches("^\\d{1,5}(\\s?(bis|tris|[a-zA-Z]))?$")) {
+                        throw new MyServletException("Numero civico non valido.");
+                    }
+
+                    if (!telefono.matches("^\\+?[1-9]\\d{1,14}$")) {
+                        throw new MyServletException("Numero di telefono non valido.");
+                    }
+
+                    // Controllo dei formati per i campi della carta di credito
+                    if (!nomeIntestatario.matches("^(?!\\s*$)[a-zA-Zà-ÿÀ-Ÿ\\s']{1,255}$")) {
+                        throw new MyServletException("Nome dell'intestatario della carta non valido.Deve contenere solo lettere, spazi e apostrofi, con una lunghezza massima di 255 caratteri.");
+                    }
+                    if (!cvv.matches("^[0-9]{3}$")) {
+                        throw new MyServletException("CVV non valido. Deve essere di 3 cifre numeriche.");
+                    }
+                    //Controlli necessari per il numero della carta
+                    if (!numeroCarta.replaceAll(" ", "").matches("^[0-9]{16}$")) {
+                        throw new MyServletException("Numero della carta di credito non valido. Deve essere di 16 cifre.");
+                    }
+                    // Controlli necessari per la data di scadenza
+                    if (!scadenzaCarta.matches("^(0[1-9]|1[0-2])/[0-9]{2}$")) {
+                        throw new MyServletException("Data di scadenza della carta non valida. Deve essere nel formato MM/YY.");
+                    }
+
+                    // Parsing della data di scadenza
+                    String[] scadenzaParts = scadenzaCarta.split("/");
+                    int meseScadenza = Integer.parseInt(scadenzaParts[0]);
+                    int annoScadenza = Integer.parseInt(scadenzaParts[1]) + 2000; // Aggiungo 2000 per ottenere l'anno completo
+
+                    LocalDate oggi = LocalDate.now();
+                    LocalDate dataScadenza = LocalDate.of(annoScadenza, meseScadenza, 1).plusMonths(1).minusDays(1);
+
+                    if (dataScadenza.isBefore(oggi)) {
+                        throw new MyServletException("La carta di credito è scaduta.");
+                    }
 
                     //Si verifica a questo punto che l'indirizzo di spedizione esista per davvero
                     boolean indirizzoVerificato = gestioneOrdineService.verificaIndirizzo(via, cap, città);
@@ -159,7 +206,7 @@ public class GestioneOrdineServlet extends HttpServlet {
                         request.setAttribute("metodiSpedizione", metodiSpedizione);
                         requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/checkout.jsp");
                         requestDispatcher.forward(request, response);
-                    }else {//Caso in cui l'indirizzo esiste ed è possibile confermare l'ordine
+                    }else {//Caso in cui l'indirizzo esiste, verificare e confermare l'ordine
                         // Crea un oggetto Ordine
                         Ordine ordine = new Ordine();
                         ordine.setIdUtente(utenteSession.getIdUtente());
@@ -175,14 +222,18 @@ public class GestioneOrdineServlet extends HttpServlet {
                         // Per calcolare il prezzo totale bisogna scorrere tutto il carrello e aggiungere anche il costo della spedizione
                         prezzoTotale = metodoSpedizione.getCosto();
                         synchronized (this) {
-                            for (ItemCarrello itemCarrello : carrelloSession) {
+                            for (ItemCarrello itemCarrello : carrelloSession) {//Ciclo for per verificare se i prodotti da ordinare sono disponibili
                                 int idProdotto = itemCarrello.getIdProdotto();
                                 Prodotto prodotto = gestioneOrdineService.fetchByIdProdotto(idProdotto);
 
                                 // Controllo se c'è qualche prodotto da ordinare la cui quantità è maggiore di quella nel magazzino
                                 if (itemCarrello.getQuantità() > prodotto.getQuantità()) {
-                                    throw new MyServletException("Prodotto non più disponibile nelle quantità inserite dall'utente");
+                                    throw new MyServletException("Prodotto non più disponibile nelle quantità inserite dall'utente, ordine annullato");
                                 }
+                            }
+                            for(ItemCarrello itemCarrello : carrelloSession){//Ciclo for per togliere la quantità relativa all'ordine
+                                int idProdotto = itemCarrello.getIdProdotto();
+                                Prodotto prodotto = gestioneOrdineService.fetchByIdProdotto(idProdotto);
 
                                 // Diminuisco la quantità di prodotto presente in magazzino e aggiorno il prodotto
                                 prodotto.setQuantità(prodotto.getQuantità() - itemCarrello.getQuantità());
@@ -234,6 +285,15 @@ public class GestioneOrdineServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Gestisce le richieste HTTP POST.
+     * Reindirizza le richieste POST al metodo doGet.
+     *
+     * @param request  l'oggetto HttpServletRequest che contiene la richiesta del client
+     * @param response l'oggetto HttpServletResponse che contiene la risposta al client
+     * @throws ServletException in caso di errore durante la gestione della richiesta
+     * @throws IOException      in caso di errore di input/output
+     */
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         doGet(request, response);

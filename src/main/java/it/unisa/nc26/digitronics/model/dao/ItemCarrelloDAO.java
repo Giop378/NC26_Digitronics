@@ -10,8 +10,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe DAO (Data Access Object) per la gestione degli elementi del carrello.
+ */
 public class ItemCarrelloDAO {
-    //ritorna i prodotti inseriti nel carrello da quell'utente
+
+    /**
+     * Recupera gli elementi del carrello associati a un determinato utente.
+     *
+     * @param idUtente l'ID dell'utente
+     * @return una lista di {@link ItemCarrello} contenente gli elementi del carrello dell'utente
+     */
     public List<ItemCarrello> doRetrieveByIdUtente(int idUtente) {
         List<ItemCarrello> carrelli = new ArrayList<>();
         try (Connection con = ConPool.getConnection()) {
@@ -26,8 +35,8 @@ public class ItemCarrelloDAO {
                 carrello.setIdProdotto(rs.getInt("IdProdotto"));
                 carrello.setQuantità(rs.getInt("quantità"));
 
-                //Si prende il prodotto dal database e lo si imposta come attributo
-                ProdottoDAO prodottoDAO= new ProdottoDAO();
+                // Recupera il prodotto dal database e lo imposta come attributo
+                ProdottoDAO prodottoDAO = new ProdottoDAO();
                 carrello.setProdotto(prodottoDAO.doRetrieveById(carrello.getIdProdotto()));
 
                 carrelli.add(carrello);
@@ -37,9 +46,14 @@ public class ItemCarrelloDAO {
         }
         return carrelli;
     }
-    //salva gli elementi del carrello nel database
+
+    /**
+     * Salva gli elementi del carrello nel database.
+     *
+     * @param carrelli la lista di {@link ItemCarrello} da salvare
+     */
     public synchronized void doSave(List<ItemCarrello> carrelli) {
-        if(carrelli == null || carrelli.isEmpty()){
+        if (carrelli == null || carrelli.isEmpty()) {
             return;
         }
         try (Connection con = ConPool.getConnection()) {
@@ -58,7 +72,12 @@ public class ItemCarrelloDAO {
             throw new RuntimeException(e);
         }
     }
-    //cancella tutti i prodotti nel carrello di un utente
+
+    /**
+     * Cancella tutti gli elementi del carrello associati a un determinato utente.
+     *
+     * @param idUtente l'ID dell'utente
+     */
     public synchronized void doDelete(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(

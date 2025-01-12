@@ -1,7 +1,7 @@
 package it.unisa.nc26.digitronics.infoProdotto.controller;
 
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,13 +17,13 @@ import java.util.List;
 
 @WebServlet("/search")
 public class ProdottoRicercaServlet extends HttpServlet {
-    private infoProdottoService infoProdottoService;
+    private InfoProdottoService infoProdottoService;
 
     public ProdottoRicercaServlet() {
-        this.infoProdottoService = new infoProdottoServiceImpl();
+        this.infoProdottoService = new InfoProdottoServiceImpl();
     }
 
-    public void setProductService(infoProdottoService infoProdottoService) {
+    public void setProductService(InfoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 

@@ -10,10 +10,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe Data Access Object (DAO) per l'entità {@link Categoria}.
+ *
+ * <p>La classe {@code CategoriaDAO} fornisce metodi per interagire con il database
+ * e gestire le operazioni CRUD (Create, Read, Update, Delete) per l'entità {@link Categoria}.
+ * Le operazioni implementate includono il recupero di tutte le categorie, il recupero di
+ * una categoria per nome e il salvataggio di una nuova categoria nel database.</p>
+ */
 public class CategoriaDAO {
-    //Prende tutte le categorie
-    public List<Categoria> doRetrieveAll() {
 
+    /**
+     * Recupera tutte le categorie dal database.
+     *
+     * @return una lista di {@link Categoria} contenente tutte le categorie nel database
+     * @throws RuntimeException se si verifica un errore durante l'accesso al database
+     */
+    public List<Categoria> doRetrieveAll() {
         try (Connection con = ConPool.getConnection()) {
 
             PreparedStatement ps = con.prepareStatement("select nome, descrizione, immagine from categoria");
@@ -39,8 +52,15 @@ public class CategoriaDAO {
             throw new RuntimeException("Errore durante l'accesso alle categorie, riprova più tardi");
         }
     }
-    //restituisce un oggetto categoria dando il nome
-    public Categoria doRetrieveByNomeCategoria(String nomeCategoria){
+
+    /**
+     * Recupera una categoria dal database in base al nome della categoria.
+     *
+     * @param nomeCategoria il nome della categoria da cercare
+     * @return un oggetto {@link Categoria} corrispondente al nome, o {@code null} se la categoria non esiste
+     * @throws RuntimeException se si verifica un errore durante l'accesso al database
+     */
+    public Categoria doRetrieveByNomeCategoria(String nomeCategoria) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Categoria WHERE nome = ?");
             ps.setString(1, nomeCategoria);
@@ -58,8 +78,14 @@ public class CategoriaDAO {
             throw new RuntimeException("Errore durante l'accesso alle categorie, riprova più tardi");
         }
     }
-    //Salva una categoria
-    public void doSave(Categoria categoria){
+
+    /**
+     * Salva una nuova categoria nel database.
+     *
+     * @param categoria l'oggetto {@link Categoria} da salvare
+     * @throws RuntimeException se si verifica un errore durante l'accesso al database
+     */
+    public void doSave(Categoria categoria) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO utente () VALUES(?,?,?)");
             ps.setString(1, categoria.getNome());
@@ -74,3 +100,4 @@ public class CategoriaDAO {
         }
     }
 }
+

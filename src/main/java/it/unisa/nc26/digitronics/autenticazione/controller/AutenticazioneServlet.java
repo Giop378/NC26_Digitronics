@@ -19,23 +19,43 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Servlet per la gestione dell'autenticazione degli utenti.
+ */
 @WebServlet("/autenticazione-servlet")
 public class AutenticazioneServlet extends HttpServlet {
     private AutenticazioneService autenticazioneService;
 
+    /**
+     * Costruttore che inizializza il servizio di autenticazione con l'implementazione predefinita.
+     */
     public AutenticazioneServlet() {
         this.autenticazioneService = new AutenticazioneServiceImpl();
     }
 
+    /**
+     * Imposta un'istanza personalizzata del servizio di autenticazione.
+     *
+     * @param autenticazioneService l'istanza personalizzata del servizio
+     */
     public void setAutenticazioneService(AutenticazioneService autenticazioneService) {
         this.autenticazioneService = autenticazioneService;
     }
 
+    /**
+     * Gestisce le richieste HTTP GET.
+     *
+     * @param request  la richiesta HTTP
+     * @param response la risposta HTTP
+     * @throws ServletException in caso di errori nella gestione della richiesta
+     * @throws IOException      in caso di errori di input/output
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utenteSession = (Utente) request.getSession().getAttribute("utente");
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        //Se c'è già un utente nella sessione non c'è bisogno di fare l'accesso quindi si va o all'area admin o all'area profilo utente
+
+        // Se l'utente è già autenticato, redirige alla pagina appropriata
         if (utenteSession != null) {
             if (utenteSession.isRuolo()) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/admin.jsp");
@@ -89,11 +109,24 @@ public class AutenticazioneServlet extends HttpServlet {
         }
     }
 
-    protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
-       ServletException, IOException {
-            doGet(request, response);
+    /**
+     * Gestisce le richieste HTTP POST delegandole al metodo doGet.
+     *
+     * @param request  la richiesta HTTP
+     * @param response la risposta HTTP
+     * @throws ServletException in caso di errori nella gestione della richiesta
+     * @throws IOException      in caso di errori di input/output
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 
+    /**
+     * Unisce gli elementi del carrello della sessione con quelli del database.
+     *
+     * @param carrelloDB     il carrello recuperato dal database
+     * @param carrelloSession il carrello della sessione
+     */
     private void mergeCarrello(List<ItemCarrello> carrelloDB, List<ItemCarrello> carrelloSession) {
         Map<Integer, ItemCarrello> map = new HashMap<>();
         //per evitare di avere errori se una delle due liste è null la inizializzo come lista vuota
@@ -103,13 +136,13 @@ public class AutenticazioneServlet extends HttpServlet {
         if (carrelloSession == null) {
             carrelloSession = new ArrayList<>();
         }
+
         for (ItemCarrello carrello : carrelloDB) {
             map.put(carrello.getIdProdotto(), carrello);
         }
 
         for (ItemCarrello carrello : carrelloSession) {
             ItemCarrello existingCarrello = map.get(carrello.getIdProdotto());
-
             if (existingCarrello == null) {
                 carrelloDB.add(carrello);
             } else {
@@ -118,5 +151,4 @@ public class AutenticazioneServlet extends HttpServlet {
             }
         }
     }
-
 }
