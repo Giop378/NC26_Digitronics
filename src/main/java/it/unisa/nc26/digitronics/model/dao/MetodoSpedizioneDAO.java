@@ -10,20 +10,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe Data Access Object (DAO) per l'entità {@link MetodoSpedizione}.
+ *
+ * <p>La classe {@code MetodoSpedizioneDAO} fornisce metodi per interagire con il database
+ * e gestire le operazioni CRUD (Create, Read, Update, Delete) per l'entità {@link MetodoSpedizione}.
+ * Le operazioni implementate includono il recupero di tutti i metodi di spedizione e il recupero
+ * di un metodo di spedizione specifico dato il nome.</p>
+ */
 public class MetodoSpedizioneDAO {
 
-    // Recupera una lista di tutti i metodi di spedizione dal database
+    /**
+     * Recupera una lista di tutti i metodi di spedizione dal database.
+     *
+     * @return una lista di {@link MetodoSpedizione} contenente tutti i metodi di spedizione nel database
+     * @throws RuntimeException se si verifica un errore durante l'accesso al database
+     */
     public List<MetodoSpedizione> doRetrieveAll() {
 
-
         try (Connection con = ConPool.getConnection()) {
-
-
 
             PreparedStatement ps = con.prepareStatement("select nome,descrizione,costo from metodospedizione");
             ResultSet rs = ps.executeQuery();
 
-            List<MetodoSpedizione>  metodiSpedizioni = new ArrayList<>();
+            List<MetodoSpedizione> metodiSpedizioni = new ArrayList<>();
 
             while (rs.next()) {
 
@@ -44,7 +54,13 @@ public class MetodoSpedizioneDAO {
         }
     }
 
-    // Recupera un metodo di spedizione dato il nome
+    /**
+     * Recupera un metodo di spedizione dal database dato il nome del metodo di spedizione.
+     *
+     * @param nomeMetodo il nome del metodo di spedizione da cercare
+     * @return un oggetto {@link MetodoSpedizione} corrispondente al nome, o {@code null} se il metodo di spedizione non esiste
+     * @throws RuntimeException se si verifica un errore durante l'accesso al database
+     */
     public MetodoSpedizione doRetrieveByName(String nomeMetodo) {
         MetodoSpedizione metodoSpedizione = null;
 
