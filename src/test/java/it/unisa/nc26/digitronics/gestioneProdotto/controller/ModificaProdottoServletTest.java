@@ -11,81 +11,44 @@ import it.unisa.nc26.digitronics.utils.MyServletException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 /**
- * Classe di test per la servlet ModificaProdottoServlet.
- * Questa classe contiene vari test per verificare il funzionamento dei metodi doGet() e doPost()
- * della ModificaProdottoServlet. I test utilizzano Mockito per simulare le dipendenze e i vari scenari
- * (utente amministratore, utente non amministratore, parametri non validi, ecc.) per garantire che la servlet
- * si comporti come previsto in diverse situazioni.
- *
- * I test includono la validazione di parametri come nome del prodotto, descrizione, quantità, categoria e prezzo.
- * Verificano anche il comportamento quando un utente amministratore e un utente non amministratore tentano
- * di accedere alla pagina, e quando vengono sollevate diverse eccezioni a causa di input errati.
- *
- * @RunWith(MockitoJUnitRunner.class) specifica che il test runner è il MockitoJUnitRunner,
- * che gestisce la creazione e l'iniezione dei mock.
+ * Classe di test per la servlet {@link ModificaProdottoServlet}.
+ * Verifica il corretto funzionamento dei metodi `doGet` e `doPost` in diversi scenari.
  */
-@RunWith(MockitoJUnitRunner.class)
 public class ModificaProdottoServletTest {
 
-    /**
-     * Istanza mock della ModificaProdottoServlet che viene testata.
-     */
-    @InjectMocks
     private ModificaProdottoServlet modificaProdottoServlet;
-
-    /**
-     * Istanza mock del servizio GestioneProdottoService utilizzato dalla servlet.
-     */
-    @Mock
     private GestioneProdottoService modificaProdottoService;
-
-    /**
-     * Istanza mock di HttpServletRequest utilizzata per simulare le richieste HTTP.
-     */
-    @Mock
     private HttpServletRequest request;
-
-    /**
-     * Istanza mock di HttpServletResponse utilizzata per simulare le risposte HTTP.
-     */
-    @Mock
     private HttpServletResponse response;
-
-    /**
-     * Istanza mock di HttpSession utilizzata per simulare la gestione delle sessioni.
-     */
-    @Mock
     private HttpSession session;
-
-    /**
-     * Istanza mock di RequestDispatcher utilizzata per inoltrare le richieste.
-     */
-    @Mock
     private RequestDispatcher requestDispatcher;
-
-    /**
-     * Istanza mock di Utente utilizzata per simulare l'utente che interagisce con la servlet.
-     */
-    @Mock
     private Utente utente;
 
     /**
-     * Metodo di setup per inizializzare gli oggetti mock prima di ogni test.
-     * In questo metodo viene iniettato il servizio mock nella servlet.
+     * Metodo di setup eseguito prima di ogni test.
+     * Inizializza gli oggetti necessari e configura i mock per i test.
      */
     @Before
     public void setUp() {
+        // Creazione dell'oggetto servlet
+        modificaProdottoServlet = new ModificaProdottoServlet();
+        modificaProdottoService = mock(GestioneProdottoService.class);
+        request = mock(HttpServletRequest.class);
+        response = mock(HttpServletResponse.class);
+        session = mock(HttpSession.class);
+        requestDispatcher = mock(RequestDispatcher.class);
+        utente = mock(Utente.class);
+
         // Iniettare il mock service nella servlet
         modificaProdottoServlet.setGestioneProdottoService(modificaProdottoService);
     }
 
     /**
-     * Test del metodo doGet() quando l'utente è un amministratore e i parametri di input sono validi.
-     * Verifica che il servizio venga chiamato con il prodotto corretto e che la richiesta venga inoltrata
-     * alla pagina di conferma.
+     * Test del metodo `doGet` quando un amministratore esegue un'operazione con parametri validi.
      */
     @Test
     public void testDoGet_AdminSuccess() throws Exception {
@@ -113,10 +76,9 @@ public class ModificaProdottoServletTest {
         // Verifica che il dispatcher sia stato chiamato
         verify(requestDispatcher).forward(request, response);
     }
-
     /**
-     * Test del metodo doGet() quando l'utente non è un amministratore.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando un utente non amministratore tenta di accedere alla funzionalità.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_NonAdmin() throws Exception {
@@ -146,8 +108,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando il nome del prodotto è nullo.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando il nome del prodotto è nullo.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_NomeProdottoNull() throws Exception {
@@ -171,8 +133,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando il nome del prodotto è troppo lungo.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando il nome del prodotto è troppo lungo.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_NomeProdottoTroppoLungo() throws Exception {
@@ -196,8 +158,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando la quantità del prodotto è minore o uguale a zero.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando la quantità è minore o uguale a zero.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_QuantitaMinoreUgualeZero() throws Exception {
@@ -220,9 +182,10 @@ public class ModificaProdottoServletTest {
         }
     }
 
+
     /**
-     * Test del metodo doGet() quando la descrizione del prodotto è vuota.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando la descrizione del prodotto è vuota.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_DescrizioneVuota() throws Exception {
@@ -246,8 +209,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando la categoria del prodotto è vuota.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando la categoria è vuota.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_CategoriaVuota() throws Exception {
@@ -271,8 +234,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando la categoria del prodotto è troppo lunga.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando la categoria è troppo lunga.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_CategoriaTroppoLunga() throws Exception {
@@ -296,8 +259,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando l'ID del prodotto non è un numero valido.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando l'ID del prodotto non è un numero valido.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_NumeroNonValido() throws Exception {
@@ -321,8 +284,7 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doPost() per verificare il corretto reindirizzamento alla pagina di conferma.
-     * Verifica che, dopo l'invio del modulo, la servlet invii la richiesta alla pagina di conferma.
+     * Test del metodo `doPost`, verificando che reindirizzi al metodo `doGet`.
      */
     @Test
     public void testDoPost_RedirectToDoGet() throws Exception {
@@ -351,8 +313,8 @@ public class ModificaProdottoServletTest {
     }
 
     /**
-     * Test del metodo doGet() quando il prezzo del prodotto è minore o uguale a zero.
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando il prezzo è minore o uguale a zero.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_PrezzoMinoreUgualeZero() throws Exception {
@@ -377,10 +339,9 @@ public class ModificaProdottoServletTest {
             assertEquals("Il prezzo deve essere maggiore di zero", e.getMessage());
         }
     }
-
     /**
-     * Test del metodo doGet() quando il prezzo del prodotto ha un formato errato (ad esempio, con un solo decimale).
-     * Verifica che venga sollevata un'eccezione MyServletException con il messaggio appropriato.
+     * Test del metodo `doGet` quando il prezzo non è nel formato corretto.
+     * Verifica che venga lanciata una {@link MyServletException}.
      */
     @Test
     public void testDoGet_PrezzoFormatoErrato() throws Exception {
@@ -406,6 +367,4 @@ public class ModificaProdottoServletTest {
         }
     }
 }
-
-
 
