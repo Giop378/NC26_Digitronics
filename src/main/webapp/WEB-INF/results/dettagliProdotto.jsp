@@ -25,6 +25,8 @@
             form.style.display = form.style.display === 'block' ? 'none' : 'block';
         }
     </script>
+
+    <script src="./script/validateFormRecensione.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/results/header.jsp" %>
@@ -57,17 +59,26 @@
         <button onclick="toggleFeedbackForm()" class="add-feedback-button">Aggiungi una recensione</button>
 
         <div id="feedback-form" class="feedback-form" style="display: none;">
-            <form action="${pageContext.request.contextPath}/aggiungiRecensione" method="get">
+
+            <form action="${pageContext.request.contextPath}/aggiungiRecensione" method="get" onsubmit="validateForm(event)">
                 <input type="hidden" name="productId" value="${product.idProdotto}">
+
                 <label for="title">Titolo:</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title">
+                <p id="title-warning" style="color: red; display: none;"></p>
+
                 <label for="description">Descrizione:</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description"></textarea>
+                <p id="description-warning" style="color: red; display: none;"></p>
+
                 <label for="score">Punteggio:</label>
-                <input type="number" id="score" name="score" min="1" max="5" required>
+                <input type="number" id="score" name="score">
+                <p id="score-warning" style="color: red; display: none;"></p>
+
                 <input type="hidden" name="userId" value="<%= currentUser.getIdUtente() %>">
                 <button type="submit">Invia</button>
             </form>
+
         </div>
         <% } else { %>
         <p>Effettua il <a href="autenticazione-servlet?action=login">login</a> per aggiungere una recensione.</p>
