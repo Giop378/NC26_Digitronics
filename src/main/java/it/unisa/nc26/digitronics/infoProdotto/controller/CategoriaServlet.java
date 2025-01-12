@@ -15,18 +15,43 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Servlet per gestire le operazioni relative alle categorie.
+ * Questa servlet elabora richieste GET e POST per ottenere informazioni su una categoria,
+ * i prodotti associati e tutte le categorie disponibili.
+ */
 @WebServlet(name = "CategoriaServlet", value = "/categoria")
 public class CategoriaServlet extends HttpServlet {
+
+    /**
+     * Servizio per la gestione delle informazioni sui prodotti e categorie.
+     */
     private InfoProdottoService infoProdottoService;
 
+    /**
+     * Costruttore di default che inizializza il servizio infoProdottoService.
+     */
     public CategoriaServlet() {
         this.infoProdottoService = new InfoProdottoServiceImpl();
     }
 
+    /**
+     * Imposta un'istanza personalizzata del servizio infoProdottoService.
+     *
+     * @param infoProdottoService il servizio da utilizzare.
+     */
     public void setCategoryService(InfoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 
+    /**
+     * Gestisce le richieste HTTP GET per ottenere i dettagli di una categoria e i relativi prodotti.
+     *
+     * @param request  l'oggetto HttpServletRequest contenente i dettagli della richiesta.
+     * @param response l'oggetto HttpServletResponse per inviare la risposta.
+     * @throws ServletException in caso di errore nella gestione della richiesta.
+     * @throws IOException      in caso di errore di input/output.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nomeCategoria = request.getParameter("categoria");
@@ -54,9 +79,18 @@ public class CategoriaServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Gestisce le richieste HTTP POST inoltrandole al metodo doGet.
+     *
+     * @param request  l'oggetto HttpServletRequest contenente i dettagli della richiesta.
+     * @param response l'oggetto HttpServletResponse per inviare la risposta.
+     * @throws ServletException in caso di errore nella gestione della richiesta.
+     * @throws IOException      in caso di errore di input/output.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }
+
 
