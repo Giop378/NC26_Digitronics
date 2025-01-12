@@ -1,0 +1,774 @@
+{
+  "id": "c7c3657a-b105-4e5d-b494-1125df5a6b05",
+  "version": "2.0",
+  "name": "testGestioneRecensione",
+  "url": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+  "tests": [{
+    "id": "2ed6d9e1-c508-42df-bedf-cb8dd85acb5d",
+    "name": "titoloRecensioneTroppoLungoError",
+    "commands": [{
+      "id": "d949c13a-0c80-431e-a12f-c3bf80fabed8",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a403600a-67a0-49c5-a037-26e35ca584d1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1096x807",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "93883b02-989c-4a8f-85b4-dddaf884f7f6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.add-feedback-button",
+      "targets": [
+        ["css=.add-feedback-button", "css:finder"],
+        ["xpath=//button[@onclick='toggleFeedbackForm()']", "xpath:attributes"],
+        ["xpath=//section/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Aggiungi una recensione')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "20037f97-c4ef-4116-ad3f-d7264c6b76da",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5bb2b20d-a106-42df-8ca2-0930d6f64444",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": "Una Dettagliata Analisi dell’iPhone 15 Pro: Qualità Costruttiva, Prestazioni Avanzate, Design Rivoluzionario e Compatibilità con l’Ecosistema Apple – Una Recensione Approfondita sui Pro e Contro Dopo un Test Completo, Esplorando Fotocamera, Batteria, Software e Innovazione Tecnologica!!! "
+    }, {
+      "id": "ec57c187-75b2-4649-9961-2579491a8a7e",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "20722ca7-f0b5-4498-b187-c006dd8f9e62",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e04ab93a-d8e7-49b7-aa99-0552826a9f70",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fad635e5-474a-48e5-8450-19bc7c14a62a",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "L’iPhone 15 Pro combina prestazioni elevate, un display Super Retina XDR e una fotocamera avanzata, offrendo un’esperienza premium con autonomia migliorata e l’ultimo iOS. Perfetto per chi cerca potenza e innovazione. "
+    }, {
+      "id": "403e1cf9-43b6-4adc-a289-a89138bc9d72",
+      "comment": "",
+      "command": "click",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2d8da4c-99f2-4d38-8d76-11b422a72e33",
+      "comment": "",
+      "command": "type",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "45cb79be-d83e-4ee8-8405-b95593283b73",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(12)",
+      "targets": [
+        ["css=button:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/button", "xpath:idRelative"],
+        ["xpath=//section/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b010f1d0-5b45-4d60-9f0f-024e58897d6e",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=title-warning",
+      "targets": [
+        ["id=title-warning", "id"],
+        ["css=#title-warning", "css:finder"],
+        ["xpath=//p[@id='title-warning']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/p", "xpath:idRelative"],
+        ["xpath=//form/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Il titolo non può superare i 255 caratteri.')]", "xpath:innerText"]
+      ],
+      "value": "Il titolo non può superare i 255 caratteri."
+    }]
+  }, {
+    "id": "9cafc08f-0a7d-46ee-ba1b-1b3e9c52d29d",
+    "name": "titoloRecensioneVuotoError",
+    "commands": [{
+      "id": "a8ab7543-8f6e-40a9-863d-d3ae50d7ec17",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "08159c9f-e9a3-45a3-b0cd-bd4f80511742",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1096x807",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e1cee7f-8e31-4661-bcce-42e3127a3392",
+      "comment": "",
+      "command": "click",
+      "target": "css=.add-feedback-button",
+      "targets": [
+        ["css=.add-feedback-button", "css:finder"],
+        ["xpath=//button[@onclick='toggleFeedbackForm()']", "xpath:attributes"],
+        ["xpath=//section/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Aggiungi una recensione')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2894a9ca-9136-42ce-a8e0-db7aa98ae071",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e4c24dd-3b04-484c-9ade-1f3e399df4dd",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "L’iPhone 15 Pro combina prestazioni elevate, un display Super Retina XDR e una fotocamera avanzata, offrendo un’esperienza premium con autonomia migliorata e l’ultimo iOS. Perfetto per chi cerca potenza e innovazione. "
+    }, {
+      "id": "cc2f1e1a-a7b7-4ca1-96cc-6000f111fcc2",
+      "comment": "",
+      "command": "click",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2dd928c-64ea-4fd0-a14e-b9f6db4672e5",
+      "comment": "",
+      "command": "type",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "3e53eaa7-0158-41c5-977a-e8fbc44bc4a8",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(12)",
+      "targets": [
+        ["css=button:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/button", "xpath:idRelative"],
+        ["xpath=//section/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "44aa412a-c725-4ff0-bcd3-b0ca9527e11c",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=title-warning",
+      "targets": [
+        ["id=title-warning", "id"],
+        ["css=#title-warning", "css:finder"],
+        ["xpath=//p[@id='title-warning']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/p", "xpath:idRelative"],
+        ["xpath=//form/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Il titolo non può essere vuoto.')]", "xpath:innerText"]
+      ],
+      "value": "Il titolo non può essere vuoto."
+    }]
+  }, {
+    "id": "4ddf203e-f8b5-4795-80da-108823898fbc",
+    "name": "descrizioneRecensioneVuotoError",
+    "commands": [{
+      "id": "49becf6d-ca76-4dd3-97f2-a25dc93287ec",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7dc27454-0a02-4edf-a305-7c100fc28385",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1096x807",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c408d9c6-ccea-4fc5-8a0f-3548feebb3f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.add-feedback-button",
+      "targets": [
+        ["css=.add-feedback-button", "css:finder"],
+        ["xpath=//button[@onclick='toggleFeedbackForm()']", "xpath:attributes"],
+        ["xpath=//section/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Aggiungi una recensione')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "62fff51b-fc2c-4d69-b278-67ec55d1003d",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c8268584-a650-456b-beec-c2b549baabfa",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": "Analisi dettagliata iPhone 15 Pro "
+    }, {
+      "id": "83f43255-c9be-466f-99ff-18e9a59bb546",
+      "comment": "",
+      "command": "click",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4ed5948-4c9e-49a4-bfe6-137e00276c75",
+      "comment": "",
+      "command": "type",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "1f08e7a1-6b37-48cd-a0c1-d41f48bc4590",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(12)",
+      "targets": [
+        ["css=button:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/button", "xpath:idRelative"],
+        ["xpath=//section/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2a22923d-d78a-4530-aa20-665c45417ae0",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=description-warning",
+      "targets": [
+        ["id=description-warning", "id"],
+        ["css=#description-warning", "css:finder"],
+        ["xpath=//p[@id='description-warning']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/p[2]", "xpath:idRelative"],
+        ["xpath=//form/p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'La descrizione non può essere vuota.')]", "xpath:innerText"]
+      ],
+      "value": "La descrizione non può essere vuota."
+    }]
+  }, {
+    "id": "e0ed400a-e6dd-4b2d-847d-140caf5c2a32",
+    "name": "punteggioRecensioneNonValidoError",
+    "commands": [{
+      "id": "0b1eca67-026d-4225-8615-544bbce09722",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2905f977-0403-4ab9-b353-6e18f27a8bb0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1096x807",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c9033581-29fb-48e7-9de5-ef61c8bf8ea2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.add-feedback-button",
+      "targets": [
+        ["css=.add-feedback-button", "css:finder"],
+        ["xpath=//button[@onclick='toggleFeedbackForm()']", "xpath:attributes"],
+        ["xpath=//section/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Aggiungi una recensione')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f42a5405-6932-453b-a87b-080f7bed0695",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6894319a-ee62-436f-a7bb-4b3d9e5a3db2",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": "Analisi dettagliata iPhone 15 Pro "
+    }, {
+      "id": "5a058131-4f4d-48fe-85dc-18cb583e4dd6",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f2f714b-ba80-4b49-ac0b-6dafac839a0e",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "533667e7-9d6d-4545-a13b-85f745d02746",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfd1105f-cd2d-4bcb-9264-81cbad6fe5bb",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "L’iPhone 15 Pro combina prestazioni elevate, un display Super Retina XDR e una fotocamera avanzata, offrendo un’esperienza premium con autonomia migliorata e l’ultimo iOS. Perfetto per chi cerca potenza e innovazione. "
+    }, {
+      "id": "9d0682db-0cc7-4a54-9051-940008292c81",
+      "comment": "",
+      "command": "click",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1e4b032-fe2a-44a4-b69c-439e76952734",
+      "comment": "",
+      "command": "type",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "6"
+    }, {
+      "id": "c266155c-d41b-4e6c-819d-4a24aeae1d42",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(12)",
+      "targets": [
+        ["css=button:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/button", "xpath:idRelative"],
+        ["xpath=//section/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "30be91d6-6ce9-4d50-999c-73d5bafd0b0c",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=score-warning",
+      "targets": [
+        ["id=score-warning", "id"],
+        ["css=#score-warning", "css:finder"],
+        ["xpath=//p[@id='score-warning']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/p[3]", "xpath:idRelative"],
+        ["xpath=//p[3]", "xpath:position"],
+        ["xpath=//p[contains(.,'Il punteggio deve essere compreso tra 1 e 5.')]", "xpath:innerText"]
+      ],
+      "value": "Il punteggio deve essere compreso tra 1 e 5."
+    }]
+  }, {
+    "id": "94428fef-ec41-4614-a92b-8b0af0734bc1",
+    "name": "recensioneValida",
+    "commands": [{
+      "id": "423a1fe6-0ba0-40ee-a991-49800a0a918d",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ef099086-b953-49cf-8257-9651925fc531",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1096x807",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "39dbc2d3-9bd8-4591-a075-5b25052022d1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.add-feedback-button",
+      "targets": [
+        ["css=.add-feedback-button", "css:finder"],
+        ["xpath=//button[@onclick='toggleFeedbackForm()']", "xpath:attributes"],
+        ["xpath=//section/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Aggiungi una recensione')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab502232-47fe-41a6-a625-b3b52748dcca",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "624feae1-8693-4dcd-bd1d-27e87adb1c3b",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "306d9517-c60c-48ff-bb80-499722951408",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a8f73e65-7ccc-4bc9-85e8-2546652be21a",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//section/div/form/input[2]", "xpath:position"]
+      ],
+      "value": "Analisi dettagliata iPhone 15 Pro "
+    }, {
+      "id": "b2bef80c-dfd3-4a38-9158-1eae17805bae",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5481128e-e592-4391-994e-a2d43757eeee",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "edb4fa39-4107-494a-adcb-465fa58c0103",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "655f263c-6125-43a1-a611-67b04fa124ab",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "L’iPhone 15 Pro combina prestazioni elevate, un display Super Retina XDR e una fotocamera avanzata, offrendo un’esperienza premium con autonomia migliorata e l’ultimo iOS. Perfetto per chi cerca potenza e innovazione. "
+    }, {
+      "id": "5e6a818b-1921-47ae-b054-664e83b425ff",
+      "comment": "",
+      "command": "click",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25e8ff33-1f41-47ad-8081-608a386f04cf",
+      "comment": "",
+      "command": "type",
+      "target": "id=score",
+      "targets": [
+        ["id=score", "id"],
+        ["name=score", "name"],
+        ["css=#score", "css:finder"],
+        ["xpath=//input[@id='score']", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "540e40e3-b636-48ca-8fc7-4f5de15e78ce",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(12)",
+      "targets": [
+        ["css=button:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='feedback-form']/form/button", "xpath:idRelative"],
+        ["xpath=//section/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b508a950-9ea5-4df4-99bb-baec567aa080",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.review-item",
+      "targets": [
+        ["css=.review-item", "css:finder"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "17f901aa-713e-4544-9d5d-0600a43aab39",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://localhost:8443/", "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1"],
+  "plugins": []
+}
