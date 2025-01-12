@@ -29,7 +29,7 @@ public class OrdineDAO {
                 c.setTotale(rs.getDouble(2));
                 c.setIdUtente(rs.getInt(3));
                 c.setCap(rs.getString(4));
-                c.setNumeroCivico(rs.getInt(5));
+                c.setNumeroCivico(rs.getString(5));
                 c.setNome(rs.getString(6));
                 c.setCognome(rs.getString(7));
                 c.setVia(rs.getString((8)));
@@ -68,7 +68,7 @@ public class OrdineDAO {
                 o.setTotale(rs.getDouble(2));
                 o.setIdUtente(rs.getInt(3));
                 o.setCap(rs.getString(4));
-                o.setNumeroCivico(rs.getInt(5));
+                o.setNumeroCivico(rs.getString(5));
                 o.setNome(rs.getString(6));
                 o.setCognome(rs.getString(7));
                 o.setVia(rs.getString(8));
@@ -106,7 +106,7 @@ public class OrdineDAO {
                 o.setTotale(rs.getDouble(2));
                 o.setIdUtente(rs.getInt(3));
                 o.setCap(rs.getString(4));
-                o.setNumeroCivico(rs.getInt(5));
+                o.setNumeroCivico(rs.getString(5));
                 o.setNome(rs.getString(6));
                 o.setCognome(rs.getString(7));
                 o.setVia(rs.getString(8));
@@ -135,7 +135,7 @@ public class OrdineDAO {
             ps.setDouble(1, ordine.getTotale());
             ps.setInt(2, ordine.getIdUtente());
             ps.setString(3, ordine.getCap());
-            ps.setInt(4, ordine.getNumeroCivico());
+            ps.setString(4, ordine.getNumeroCivico());
             ps.setString(5, ordine.getNome());
             ps.setString(6, ordine.getCognome());
             ps.setString(7, ordine.getVia());

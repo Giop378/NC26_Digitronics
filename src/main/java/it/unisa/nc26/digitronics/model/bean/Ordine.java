@@ -9,7 +9,7 @@ public class Ordine {
     private double totale;
     private int idUtente;
     private String cap;
-    private int numeroCivico;
+    private String numeroCivico;
     private String nome;
     private String cognome;
     private String via;
@@ -50,11 +50,11 @@ public class Ordine {
         this.cap = cap;
     }
 
-    public int getNumeroCivico() {
+    public String getNumeroCivico() {
         return numeroCivico;
     }
 
-    public void setNumeroCivico(int numeroCivico) {
+    public void setNumeroCivico(String numeroCivico) {
         this.numeroCivico = numeroCivico;
     }
 

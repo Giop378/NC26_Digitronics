@@ -47,14 +47,14 @@ create table metodospedizione (
 
 create table ordine  (
 	IdOrdine int(10) zerofill auto_increment primary key,
-    totale decimal(10, 2) not null,
+    totale decimal(12, 2) not null,
     IdUtente int(10) zerofill,
-    cap VARCHAR(5) not null check (cap REGEXP '^[0-9]{5}$'),
+    cap varchar(5) not null check (cap REGEXP '^[0-9]{5}$'),
     città varchar(255) not null,
-    numerocivico int not null, 
+    numerocivico varchar(12) not null,
     nome varchar(255) not null,
     cognome varchar(255) not null,
-    via text not null,
+    via varchar(255) not null,
     telefono varchar(20),
     nomemetodospedizione varchar(50) not null,
     dataordine date not null,

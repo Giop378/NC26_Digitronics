@@ -1,12 +1,13 @@
 package it.unisa.nc26.digitronics.gestioneOrdine.service;
 
-import it.unisa.nc26.digitronics.gestioneOrdine.service.paymentAdapter.OpenStreetMapVerificaIndirizzoApiAdapterImpl;
-import it.unisa.nc26.digitronics.gestioneOrdine.service.paymentAdapter.VerificaIndirizzoApiAdapter;
+import it.unisa.nc26.digitronics.gestioneOrdine.service.IndirizzoAdapter.OpenStreetMapVerificaIndirizzoApiAdapterImpl;
+import it.unisa.nc26.digitronics.gestioneOrdine.service.IndirizzoAdapter.VerificaIndirizzoApiAdapter;
 import it.unisa.nc26.digitronics.model.bean.ItemOrdine;
 import it.unisa.nc26.digitronics.model.bean.MetodoSpedizione;
 import it.unisa.nc26.digitronics.model.bean.Ordine;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.model.dao.*;
+import it.unisa.nc26.digitronics.utils.MyServletException;
 
 import java.util.List;
 
@@ -52,8 +53,12 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
     }
 
     @Override
-    public Prodotto fetchByIdProdotto(int idProdotto) {
-        return prodottoDAO.doRetrieveById(idProdotto);
+    public Prodotto fetchByIdProdotto(int idProdotto) throws MyServletException {
+        Prodotto prodotto = prodottoDAO.doRetrieveById(idProdotto);
+        if (prodotto == null) {
+            throw new MyServletException("Prodotto con ID " + idProdotto + " non esistente.");
+        }
+        return prodotto;
     }
 
     @Override
@@ -102,13 +107,22 @@ public class GestioneOrdineServiceImpl implements GestioneOrdineService{
     }
 
     @Override
-    public List<ItemOrdine> fetchItemOrder(int idOrdine) {
-        return itemOrdineDAO.doRetrieveByOrdine(idOrdine);
+    public List<ItemOrdine> fetchItemOrder(int idOrdine) throws MyServletException {
+        List<ItemOrdine> itemsOrdine = itemOrdineDAO.doRetrieveByOrdine(idOrdine);
+        if (itemsOrdine.isEmpty()) {
+            throw new MyServletException("Nessun elemento trovato per l'ordine con ID " + idOrdine + ".");
+        }
+        return itemsOrdine;
     }
 
+    //Prende l'ordine
     @Override
-    public Ordine fetchByIdOrder(int idOrdine) {
-        return ordineDAO.doRetrieveByIdOrder(idOrdine);
+    public Ordine fetchByIdOrder(int idOrdine) throws MyServletException {
+        Ordine ordine = ordineDAO.doRetrieveByIdOrder(idOrdine);
+        if (ordine == null) {
+            throw new MyServletException("Ordine con ID " + idOrdine + " non esistente.");
+        }
+        return ordine;
     }
 
 }
