@@ -15,18 +15,42 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Servlet per la ricerca di prodotti.
+ * Gestisce richieste HTTP GET e POST per effettuare ricerche di prodotti tramite query.
+ */
 @WebServlet("/search")
 public class ProdottoRicercaServlet extends HttpServlet {
+
+    /**
+     * Servizio per la gestione delle informazioni sui prodotti.
+     */
     private infoProdottoService infoProdottoService;
 
+    /**
+     * Costruttore di default che inizializza il servizio infoProdottoService.
+     */
     public ProdottoRicercaServlet() {
         this.infoProdottoService = new infoProdottoServiceImpl();
     }
 
+    /**
+     * Imposta un'istanza personalizzata del servizio infoProdottoService.
+     *
+     * @param infoProdottoService il servizio da utilizzare.
+     */
     public void setProductService(infoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 
+    /**
+     * Gestisce le richieste HTTP GET per cercare prodotti in base a una query.
+     *
+     * @param request  l'oggetto HttpServletRequest contenente i dettagli della richiesta.
+     * @param response l'oggetto HttpServletResponse per inviare la risposta.
+     * @throws ServletException in caso di errore nella gestione della richiesta.
+     * @throws IOException      in caso di errore di input/output.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
@@ -61,6 +85,14 @@ public class ProdottoRicercaServlet extends HttpServlet {
         response.getWriter().write(jsonRisultati.toJSONString());
     }
 
+    /**
+     * Gestisce le richieste HTTP POST inoltrandole al metodo doGet.
+     *
+     * @param request  l'oggetto HttpServletRequest contenente i dettagli della richiesta.
+     * @param response l'oggetto HttpServletResponse per inviare la risposta.
+     * @throws ServletException in caso di errore nella gestione della richiesta.
+     * @throws IOException      in caso di errore di input/output.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
