@@ -16,19 +16,42 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * ShowItemOrderServlet è una servlet che gestisce la visualizzazione dei dettagli degli articoli
+ * di un ordine specifico. La servlet verifica se l'utente è autorizzato a visualizzare l'ordine
+ * e recupera le informazioni necessarie dal database per mostrarle nella pagina dedicata.
+ */
 @WebServlet("/showItemsOrder")
 public class ShowItemOrderServlet extends HttpServlet {
 
     private GestioneOrdineService gestioneOrdineService;
 
+    /**
+     * Costruttore della servlet che inizializza il servizio di gestione degli ordini.
+     */
     public ShowItemOrderServlet() {
         this.gestioneOrdineService = new GestioneOrdineServiceImpl();
     }
 
+    /**
+     * Imposta un'implementazione personalizzata del servizio di gestione degli ordini.
+     *
+     * @param gestioneOrdineService il servizio di gestione degli ordini
+     */
     public void setOrderService(GestioneOrdineService gestioneOrdineService) {
         this.gestioneOrdineService = gestioneOrdineService;
     }
 
+    /**
+     * Gestisce le richieste HTTP GET.
+     * Recupera i dettagli degli articoli di un ordine specifico e li mostra all'utente.
+     * Verifica che l'utente sia autorizzato a visualizzare l'ordine.
+     *
+     * @param request  l'oggetto HttpServletRequest che contiene la richiesta del client
+     * @param response l'oggetto HttpServletResponse che contiene la risposta al client
+     * @throws ServletException in caso di errore durante la gestione della richiesta
+     * @throws IOException      in caso di errore di input/output
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idOrdine;
         try {
@@ -39,10 +62,11 @@ public class ShowItemOrderServlet extends HttpServlet {
 
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
-        if( utente.isRuolo() ){
-            List<ItemOrdine> itemOrdineList= gestioneOrdineService.fetchItemOrder(idOrdine);
+        if (utente.isRuolo()) {
+            // Se l'utente è un amministratore, recupera gli articoli dell'ordine
+            List<ItemOrdine> itemOrdineList = gestioneOrdineService.fetchItemOrder(idOrdine);
             request.setAttribute("itemOrdineList", itemOrdineList);
-            if(itemOrdineList.isEmpty()){
+            if (itemOrdineList.isEmpty()) {
                 throw new MyServletException("Ordine non esistente");
             }
         }
@@ -50,10 +74,10 @@ public class ShowItemOrderServlet extends HttpServlet {
         else{
             List<Ordine> ordini = gestioneOrdineService.fetchByIdUtente(utente.getIdUtente());
             Ordine ordine = gestioneOrdineService.fetchByIdOrder(idOrdine);
-            if(ordini.contains(ordine)){
+            if (ordini.contains(ordine)) {
                 List<ItemOrdine> itemOrdineList = gestioneOrdineService.fetchItemOrder(idOrdine);
                 request.setAttribute("itemOrdineList", itemOrdineList);
-            }else{
+            } else {
                 throw new MyServletException("Non puoi visualizzare questo ordine perchè non fa parte dei tuoi ordini");
             }
         }
@@ -62,6 +86,15 @@ public class ShowItemOrderServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    /**
+     * Gestisce le richieste HTTP POST.
+     * Reindirizza le richieste POST al metodo doGet.
+     *
+     * @param request  l'oggetto HttpServletRequest che contiene la richiesta del client
+     * @param response l'oggetto HttpServletResponse che contiene la risposta al client
+     * @throws ServletException in caso di errore durante la gestione della richiesta
+     * @throws IOException      in caso di errore di input/output
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

@@ -61,7 +61,7 @@ values
 ('Cavo USB-C', 9.99, 'Cavo USB-C da 1 metro, ideale per ricarica e trasferimento dati ad alta velocità.', './images/prodotti/cavoUsbC.jpg', FALSE, 75, 'Accessori'),
 ('Adattatore da USB-C a USB', 9.99, 'Adattatore compatto da USB-C a USB per connettere periferiche standard ai dispositivi USB-C.', './images/prodotti/adattatoreUSBCaUSB.jpg', FALSE, 40, 'Accessori'),
 ('Cavo HDMI', 5.99, 'Cavo HDMI da 2 metri per una maggiore flessibilità.', './images/prodotti/cavoHDMI.jpg', FALSE, 30, 'Accessori'),
-('Pellicola protettiva iPhone 16', 19.99, 'Pellicola in vetro per iPhone 16, ultra-resistente e facile da applicare.', './images/prodotti/pellicolaProtettivaIphone15.jpg', TRUE, 200, 'Accessori'),
+('Pellicola protettiva iPhone 16', 19.99, 'Pellicola in vetro per iPhone 16, ultra-resistente e facile da applicare.', './images/prodotti/pellicolaProtettivaIphone16.jpg', TRUE, 200, 'Accessori'),
 ('Pellicola protettiva Samsung S24', 14.99, 'Protezione in vetro per Samsung S24, garantisce massima chiarezza e resistenza ai graffi.', './images/prodotti/pellicolaProtettivaSamsungS24.jpg', TRUE, 150, 'Accessori'),
 ('Pellicola protettiva Samsung A50', 9.99, 'Pellicola protettiva ultra-sottile in vetro per Samsung A50, resistente agli urti.', './images/prodotti/pellicolaProtettivaSamsungA50.jpg', FALSE, 100, 'Accessori'),
 ('Pellicola protettiva iPhone 15 Pro', 19.99, 'Pellicola protettiva di alta qualità per iPhone 15 Pro, assicura protezione contro graffi e impronte.', './images/prodotti/pellicolaProtettivaIphone15Pro.jpg', FALSE, 100, 'Accessori'),

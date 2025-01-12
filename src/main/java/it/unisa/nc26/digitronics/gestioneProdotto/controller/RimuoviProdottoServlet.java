@@ -2,8 +2,8 @@ package it.unisa.nc26.digitronics.gestioneProdotto.controller;
 
 import it.unisa.nc26.digitronics.gestioneProdotto.service.ModificaProdottoService;
 import it.unisa.nc26.digitronics.gestioneProdotto.service.ModificaProdottoServiceImpl;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Utente;
 import it.unisa.nc26.digitronics.utils.MyServletException;
 import jakarta.servlet.RequestDispatcher;
@@ -20,18 +20,18 @@ import java.io.IOException;
 public class RimuoviProdottoServlet extends HttpServlet {
 
     private ModificaProdottoService modificaProdottoService;
-    private infoProdottoService infoProdottoService;
+    private InfoProdottoService infoProdottoService;
 
     public RimuoviProdottoServlet() {
         this.modificaProdottoService = new ModificaProdottoServiceImpl();
-        this.infoProdottoService = new infoProdottoServiceImpl();
+        this.infoProdottoService = new InfoProdottoServiceImpl();
     }
 
     public void setProdottoService(ModificaProdottoService modificaProdottoService) {
         this.modificaProdottoService = modificaProdottoService;
     }
 
-    public void setInfoProdottoService(infoProdottoService infoProdottoService) {
+    public void setInfoProdottoService(InfoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 

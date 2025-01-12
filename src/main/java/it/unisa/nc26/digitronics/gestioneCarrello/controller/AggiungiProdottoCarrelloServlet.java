@@ -18,18 +18,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet per la gestione dell'aggiunta di prodotti al carrello.
+ */
 @WebServlet("/aggiungi-prodotto-carrello")
 public class AggiungiProdottoCarrelloServlet extends HttpServlet {
     private GestioneCarrelloService gestioneCarrelloService;
 
+    /**
+     * Costruttore che inizializza il servizio di gestione del carrello con l'implementazione predefinita.
+     */
     public AggiungiProdottoCarrelloServlet() {
         this.gestioneCarrelloService = new GestioneCarrelloServiceImpl();
     }
 
+    /**
+     * Imposta un'istanza personalizzata del servizio di gestione del carrello.
+     *
+     * @param gestioneCarrelloService il servizio personalizzato da utilizzare
+     */
     public void setGestioneCarrelloService(GestioneCarrelloService gestioneCarrelloService) {
         this.gestioneCarrelloService = gestioneCarrelloService;
     }
 
+    /**
+     * Gestisce le richieste HTTP GET per aggiungere un prodotto al carrello.
+     *
+     * @param request  la richiesta HTTP
+     * @param response la risposta HTTP
+     * @throws ServletException in caso di errori nella gestione della richiesta
+     * @throws IOException      in caso di errori di input/output
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -39,10 +58,9 @@ public class AggiungiProdottoCarrelloServlet extends HttpServlet {
             session.setAttribute("carrello", carrelloSession);
         }
 
-        //Controlli lato server il parametro idProdotto
+        // Controllo lato server del parametro idProdotto
         int idProdotto = 0;
         String idProdottoParam = request.getParameter("idProdotto");
-
         if (idProdottoParam == null || idProdottoParam.trim().isEmpty()) {
             throw new MyServletException("Il parametro idProdotto non può essere vuoto");
         }
@@ -56,13 +74,12 @@ public class AggiungiProdottoCarrelloServlet extends HttpServlet {
             throw new MyServletException("Id prodotto non valido: deve essere un numero intero");
         }
 
-
         Prodotto p = gestioneCarrelloService.fetchByIdProdotto(idProdotto);
-        if(p==null){
+        if (p == null) {
             throw new MyServletException("Il prodotto non esiste");
         }
 
-        //Controllo lato server parametro quantità
+        // Controllo lato server del parametro quantità
         int quantità;
         String quantitàParam = request.getParameter("quantità");
         if (quantitàParam == null || quantitàParam.trim().isEmpty()) {
@@ -70,8 +87,8 @@ public class AggiungiProdottoCarrelloServlet extends HttpServlet {
         }
 
         try {
-            quantità= Integer.parseInt(quantitàParam);
-            if (quantità<= 0) {
+            quantità = Integer.parseInt(quantitàParam);
+            if (quantità <= 0) {
                 throw new MyServletException("La quantità deve essere un numero intero positivo");
             }
         } catch (NumberFormatException e) {
@@ -83,7 +100,7 @@ public class AggiungiProdottoCarrelloServlet extends HttpServlet {
             itemCarrello.setIdUtente(null);
         } else {
             Utente utente = (Utente) session.getAttribute("utente");
-            if(utente.isRuolo()){
+            if (utente.isRuolo()) {
                 throw new MyServletException("L'admin non può interagire con il carrello");
             }
             int idUtente = utente.getIdUtente();
@@ -92,8 +109,8 @@ public class AggiungiProdottoCarrelloServlet extends HttpServlet {
         itemCarrello.setProdotto(p);
         itemCarrello.setIdProdotto(p.getIdProdotto());
 
-        //Prima di inserire la quantità controllo che effettivamente ci sono in magazzino abbastanza prodotti
-        if(quantità > p.getQuantità()){
+        // Controlla che ci siano abbastanza prodotti in magazzino
+        if (quantità > p.getQuantità()) {
             throw new MyServletException("Quantità selezionata del prodotto non presente in magazzino");
         }
         itemCarrello.setQuantità(quantità);
@@ -120,6 +137,14 @@ public class AggiungiProdottoCarrelloServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    /**
+     * Gestisce le richieste HTTP POST delegandole al metodo doGet.
+     *
+     * @param request  la richiesta HTTP
+     * @param response la risposta HTTP
+     * @throws ServletException in caso di errori nella gestione della richiesta
+     * @throws IOException      in caso di errori di input/output
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

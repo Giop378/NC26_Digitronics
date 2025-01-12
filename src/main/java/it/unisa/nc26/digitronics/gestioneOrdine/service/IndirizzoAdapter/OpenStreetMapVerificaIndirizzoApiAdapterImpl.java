@@ -7,8 +7,21 @@ import java.net.URL;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class OpenStreetMapVerificaIndirizzoApiAdapterImpl implements VerificaIndirizzoApiAdapter{
+/**
+ * Implementazione dell'interfaccia VerificaIndirizzoApiAdapter che utilizza l'API di OpenStreetMap
+ * (Nominatim) per verificare la validità di un indirizzo specificato.
+ */
+public class OpenStreetMapVerificaIndirizzoApiAdapterImpl implements VerificaIndirizzoApiAdapter {
 
+    /**
+     * Verifica se un indirizzo composto da via, CAP e città è valido utilizzando l'API di OpenStreetMap.
+     *
+     * @param via   il nome della via
+     * @param cap   il codice di avviamento postale (CAP)
+     * @param città il nome della città
+     * @return true se l'indirizzo è valido, false altrimenti
+     * @throws RuntimeException se si verifica un errore durante la connessione o l'elaborazione della risposta API
+     */
     @Override
     public boolean verifica(String via, String cap, String città) {
         try {
@@ -74,5 +87,4 @@ public class OpenStreetMapVerificaIndirizzoApiAdapterImpl implements VerificaInd
         }
         return false;
     }
-
 }

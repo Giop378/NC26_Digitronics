@@ -21,6 +21,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Classe di test per la classe {@link GestioneOrdineServiceImpl}.
+ * Verifica il corretto funzionamento dei metodi implementati per la gestione degli ordini.
+ */
 public class GestioneOrdineServiceImplTest {
 
     private GestioneOrdineServiceImpl service;
@@ -43,6 +47,9 @@ public class GestioneOrdineServiceImplTest {
     @Mock
     private VerificaIndirizzoApiAdapter verificaIndirizzoApiAdapter;
 
+    /**
+     * Inizializza i mock e la service da testare.
+     */
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -58,8 +65,10 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchByIdProdotto per un prodotto esistente.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchByIdProdotto(int)} per un prodotto esistente.
      * Verifica che venga restituito il prodotto corretto.
+     *
+     * @throws MyServletException se il prodotto non esiste
      */
     @Test
     public void testFetchByIdProdotto_esistente() throws MyServletException {
@@ -74,8 +83,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchByIdProdotto per un prodotto non esistente.
-     * Verifica che venga lanciata un'eccezione MyServletException.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchByIdProdotto(int)} per un prodotto non esistente.
+     * Verifica che venga lanciata un'eccezione {@link MyServletException}.
      */
     @Test
     public void testFetchByIdProdotto_nonEsistente() {
@@ -91,7 +100,7 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchAllMetodiSpedizione.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchAllMetodiSpedizione()}.
      * Verifica che venga restituita la lista completa dei metodi di spedizione.
      */
     @Test
@@ -107,7 +116,7 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchMetodoSpedizioneByNome.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchMetodoSpedizioneByNome(String)}.
      * Verifica che venga restituito il metodo di spedizione corretto in base al nome.
      */
     @Test
@@ -123,8 +132,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo saveOrdine.
-     * Verifica che l'ordine venga salvato e che venga restituito l'id generato
+     * Testa il metodo {@link GestioneOrdineServiceImpl#saveOrdine(Ordine)}.
+     * Verifica che l'ordine venga salvato e che venga restituito l'id generato.
      */
     @Test
     public void testSaveOrdine() {
@@ -138,7 +147,7 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo updateQuantitàProdotto.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#updateQuantitàProdotto(Prodotto)}.
      * Verifica che il metodo update del DAO venga invocato correttamente.
      */
     @Test
@@ -146,12 +155,12 @@ public class GestioneOrdineServiceImplTest {
         Prodotto prodotto = new Prodotto();
 
         service.updateQuantitàProdotto(prodotto);
-        //Qui non essendoci ritorni dalla parte del metodo updateQuantitàProdotto si è solo verificato che il metodo relativo del dao è stato chiamato
+        // Qui non essendoci ritorni dalla parte del metodo updateQuantitàProdotto si è solo verificato che il metodo relativo del dao è stato chiamato
         verify(prodottoDAO).doUpdate(prodotto);
     }
 
     /**
-     * Testa il metodo rimuoviCarrelloServletByIdUtente.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#rimuoviCarrelloServletByIdUtente(int)}.
      * Verifica che il metodo delete del DAO venga invocato correttamente per l'ID utente.
      */
     @Test
@@ -162,8 +171,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo saveItemOrdine.
-     * Verifica che il metodo save del DAO venga invocato correttamente per l'oggetto ItemOrdine.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#saveItemOrdine(ItemOrdine)}.
+     * Verifica che il metodo save del DAO venga invocato correttamente per l'oggetto {@link ItemOrdine}.
      */
     @Test
     public void testSaveItemOrdine() {
@@ -173,8 +182,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo verificaIndirizzo con un indirizzo valido.
-     * Verifica che venga restituito true.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#verificaIndirizzo(String, String, String)} con un indirizzo valido.
+     * Verifica che venga restituito {@code true}.
      */
     @Test
     public void testVerificaIndirizzo_true() {
@@ -189,8 +198,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo verificaIndirizzo con un indirizzo non valido.
-     * Verifica che venga restituito false.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#verificaIndirizzo(String, String, String)} con un indirizzo non valido.
+     * Verifica che venga restituito {@code false}.
      */
     @Test
     public void testVerificaIndirizzo_false() {
@@ -205,7 +214,7 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchByIdUtente.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchByIdUtente(int)}.
      * Verifica che venga restituita la lista corretta degli ordini per un dato utente.
      */
     @Test
@@ -222,7 +231,7 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchAllOrders.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchAllOrders()}.
      * Verifica che venga restituita la lista completa degli ordini.
      */
     @Test
@@ -237,8 +246,10 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchItemOrder per un ordine esistente.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchItemOrder(int)} per un ordine esistente.
      * Verifica che venga restituita la lista corretta degli item d'ordine.
+     *
+     * @throws MyServletException se la lista degli item è vuota
      */
     @Test
     public void testFetchItemOrder_esistente() throws MyServletException {
@@ -253,8 +264,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchItemOrder per un ordine inesistente(ovvero una lista vuota).
-     * Verifica che venga lanciata un'eccezione MyServletException.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchItemOrder(int)} per un ordine inesistente.
+     * Verifica che venga lanciata un'eccezione {@link MyServletException} in caso di lista vuota.
      */
     @Test
     public void testFetchItemOrder_nonEsistente() {
@@ -270,8 +281,10 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchByIdOrder per un ordine esistente.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchByIdOrder(int)} per un ordine esistente.
      * Verifica che venga restituito l'ordine corretto.
+     *
+     * @throws MyServletException se l'ordine non esiste
      */
     @Test
     public void testFetchByIdOrder_esistente() throws MyServletException {
@@ -286,8 +299,8 @@ public class GestioneOrdineServiceImplTest {
     }
 
     /**
-     * Testa il metodo fetchByIdOrder per un ordine inesistente(cioè null).
-     * Verifica che venga lanciata un'eccezione MyServletException.
+     * Testa il metodo {@link GestioneOrdineServiceImpl#fetchByIdOrder(int)} per un ordine inesistente.
+     * Verifica che venga lanciata un'eccezione {@link MyServletException}.
      */
     @Test
     public void testFetchByIdOrder_nonEsistente() {

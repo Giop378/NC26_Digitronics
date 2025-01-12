@@ -18,18 +18,40 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * GestioneOrdineServlet è una servlet che gestisce le operazioni descritte nello use case Checkout Prodotti UC_GAC_1
+ * Viene gestito sia l'inizio del checkout in cui viene mostrato il form che
+ * procedi al pagamento che si occupa di verificare i dati del form ed effettuare l'ordine
+ */
 @WebServlet(urlPatterns = {"/inizio-checkout", "/procedi-al-pagamento"})
 public class GestioneOrdineServlet extends HttpServlet {
     private GestioneOrdineService gestioneOrdineService;
 
+    /**
+     * Costruttore della servlet che inizializza il servizio di gestione degli ordini.
+     */
     public GestioneOrdineServlet() {
         this.gestioneOrdineService = new GestioneOrdineServiceImpl();
     }
 
+    /**
+     * Imposta un'implementazione personalizzata del servizio di gestione degli ordini.
+     *
+     * @param gestioneOrdineService il servizio di gestione degli ordini
+     */
     public void setGestioneOrdineService(GestioneOrdineService gestioneOrdineService) {
         this.gestioneOrdineService = gestioneOrdineService;
     }
 
+    /**
+     * Gestisce le richieste HTTP GET.
+     * Implementa le funzionalità di checkout e pagamento basate sul path specificato.
+     *
+     * @param request  l'oggetto HttpServletRequest che contiene la richiesta del client
+     * @param response l'oggetto HttpServletResponse che contiene la risposta al client
+     * @throws ServletException in caso di errore durante la gestione della richiesta
+     * @throws IOException      in caso di errore di input/output
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         HttpSession session = request.getSession();
@@ -263,6 +285,15 @@ public class GestioneOrdineServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Gestisce le richieste HTTP POST.
+     * Reindirizza le richieste POST al metodo doGet.
+     *
+     * @param request  l'oggetto HttpServletRequest che contiene la richiesta del client
+     * @param response l'oggetto HttpServletResponse che contiene la risposta al client
+     * @throws ServletException in caso di errore durante la gestione della richiesta
+     * @throws IOException      in caso di errore di input/output
+     */
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         doGet(request, response);

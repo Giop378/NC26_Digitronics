@@ -7,22 +7,26 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe DAO (Data Access Object) per la gestione degli ordini.
+ */
 public class OrdineDAO {
-    // Recupera una lista di tutti gli ordini dal database
+
+    /**
+     * Recupera una lista di tutti gli ordini presenti nel database.
+     *
+     * @return una lista di oggetti {@link Ordine} contenenti tutti gli ordini
+     */
     public List<Ordine> doRetrieveAll() {
-
-
         try (Connection con = ConPool.getConnection()) {
-
-
-
-            PreparedStatement ps = con.prepareStatement("select IdOrdine,totale,Idutente,cap,numerocivico,nome,cognome,via,telefono,nomemetodospedizione,dataordine, città from ordine");
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT IdOrdine, totale, IdUtente, cap, numerocivico, nome, cognome, via, telefono, nomemetodospedizione, dataordine, città " +
+                            "FROM ordine");
             ResultSet rs = ps.executeQuery();
 
-            List<Ordine>  ordini = new ArrayList<>();
+            List<Ordine> ordini = new ArrayList<>();
 
             while (rs.next()) {
-
                 Ordine c = new Ordine();
 
                 c.setIdOrdine(rs.getInt(1));
@@ -32,7 +36,7 @@ public class OrdineDAO {
                 c.setNumeroCivico(rs.getString(5));
                 c.setNome(rs.getString(6));
                 c.setCognome(rs.getString(7));
-                c.setVia(rs.getString((8)));
+                c.setVia(rs.getString(8));
                 c.setTelefono(rs.getString(9));
                 c.setNomeMetodoSpedizione(rs.getString(10));
                 c.setDataOrdine(rs.getDate(11));
@@ -44,12 +48,16 @@ public class OrdineDAO {
             return ordini;
 
         } catch (SQLException e) {
-
             throw new RuntimeException("Errore durante l'accesso agli ordini, riprova più tardi");
         }
     }
 
-    // Dato un id recupera un ordine
+    /**
+     * Recupera un ordine specifico dal database in base all'ID dell'ordine.
+     *
+     * @param id l'ID dell'ordine da recuperare
+     * @return un oggetto {@link Ordine} se trovato, altrimenti null
+     */
     public Ordine doRetrieveByIdOrder(int id) {
         try (Connection con = ConPool.getConnection()) {
 
@@ -61,8 +69,7 @@ public class OrdineDAO {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-
-            if(rs.next()) {
+            if (rs.next()) {
                 Ordine o = new Ordine();
                 o.setIdOrdine(rs.getInt(1));
                 o.setTotale(rs.getDouble(2));
@@ -87,7 +94,12 @@ public class OrdineDAO {
         }
     }
 
-    // Recupera una lista di ordini dal database filtrati per ID utente
+    /**
+     * Recupera una lista di ordini associati a un determinato utente.
+     *
+     * @param idUtente l'ID dell'utente
+     * @return una lista di oggetti {@link Ordine} associati all'utente specificato
+     */
     public List<Ordine> doRetrieveByCustomer(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
 
@@ -125,11 +137,16 @@ public class OrdineDAO {
         }
     }
 
-    // Salva un nuovo ordine nel database e restituisce l'ID generato
+    /**
+     * Salva un nuovo ordine nel database e restituisce l'ID generato.
+     *
+     * @param ordine l'oggetto {@link Ordine} da salvare
+     * @return l'ID generato per l'ordine salvato
+     */
     public synchronized int doSave(Ordine ordine) {
         try (Connection con = ConPool.getConnection()) {
-            String sql = "INSERT INTO ordine (totale, IdUtente, cap, numerocivico, nome, cognome, via, telefono,nomemetodospedizione, dataordine, città ) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO ordine (totale, IdUtente, cap, numerocivico, nome, cognome, via, telefono, nomemetodospedizione, dataordine, città ) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setDouble(1, ordine.getTotale());
@@ -153,7 +170,7 @@ public class OrdineDAO {
                 if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
                 } else {
-                    throw new RuntimeException("Non è stato possibile recuperare dal database l'id generato");
+                    throw new RuntimeException("Non è stato possibile recuperare dal database l'ID generato");
                 }
             }
 

@@ -29,6 +29,10 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Classe di test per la {@code GestioneOrdineServlet}.
+ * Questa classe verifica il corretto funzionamento delle funzionalità offerte dalla servlet.
+ */
 public class GestioneOrdineServletTest {
 
     private GestioneOrdineServlet servlet;
@@ -48,6 +52,9 @@ public class GestioneOrdineServletTest {
     @Mock
     private RequestDispatcher requestDispatcherMock;
 
+    /**
+     * Inizializza i mock e la servlet da testare.
+     */
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -60,6 +67,9 @@ public class GestioneOrdineServletTest {
 
     /**
      * Caso in cui l'utente non è loggato (utente == null) e quindi viene rediretto alla pagina di login.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void redirigeSuLoginPerUtenteNonLoggato() throws ServletException, IOException {
@@ -74,16 +84,18 @@ public class GestioneOrdineServletTest {
 
     /**
      * Caso in cui l'utente è admin (ruolo==true) e quindi viene lanciata eccezione MyServletException.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void lanciaEccezionePerUtenteAdmin() throws ServletException, IOException {
         Utente admin = new Utente();
         admin.setIdUtente(1);
-        // ipotizziamo che isRuolo==true indichi admin
         admin.setRuolo(true);
         when(sessionMock.getAttribute("utente")).thenReturn(admin);
 
-        // Anche se il carrello non viene controllato in questo caso, lo settiamo ad un valore non nullo
+        // Anche se il carrello non viene controllato in questo caso, lo setta ad un valore non nullo
         when(sessionMock.getAttribute("carrello")).thenReturn(new ArrayList<ItemCarrello>());
 
         try {
@@ -96,6 +108,9 @@ public class GestioneOrdineServletTest {
 
     /**
      * Caso in cui il carrello è nullo o vuoto: redirezione alla pagina del carrello.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void redirigeSuCarrelloPerCarrelloVuoto() throws ServletException, IOException {
@@ -113,25 +128,31 @@ public class GestioneOrdineServletTest {
 
     /**
      * Test per verificare che il metodo doPost delega correttamente a doGet.
-     * In questo test simuliamo una chiamata doPost con utente non loggato, verificando che venga
+     * In questo test si simula una chiamata doPost con utente non loggato, verificando che venga
      * eseguito il forward alla pagina di login.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void doPostDelegaACorrettoDoGet() throws ServletException, IOException {
-        // Impostiamo l'utente non loggato per simulare il forward alla login.jsp
+        // Imposta l'utente non loggato per simulare il forward alla login.jsp
         when(sessionMock.getAttribute("utente")).thenReturn(null);
         when(requestMock.getRequestDispatcher("/WEB-INF/results/login.jsp")).thenReturn(requestDispatcherMock);
 
         // Chiamata doPost
         servlet.doPost(requestMock, responseMock);
 
-        // Verifichiamo che doGet sia stato eseguito internamente (il forward alla login.jsp)
+        // Si verifica che doGet sia stato eseguito internamente (il forward alla login.jsp)
         verify(requestDispatcherMock).forward(requestMock, responseMock);
     }
 
     /**
      * Test per verificare che venga lanciata l'eccezione se viene richiesta una funzionalità non esistente.
      * Si imposta un servletPath non gestito e si attende MyServletException.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void funzionalitaNonEsistente() throws ServletException, IOException {
@@ -139,12 +160,12 @@ public class GestioneOrdineServletTest {
         utente.setRuolo(false);
         when(sessionMock.getAttribute("utente")).thenReturn(utente);
 
-        // Impostiamo un carrello non vuoto per superare il controllo del carrello
+        // Imposta un carrello non vuoto per superare il controllo del carrello
         ArrayList<ItemCarrello> carrello = new ArrayList<>();
         carrello.add(new ItemCarrello());
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Impostiamo un servletPath non esistente
+        // Imposta un servletPath non esistente
         when(requestMock.getServletPath()).thenReturn("/funzionalita-non-esistente");
 
         try {
@@ -154,17 +175,18 @@ public class GestioneOrdineServletTest {
             assertEquals("Funzionalità non esistente", ex.getMessage());
         }
     }
-    /**
-     *
-     *
-     * CASO INIZIO CHECKOUT
-     *
-     *
-     */
+
+    /////////////////////////////////////////////////////////////////////////////////////
+    // CASO INIZIO CHECKOUT
+    /////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Caso "/inizio-checkout": con carrello valido e quantità disponibili.
      * Viene calcolato il prezzo totale, vengono impostati gli attributi e viene fatto forward alla pagina di checkout.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
+     * @throws MyServletException se si verificano errori nelle logiche di business della servlet
      */
     @Test
     public void checkoutConCarrelloValido() throws ServletException, IOException, MyServletException {
@@ -173,7 +195,7 @@ public class GestioneOrdineServletTest {
         utente.setRuolo(false);
         when(sessionMock.getAttribute("utente")).thenReturn(utente);
 
-        // Costruiamo un carrello con un item
+        // Costruisce un carrello con un item
         ItemCarrello item = new ItemCarrello();
         item.setIdProdotto(100);
         item.setQuantità(2);
@@ -181,34 +203,37 @@ public class GestioneOrdineServletTest {
         carrello.add(item);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Simuliamo il comportamento del service per il prodotto
+        // Simula il comportamento del service per il prodotto
         Prodotto prodotto = new Prodotto();
         prodotto.setQuantità(5);
         prodotto.setPrezzo(10.0);
         when(serviceMock.fetchByIdProdotto(100)).thenReturn(prodotto);
 
-        // Simuliamo il recupero dei metodi di spedizione
+        // Simula il recupero dei metodi di spedizione
         List<MetodoSpedizione> metodi = Arrays.asList(new MetodoSpedizione());
         when(serviceMock.fetchAllMetodiSpedizione()).thenReturn(metodi);
 
-        // Impostiamo il path per la servlet
+        // Imposta il path per la servlet
         when(requestMock.getServletPath()).thenReturn("/inizio-checkout");
         when(requestMock.getRequestDispatcher("/WEB-INF/results/checkout.jsp")).thenReturn(requestDispatcherMock);
 
         servlet.doGet(requestMock, responseMock);
 
-        // Verifica che l'attributo prezzoTotale sia stato impostato correttamente: 2 * 10.0 = 20.0
+        // Si verifica che l'attributo prezzoTotale sia stato impostato correttamente: 2 * 10.0 = 20.0
         verify(requestMock).setAttribute("prezzoTotale", 20.0);
-        // Verifica che i metodi di spedizione siano stati impostati
+        // Si verifica che i metodi di spedizione siano stati impostati
         verify(requestMock).setAttribute("metodiSpedizione", metodi);
-        // Verifica il forward alla pagina di checkout
+        // Si verifica il forward alla pagina di checkout
         verify(requestDispatcherMock).forward(requestMock, responseMock);
     }
 
     /**
      * Caso "/inizio-checkout" in cui, durante il checkout, la quantità richiesta di un prodotto nel carrello
      * supera la quantità disponibile in magazzino. Deve essere lanciata MyServletException e la quantità del prodotto
-     * nel carrello deve essere impostata al massimo
+     * nel carrello deve essere impostata al massimo.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void checkoutQuantitaNonDisponibile() throws ServletException, IOException {
@@ -225,38 +250,37 @@ public class GestioneOrdineServletTest {
         carrello.add(item);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Simuliamo che il prodotto abbia una quantità insufficiente in magazzino
+        // Simula che il prodotto abbia una quantità insufficiente in magazzino
         Prodotto prodotto = new Prodotto();
         prodotto.setQuantità(5); // Solo 5 unità disponibili
         prodotto.setPrezzo(15.0);
         when(serviceMock.fetchByIdProdotto(500)).thenReturn(prodotto);
 
-        // Impostiamo il path per "inizio-checkout"
+        // Imposta il path per "inizio-checkout"
         when(requestMock.getServletPath()).thenReturn("/inizio-checkout");
 
         try {
             servlet.doGet(requestMock, responseMock);
             fail("MyServletException attesa per quantità non disponibile");
         } catch (MyServletException ex) {
-            // Verifichiamo che il messaggio dell'eccezione sia quello corretto
+            // Si verifica che il messaggio dell'eccezione sia quello corretto
             assertEquals("Quantità selezionata del prodotto non presente in magazzino", ex.getMessage());
         }
 
-        // Verifichiamo che il prodotto nel carrello sia stato aggiornato con la quantità massima disponibile
+        // Si verifica che il prodotto nel carrello sia stato aggiornato con la quantità massima disponibile
         assertEquals(5, item.getQuantità()); // La quantità viene impostata a quella disponibile
     }
 
-    /**
-     *
-     *
-     * CASO PROCEDI AL PAGAMENTO
-     *
-     */
-
+    /////////////////////////////////////////////////////////////////////////////////////
+    // CASO PROCEDI AL PAGAMENTO
+    /////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Caso procedi al pagamento: parametri mancanti.
      * In questo caso se uno dei parametri obbligatori manca viene lanciata MyServletException.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConParametriMancanti() throws ServletException, IOException {
@@ -273,10 +297,10 @@ public class GestioneOrdineServletTest {
         carrello.add(item);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Impostiamo il path per procedi al pagamento
+        // Imposta il path per procedi al pagamento
         when(requestMock.getServletPath()).thenReturn("/procedi-al-pagamento");
 
-        // Non impostiamo i parametri obbligatori, ad esempio "nome" risulta null
+        // Non imposta i parametri obbligatori, ad esempio "nome" risulta null
         when(requestMock.getParameter("nome")).thenReturn(null);
         // gli altri parametri possono essere simulati come non nulli
         when(requestMock.getParameter("cognome")).thenReturn("Rossi");
@@ -290,7 +314,7 @@ public class GestioneOrdineServletTest {
         when(requestMock.getParameter("scadenzaCarta")).thenReturn("12/30");
         when(requestMock.getParameter("cvv")).thenReturn("123");
         when(requestMock.getParameter("metodoSpedizione")).thenReturn("Standard");
-        // Simuliamo il recupero del metodo di spedizione
+        // Simula il recupero del metodo di spedizione
         MetodoSpedizione metodo = new MetodoSpedizione();
         metodo.setNome("Standard");
         metodo.setCosto(5.0);
@@ -308,6 +332,10 @@ public class GestioneOrdineServletTest {
      * Caso procedi al pagamento: indirizzo non verificato e quantità corretta.
      * Viene simulato che l'indirizzo inserito non è verificato.
      * In questo caso viene fatto forward alla pagina di checkout e viene impostato l'attributo "erroreIndirizzo".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
+     * @throws MyServletException se si verificano errori nelle logiche di business della servlet
      */
     @Test
     public void riprovaPerIndirizzoNonVerificato() throws ServletException, IOException, MyServletException {
@@ -324,10 +352,10 @@ public class GestioneOrdineServletTest {
         carrello.add(item);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Impostiamo il path per procedi al pagamento
+        // Imposta il path per procedi al pagamento
         when(requestMock.getServletPath()).thenReturn("/procedi-al-pagamento");
 
-        // Impostiamo tutti i parametri validi
+        // Imposta tutti i parametri validi
         when(requestMock.getParameter("nome")).thenReturn("Luigi");
         when(requestMock.getParameter("cognome")).thenReturn("Bianchi");
         when(requestMock.getParameter("via")).thenReturn("Via Verdi");
@@ -341,21 +369,21 @@ public class GestioneOrdineServletTest {
         when(requestMock.getParameter("cvv")).thenReturn("321");
         when(requestMock.getParameter("metodoSpedizione")).thenReturn("Express");
 
-        // Simuliamo il recupero del metodo di spedizione
+        // Simula il recupero del metodo di spedizione
         MetodoSpedizione metodo = new MetodoSpedizione();
         metodo.setNome("Express");
         metodo.setCosto(10.0);
         when(serviceMock.fetchMetodoSpedizioneByNome("Express")).thenReturn(metodo);
-        // Simuliamo che l'indirizzo non sia verificato
+        // Simula che l'indirizzo non sia verificato
         when(serviceMock.verificaIndirizzo("Via Verdi", "54321", "Torino")).thenReturn(false);
 
-        // Simuliamo il recupero del prodotto per il controllo quantità
+        // Simula il recupero del prodotto per il controllo quantità
         Prodotto prodotto = new Prodotto();
         prodotto.setQuantità(2);
         prodotto.setPrezzo(20.0);
         when(serviceMock.fetchByIdProdotto(300)).thenReturn(prodotto);
 
-        // Simuliamo il recupero dei metodi di spedizione per ripopolare la pagina di checkout
+        // Simula il recupero dei metodi di spedizione per ripopolare la pagina di checkout
         List<MetodoSpedizione> metodi = Arrays.asList(metodo);
         when(serviceMock.fetchAllMetodiSpedizione()).thenReturn(metodi);
 
@@ -364,11 +392,11 @@ public class GestioneOrdineServletTest {
         servlet.doGet(requestMock, responseMock);
 
         // In questo scenario, si riconta il prezzo totale che è dato dalla somma dei prezzi dei prodotti considerate le quantità
-        //NB: non si considera la spedizione in questo caso
+        // NB: non si considera la spedizione in questo caso
         double prezzoTotaleAtteso = 20.0;
         verify(requestMock).setAttribute("prezzoTotale", prezzoTotaleAtteso);
         verify(requestMock).setAttribute(eq("erroreIndirizzo"), anyString());
-        // Verifica che alcuni parametri vengano reimpostati
+        // Si verifica che alcuni parametri vengano reimpostati
         verify(requestMock).setAttribute("nome", "Luigi");
         verify(requestMock).setAttribute("cognome", "Bianchi");
         verify(requestMock).setAttribute("telefono", "+391234567891");
@@ -380,6 +408,9 @@ public class GestioneOrdineServletTest {
      * Caso procedi al pagamento: indirizzo non verificato e quantità eccedente nel carrello.
      * Viene simulato che l'indirizzo inserito non sia verificato e che la quantità di uno
      * dei prodotti nel carrello superi quella disponibile in magazzino.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void indirizzoNonVerificatoEQuantitàEccedente() throws ServletException, IOException {
@@ -396,7 +427,7 @@ public class GestioneOrdineServletTest {
         carrello.add(item);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Impostiamo il path per procedi al pagamento
+        // Imposta il path per procedi al pagamento
         when(requestMock.getServletPath()).thenReturn("/procedi-al-pagamento");
 
         // Parametri validi per spedizione e pagamento
@@ -413,22 +444,22 @@ public class GestioneOrdineServletTest {
         when(requestMock.getParameter("cvv")).thenReturn("123");
         when(requestMock.getParameter("metodoSpedizione")).thenReturn("Standard");
 
-        // Simuliamo il metodo di spedizione
+        // Simula il metodo di spedizione
         MetodoSpedizione metodo = new MetodoSpedizione();
         metodo.setNome("Standard");
         metodo.setCosto(5.0);
         when(serviceMock.fetchMetodoSpedizioneByNome("Standard")).thenReturn(metodo);
 
-        // Simuliamo che l'indirizzo non sia verificato
+        // Simula che l'indirizzo non sia verificato
         when(serviceMock.verificaIndirizzo("Via Prova", "54321", "Napoli")).thenReturn(false);
 
-        // Simuliamo il prodotto con quantità insufficiente nel magazzino
+        // Simula il prodotto con quantità insufficiente nel magazzino
         Prodotto prodotto = new Prodotto();
         prodotto.setQuantità(3); // Solo 3 unità disponibili in magazzino
         prodotto.setPrezzo(10.0);
         when(serviceMock.fetchByIdProdotto(500)).thenReturn(prodotto);
 
-        // Simuliamo il recupero dei metodi di spedizione
+        // Simula il recupero dei metodi di spedizione
         List<MetodoSpedizione> metodi = Arrays.asList(metodo);
         when(serviceMock.fetchAllMetodiSpedizione()).thenReturn(metodi);
 
@@ -439,16 +470,20 @@ public class GestioneOrdineServletTest {
             assertEquals("Quantità selezionata del prodotto non presente in magazzino", ex.getMessage());
         }
 
-        // Verifica che il servizio fetchByIdProdotto sia stato chiamato
+        // Si verifica che il servizio fetchByIdProdotto sia stato chiamato
         verify(serviceMock).fetchByIdProdotto(500);
 
-        // Verifica che l'indirizzo sia stato verificato
+        // Si verifica che l'indirizzo sia stato verificato
         verify(serviceMock).verificaIndirizzo("Via Prova", "54321", "Napoli");
     }
 
     /**
      * Caso procedi al pagamento: indirizzo verificato ma quantità nel carrello eccedente
-     * a quella del magazzino
+     * a quella del magazzino.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
+     * @throws MyServletException se si verificano errori nelle logiche di business della servlet
      */
     @Test
     public void nonConfermaOrdinePerQuantitaEccedente() throws ServletException, IOException, MyServletException {
@@ -471,7 +506,7 @@ public class GestioneOrdineServletTest {
         carrello.add(item2);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Impostiamo il path per procedi al pagamento
+        // Imposta il path per procedi al pagamento
         when(requestMock.getServletPath()).thenReturn("/procedi-al-pagamento");
 
         // Parametri validi per spedizione e pagamento
@@ -488,7 +523,7 @@ public class GestioneOrdineServletTest {
         when(requestMock.getParameter("cvv")).thenReturn("789");
         when(requestMock.getParameter("metodoSpedizione")).thenReturn("Standard");
 
-        // Simuliamo il metodo di spedizione
+        // Simula il metodo di spedizione
         MetodoSpedizione metodo = new MetodoSpedizione();
         metodo.setNome("Standard");
         metodo.setCosto(5.0);
@@ -497,7 +532,7 @@ public class GestioneOrdineServletTest {
         // Indirizzo verificato
         when(serviceMock.verificaIndirizzo("Via Libertà", "33333", "Napoli")).thenReturn(true);
 
-        // Simuliamo i prodotti
+        // Simula i prodotti
         Prodotto prodotto1 = new Prodotto();
         prodotto1.setQuantità(10); // Quantità sufficiente
         prodotto1.setPrezzo(50.0);
@@ -516,9 +551,9 @@ public class GestioneOrdineServletTest {
             assertEquals("Prodotto non più disponibile nelle quantità inserite dall'utente, ordine annullato", ex.getMessage());
         }
 
-        // Verifica che nessun ordine sia stato salvato
+        // Si verifica che nessun ordine sia stato salvato
         verify(serviceMock, never()).saveOrdine(any(Ordine.class));
-        // Verifica che il carrello non sia stato rimosso
+        // Si verifica che il carrello non sia stato rimosso
         verify(sessionMock, never()).removeAttribute("carrello");
     }
 
@@ -526,6 +561,10 @@ public class GestioneOrdineServletTest {
      * Caso procedi al pagamento: ordine confermato.
      * Simula la situazione in cui tutti i controlli siano superati, l'ordine venga salvato,
      * il carrello svuotato e si effettui il forward alla pagina di conferma.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
+     * @throws MyServletException se si verificano errori nelle logiche di business della servlet
      */
     @Test
     public void confermaOrdineCorrettamente() throws ServletException, IOException, MyServletException {
@@ -546,7 +585,7 @@ public class GestioneOrdineServletTest {
         carrello.add(item2);
         when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
 
-        // Impostiamo il path per procedi al pagamento
+        // Imposta il path per procedi al pagamento
         when(requestMock.getServletPath()).thenReturn("/procedi-al-pagamento");
 
         // Parametri validi per spedizione e pagamento
@@ -559,12 +598,12 @@ public class GestioneOrdineServletTest {
         when(requestMock.getParameter("telefono")).thenReturn("+391234567892");
         when(requestMock.getParameter("numeroCarta")).thenReturn("1111222233334444");
         when(requestMock.getParameter("nomeIntestatario")).thenReturn("Anna Verdi");
-        // Impostiamo una data futura
+        // Imposta una data futura
         when(requestMock.getParameter("scadenzaCarta")).thenReturn("12/30");
         when(requestMock.getParameter("cvv")).thenReturn("456");
         when(requestMock.getParameter("metodoSpedizione")).thenReturn("Standard");
 
-        // Simuliamo il metodo di spedizione
+        // Simula il metodo di spedizione
         MetodoSpedizione metodo = new MetodoSpedizione();
         metodo.setNome("Standard");
         metodo.setCosto(5.0);
@@ -572,7 +611,7 @@ public class GestioneOrdineServletTest {
         // Indirizzo verificato
         when(serviceMock.verificaIndirizzo("Via Nazioni", "11111", "Roma")).thenReturn(true);
 
-        // Simuliamo i prodotti
+        // Simula i prodotti
         Prodotto prodotto1 = new Prodotto();
         prodotto1.setQuantità(10);
         prodotto1.setPrezzo(30.0);
@@ -588,12 +627,12 @@ public class GestioneOrdineServletTest {
         when(serviceMock.fetchByIdProdotto(400)).thenReturn(prodotto1);
         when(serviceMock.fetchByIdProdotto(401)).thenReturn(prodotto2);
 
-        // Simuliamo il salvataggio dell'ordine ritornando un id fittizio
+        // Simula il salvataggio dell'ordine ritornando un id fittizio
         when(serviceMock.saveOrdine(any(Ordine.class))).thenReturn(999);
 
-        // Simuliamo il salvataggio degli itemOrdine (senza logica particolare)
+        // Simula il salvataggio degli itemOrdine (senza logica particolare)
         doNothing().when(serviceMock).saveItemOrdine(any(ItemOrdine.class));
-        // Simuliamo l'aggiornamento della quantità e rimozione del carrello
+        // Simula l'aggiornamento della quantità e rimozione del carrello
         doNothing().when(serviceMock).updateQuantitàProdotto(any(Prodotto.class));
         doNothing().when(serviceMock).rimuoviCarrelloServletByIdUtente(40);
 
@@ -601,10 +640,10 @@ public class GestioneOrdineServletTest {
 
         servlet.doGet(requestMock, responseMock);
 
-        // Verifica che, dopo aver effettuato l'ordine, il carrello venga rimosso dalla sessione
+        // Si verifica che, dopo aver effettuato l'ordine, il carrello venga rimosso dalla sessione
         verify(sessionMock).removeAttribute("carrello");
 
-        // Verifica che il forward avvenga verso la pagina di conferma
+        // Si verifica che il forward avvenga verso la pagina di conferma
         verify(requestDispatcherMock).forward(requestMock, responseMock);
 
         // Acquisizione dell'ordine impostato come attributo per ulteriori controlli
@@ -612,13 +651,14 @@ public class GestioneOrdineServletTest {
         verify(requestMock).setAttribute(eq("ordine"), ordineCaptor.capture());
         Ordine ordineSalvato = ordineCaptor.getValue();
         assertNotNull(ordineSalvato);
-        // Controlliamo che il totale sia corretto:
+        // Si controlla che il totale sia corretto:
         // Totale = costo spedizione (5.0) + (1*30.0) + (2*40.0) = 5 + 30 + 80 = 115.0
         assertEquals(115.0, ordineSalvato.getTotale(), 0.001);
     }
 
     /**
-     * Metodo helper per evitare di impostare tutti i parametri ogni volta e impostare solo lo stretto necessario
+     * Metodo helper per evitare di impostare tutti i parametri ogni volta e impostare solo lo stretto necessario.
+     * Imposta l'utente, il carrello e i parametri validi per il pagamento.
      */
     private void setupValidPagamentoRequest() {
         // Imposta l'utente valido
@@ -660,7 +700,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "nome" della spedizione.
+     * Caso procedi al pagamento: Test per il formato non valido del campo "nome" della spedizione.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConNomeFormatoNonValido() throws ServletException, IOException {
@@ -677,7 +720,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "cognome" della spedizione.
+     * Caso procedi al pagamento: Test per il formato non valido del campo "cognome" della spedizione.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConCognomeFormatoNonValido() throws ServletException, IOException {
@@ -700,7 +746,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "via".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "via".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConViaFormatoNonValido() throws ServletException, IOException {
@@ -717,7 +766,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "cap".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "cap".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConCapFormatoNonValido() throws ServletException, IOException {
@@ -734,7 +786,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "città".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "città".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConCittaFormatoNonValido() throws ServletException, IOException {
@@ -751,7 +806,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "numeroCivico".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "numeroCivico".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConNumeroCivicoFormatoNonValido() throws ServletException, IOException {
@@ -768,7 +826,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "telefono".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "telefono".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConTelefonoFormatoNonValido() throws ServletException, IOException {
@@ -785,7 +846,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "nomeIntestatario" della carta di credito.
+     * Caso procedi al pagamento: Test per il formato non valido del campo "nomeIntestatario" della carta di credito.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConNomeIntestatarioFormatoNonValido() throws ServletException, IOException {
@@ -802,7 +866,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "cvv".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "cvv".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConCvvFormatoNonValido() throws ServletException, IOException {
@@ -819,7 +886,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido del campo "numeroCarta".
+     * Caso procedi al pagamento: Test per il formato non valido del campo "numeroCarta".
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConNumeroCartaFormatoNonValido() throws ServletException, IOException {
@@ -836,7 +906,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per il formato non valido della data di scadenza.
+     * Caso procedi al pagamento: Test per il formato non valido della data di scadenza della carta.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConScadenzaCartaFormatoNonValido() throws ServletException, IOException {
@@ -853,7 +926,10 @@ public class GestioneOrdineServletTest {
     }
 
     /**
-     * Test per verificare che venga lanciata l'eccezione se la carta di credito è scaduta.
+     * Caso procedi al pagamento: Test per verificare che venga lanciata l'eccezione se la carta di credito è scaduta.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
      */
     @Test
     public void pagamentoConCartaScaduta() throws ServletException, IOException {

@@ -10,12 +10,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe DAO (Data Access Object) per la gestione degli oggetti associati agli ordini.
+ */
 public class ItemOrdineDAO {
-    // Salva un nuovo item ordine nel database
+
+    /**
+     * Salva un nuovo item ordine nel database.
+     *
+     * @param itemOrdine l'oggetto {@link ItemOrdine} da salvare
+     */
     public synchronized void doSave(ItemOrdine itemOrdine) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO itemordine (nome, immagine, prezzo, quantità,IdProdotto, IdOrdine) " +
+                    "INSERT INTO itemordine (nome, immagine, prezzo, quantità, IdProdotto, IdOrdine) " +
                             "VALUES (?, ?, ?, ?, ?, ?)");
 
             ps.setString(1, itemOrdine.getNome());
@@ -34,12 +42,17 @@ public class ItemOrdineDAO {
         }
     }
 
-    // Recupera una lista di item ordine per un dato id ordine dal database
+    /**
+     * Recupera una lista di oggetti ordine associati a un determinato ID ordine.
+     *
+     * @param idOrdine l'ID dell'ordine
+     * @return una lista di {@link ItemOrdine} associati all'ID ordine specificato
+     */
     public List<ItemOrdine> doRetrieveByOrdine(int idOrdine) {
         try (Connection con = ConPool.getConnection()) {
 
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT IdItemOrdine, nome, immagine, prezzo, quantità,IdProdotto, IdOrdine " +
+                    "SELECT IdItemOrdine, nome, immagine, prezzo, quantità, IdProdotto, IdOrdine " +
                             "FROM itemordine " +
                             "WHERE IdOrdine = ?");
 
