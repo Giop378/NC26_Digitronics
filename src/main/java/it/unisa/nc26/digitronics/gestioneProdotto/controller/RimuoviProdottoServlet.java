@@ -2,8 +2,8 @@ package it.unisa.nc26.digitronics.gestioneProdotto.controller;
 
 import it.unisa.nc26.digitronics.gestioneProdotto.service.GestioneProdottoService;
 import it.unisa.nc26.digitronics.gestioneProdotto.service.GestioneProdottoServiceImpl;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Utente;
 import it.unisa.nc26.digitronics.utils.MyServletException;
 import jakarta.servlet.RequestDispatcher;
@@ -29,7 +29,7 @@ import java.io.IOException;
  * viene generato un messaggio di errore.</p>
  *
  * @see GestioneProdottoService
- * @see infoProdottoService
+ * @see InfoProdottoService
  * @see MyServletException
  */
 @WebServlet(name = "DeleteProductServlet", value = "/delete-product-servlet")
@@ -43,14 +43,14 @@ public class RimuoviProdottoServlet extends HttpServlet {
     /**
      * Servizio per la gestione delle informazioni di un prodotto.
      */
-    private infoProdottoService infoProdottoService;
+    private InfoProdottoService infoProdottoService;
 
     /**
      * Costruttore di default che inizializza i servizi di gestione dei prodotti e informazioni del prodotto.
      */
     public RimuoviProdottoServlet() {
         this.modificaProdottoService = new GestioneProdottoServiceImpl();
-        this.infoProdottoService = new infoProdottoServiceImpl();
+        this.infoProdottoService = new InfoProdottoServiceImpl();
     }
 
     /**
@@ -67,7 +67,7 @@ public class RimuoviProdottoServlet extends HttpServlet {
      *
      * @param infoProdottoService il servizio di gestione delle informazioni del prodotto
      */
-    public void setInfoProdottoService(infoProdottoService infoProdottoService) {
+    public void setInfoProdottoService(InfoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 

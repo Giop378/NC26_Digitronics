@@ -31,25 +31,39 @@
 
     <h3>Dati della Spedizione</h3>
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" value="<%= request.getAttribute("nome") != null ? request.getAttribute("nome") : "" %>" required pattern="[a-zA-Z ]+" title="Inserisci solo lettere e spazi">
+    <input type="text" id="nome" name="nome" value="<%= request.getAttribute("nome") != null ? request.getAttribute("nome") : "" %>"
+           required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
+           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
 
     <label for="cognome">Cognome:</label>
-    <input type="text" id="cognome" name="cognome" value="<%= request.getAttribute("cognome") != null ? request.getAttribute("cognome") : "" %>" required pattern="[a-zA-Z ]+" title="Inserisci solo lettere e spazi">
+    <input type="text" id="cognome" name="cognome" value="<%= request.getAttribute("cognome") != null ? request.getAttribute("cognome") : "" %>"
+           required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
+           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
 
     <label for="via">Via:</label>
-    <input type="text" id="via" name="via" required>
+    <input type="text" id="via" name="via"
+           required minlength="1" maxlength="255"
+           title="Inserisci il nome della via, da 1 a 255 caratteri.">
 
     <label for="numerocivico">Numero Civico:</label>
-    <input type="text" id="numerocivico" name="numerocivico" required pattern="[0-9]{1,4}" title="Inserisci massimo 4 numeri">
+    <input type="text" id="numerocivico" name="numerocivico"
+           required pattern="^\d{1,5}(\s?(bis|tris|[a-zA-Z]))?$"
+           title="Inserisci un numero civico composto da 1 a 5 cifre, con un eventuale suffisso come 'bis', 'tris' o una lettera.">
 
     <label for="cap">CAP:</label>
-    <input type="text" id="cap" name="cap" required pattern="[0-9]{5}" title="Inserisci esattamente 5 numeri">
+    <input type="text" id="cap" name="cap"
+           required pattern="^\d{5}$"
+           title="Inserisci il CAP composto esattamente 5 numeri">
 
     <label for="città">Città:</label>
-    <input type="text" id="città" name="città" required pattern="[a-zA-ZÀ-ÿ' -]{1,255}" title="Inserisci solo lettere, spazi, apostrofi o trattini. Massimo 255 caratteri.">
+    <input type="text" id="città" name="città"
+           required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
+           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
 
     <label for="telefono">Telefono:</label>
-    <input type="text" id="telefono" name="telefono" value="<%= request.getAttribute("telefono") != null ? request.getAttribute("telefono") : "" %>" pattern="[0-9]{9,15}" title="Inserisci da 9 a 15 numeri">
+    <input type="text" id="telefono" name="telefono" value="<%= request.getAttribute("telefono") != null ? request.getAttribute("telefono") : "" %>"
+           pattern="^\+?[1-9]\d{1,14}$"
+           title="Inserisci un numero di telefono valido, con un massimo di 15 cifre. Può includere un prefisso '+'.">
 
     <% List<MetodoSpedizione> metodiSpedizione = (List<MetodoSpedizione>) request.getAttribute("metodiSpedizione"); %>
     <label for="metodoSpedizione">Metodo di Spedizione:</label>
@@ -75,15 +89,15 @@
            oninput="formatCardNumber(this)">
 
     <label for="nomeIntestatario">Nome Intestatario:</label>
-    <input type="text" id="nomeIntestatario" name="nomeIntestatario" required pattern="[a-zA-Z ]+"
+    <input type="text" id="nomeIntestatario" name="nomeIntestatario" required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
            placeholder="Mario Rossi"
-           title="Inserisci solo lettere e spazi">
+           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
 
     <div class="payment-row">
       <div class="field">
         <label for="scadenzaCarta">Scadenza (MM/YY):</label>
         <input type="text" id="scadenzaCarta" name="scadenzaCarta" maxlength="5" required
-               pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+               pattern="^(0[1-9]|1[0-2])\/[0-9]{2}$"
                placeholder="MM/YY"
                title="Inserisci una data nel formato MM/YY"
                oninput="formatExpirationDate(this)">
@@ -91,7 +105,7 @@
       <div class="field">
         <label for="cvv">CVV:</label>
         <input type="text" id="cvv" name="cvv" maxlength="3" required
-               pattern="[0-9]{3}"
+               pattern="^[0-9]{3}$"
                placeholder="123"
                title="Inserisci esattamente 3 cifre">
       </div>

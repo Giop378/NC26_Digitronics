@@ -1,9 +1,7 @@
 package it.unisa.nc26.digitronics.infoProdotto.controller;
 
-import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneService;
-import it.unisa.nc26.digitronics.gestioneRecensione.service.RecensioneServiceImpl;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.model.bean.Recensione;
 import it.unisa.nc26.digitronics.utils.MyServletException;
@@ -20,14 +18,14 @@ import java.util.List;
 @WebServlet("/dettagliProdotto")
 public class DettagliProdottoServlet extends HttpServlet {
 
-    private infoProdottoService infoProdottoService;
+    private InfoProdottoService infoProdottoService;
 
-    public void setProdottoService(infoProdottoService infoProdottoService) {
+    public void setProdottoService(InfoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 
     public DettagliProdottoServlet() {
-        this.infoProdottoService = new infoProdottoServiceImpl();
+        this.infoProdottoService = new InfoProdottoServiceImpl();
     }
 
     @Override

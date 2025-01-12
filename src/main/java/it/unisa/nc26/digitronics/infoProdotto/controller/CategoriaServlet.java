@@ -1,7 +1,7 @@
 package it.unisa.nc26.digitronics.infoProdotto.controller;
 
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoService;
-import it.unisa.nc26.digitronics.infoProdotto.service.infoProdottoServiceImpl;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoService;
+import it.unisa.nc26.digitronics.infoProdotto.service.InfoProdottoServiceImpl;
 import it.unisa.nc26.digitronics.model.bean.Categoria;
 import it.unisa.nc26.digitronics.model.bean.Prodotto;
 import it.unisa.nc26.digitronics.utils.MyServletException;
@@ -17,13 +17,13 @@ import java.util.List;
 
 @WebServlet(name = "CategoriaServlet", value = "/categoria")
 public class CategoriaServlet extends HttpServlet {
-    private infoProdottoService infoProdottoService;
+    private InfoProdottoService infoProdottoService;
 
     public CategoriaServlet() {
-        this.infoProdottoService = new infoProdottoServiceImpl();
+        this.infoProdottoService = new InfoProdottoServiceImpl();
     }
 
-    public void setCategoryService(infoProdottoService infoProdottoService) {
+    public void setCategoryService(InfoProdottoService infoProdottoService) {
         this.infoProdottoService = infoProdottoService;
     }
 
