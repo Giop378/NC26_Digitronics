@@ -5,7 +5,6 @@ import it.unisa.nc26.digitronics.model.bean.Utente;
 import it.unisa.nc26.digitronics.registrazione.service.RegistrazioneServiceImpl;
 import it.unisa.nc26.digitronics.utils.MyServletException;
 import it.unisa.nc26.digitronics.registrazione.service.RegistrazioneService;
-import it.unisa.nc26.digitronics.registrazione.service.RegistrazioneServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,23 +17,43 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet per gestire il processo di registrazione degli utenti.
+ */
 @WebServlet("/registrazione-servlet")
 public class RegistrazioneServlet extends HttpServlet {
 
     private RegistrazioneService registrazioneService;
 
+    /**
+     * Costruttore di default. Inizializza un'istanza di RegistrazioneServiceImpl.
+     */
     public RegistrazioneServlet() {
         this.registrazioneService = new RegistrazioneServiceImpl();
     }
 
+    /**
+     * Imposta un'istanza personalizzata di RegistrazioneService.
+     *
+     * @param registrazioneService L'istanza di RegistrazioneService da impostare
+     */
     public void setRegistrazioneService(RegistrazioneService registrazioneService) {
         this.registrazioneService = registrazioneService;
     }
 
+    /**
+     * Metodo per gestire richieste GET.
+     * Verifica se un utente è già autenticato nella sessione. Se non lo è, gestisce il processo di registrazione.
+     *
+     * @param request  La richiesta HTTP
+     * @param response La risposta HTTP
+     * @throws ServletException Se si verifica un errore nella gestione della servlet
+     * @throws IOException      Se si verifica un errore di I/O
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utenteSession = (Utente) request.getSession().getAttribute("utente");
-        //se c'è già un utente nella sessione non c'è bisogno della registrazione quindi si va o all'area admin o all'area profilo utente
+        // Controlla se l'utente è già autenticato
         if (utenteSession != null) {
             if (utenteSession.isRuolo()) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/admin.jsp");
@@ -44,7 +63,8 @@ public class RegistrazioneServlet extends HttpServlet {
                 requestDispatcher.forward(request, response);
             }
         }
-        //Ora si occupa della vera e propria registrazione
+
+        // Gestione della registrazione
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String email = request.getParameter("email");
@@ -52,16 +72,16 @@ public class RegistrazioneServlet extends HttpServlet {
         LocalDate dataDiNascita;
         try {
             dataDiNascita = LocalDate.parse(request.getParameter("datadinascita"));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw new MyServletException("Data di nascita non valida");
         }
         Boolean admin = false;
 
-        //controllo i dati in input
-        if (nome == null || !nome.matches("[a-zA-Z ]+")||
-                cognome == null || !cognome.matches("[a-zA-Z ]+")||
-                email == null || !email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")||
-                password == null || password.length() < 8 ) {
+        // Validazione dei dati di input
+        if (nome == null || !nome.matches("[a-zA-Z ]+") ||
+                cognome == null || !cognome.matches("[a-zA-Z ]+") ||
+                email == null || !email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") ||
+                password == null || password.length() < 8) {
             throw new MyServletException("Dati in input non validi");
         }
 
@@ -71,22 +91,20 @@ public class RegistrazioneServlet extends HttpServlet {
         utente.setEmail(email);
         utente.setPasswordHash(password);
         utente.setDataDiNascita(dataDiNascita);
-        utente.setRuolo(admin);//In questo modo l'utente viene settato in modo automatico in utente registrato
-
+        utente.setRuolo(admin); // L'utente viene impostato come utente registrato
 
         int idUtente = registrazioneService.registraUtente(utente);
 
-        //Setto l'id dell'utente per salvarlo nella sessione
+        // Imposta l'id dell'utente nella sessione
         utente.setIdUtente(idUtente);
-
         request.getSession().setAttribute("utente", utente);
 
-        //Imposto l'id di tutti gli utenti nel carrello
+        // Aggiorna l'id degli elementi nel carrello
         List<ItemCarrello> carrelloSession = (List<ItemCarrello>) request.getSession().getAttribute("carrello");
         if(carrelloSession == null){
             carrelloSession = new ArrayList<ItemCarrello>();
         }
-        for(ItemCarrello carrello : carrelloSession){
+        for (ItemCarrello carrello : carrelloSession) {
             carrello.setIdUtente(utente.getIdUtente());
         }
         request.getSession().setAttribute("carrello", carrelloSession);
@@ -95,7 +113,17 @@ public class RegistrazioneServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    /**
+     * Metodo per gestire richieste POST.
+     * Redirige al metodo doGet per la gestione.
+     *
+     * @param request  La richiesta HTTP
+     * @param response La risposta HTTP
+     * @throws ServletException Se si verifica un errore nella gestione della servlet
+     * @throws IOException      Se si verifica un errore di I/O
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }
+

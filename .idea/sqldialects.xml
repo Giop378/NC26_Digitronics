@@ -2,5 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql/DigitronicsDB.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/test/java/it/unisa/nc26/digitronics/gestioneOrdine/controller/GestioneOrdineServletIntegrationTest.java" dialect="H2" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/database/database.sql" dialect="H2" />
   </component>
 </project>
