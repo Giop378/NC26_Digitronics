@@ -26,7 +26,7 @@ public class ProdottoDAO {
 
         try (Connection con = ConPool.getConnection()) {
 
-            PreparedStatement ps = con.prepareStatement("select idProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto");
+            PreparedStatement ps = con.prepareStatement("select IdProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto");
             ResultSet rs = ps.executeQuery();
             List<Prodotto> prodotti = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class ProdottoDAO {
      */
     public List<Prodotto> doRetrieveByCategory(String nomeCategoria){
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("select idProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto where nomecategoria=?");
+            PreparedStatement ps = con.prepareStatement("select IdProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto where nomecategoria=?");
             ps.setString(1, nomeCategoria);
             ResultSet rs = ps.executeQuery();
             List<Prodotto> prodotti = new ArrayList<>();
@@ -96,7 +96,7 @@ public class ProdottoDAO {
      */
     public List<Prodotto> doRetrieveVetrina(){
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT idProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria FROM prodotto WHERE vetrina = true ORDER BY RAND() LIMIT 8");
+            PreparedStatement ps = con.prepareStatement("SELECT IdProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria FROM prodotto WHERE vetrina = true ORDER BY RAND() LIMIT 8");
             ResultSet rs = ps.executeQuery();
             List<Prodotto> prodotti = new ArrayList<>();
 
@@ -131,7 +131,7 @@ public class ProdottoDAO {
      */
     public Prodotto doRetrieveById(int idProdotto){
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("select idProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto where idProdotto=?");
+            PreparedStatement ps = con.prepareStatement("select IdProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto where IdProdotto=?");
             ps.setInt(1, idProdotto);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
@@ -188,7 +188,7 @@ public class ProdottoDAO {
      */
     public synchronized void doUpdate(Prodotto prodotto){
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE Prodotto SET nome=?, prezzo=?, descrizione=?, immagine=?, vetrina=?, quantità=?, nomecategoria=? WHERE IdProdotto=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE prodotto SET nome=?, prezzo=?, descrizione=?, immagine=?, vetrina=?, quantità=?, nomecategoria=? WHERE IdProdotto=?");
             ps.setString(1, prodotto.getNome());
             ps.setDouble(2, prodotto.getPrezzo());
             ps.setString(3, prodotto.getDescrizione());
@@ -212,7 +212,7 @@ public class ProdottoDAO {
      */
     public List<Prodotto> doRetrieveByName(String nomeProdotto) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("select idProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto where nome LIKE ?");
+            PreparedStatement ps = con.prepareStatement("select IdProdotto, nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria from prodotto where nome LIKE ?");
             ps.setString(1, "%" + nomeProdotto + "%");
             ResultSet rs = ps.executeQuery();
             List<Prodotto> prodotti = new ArrayList<>();
@@ -247,7 +247,7 @@ public class ProdottoDAO {
      */
     public synchronized void doDelete(int idProdotto) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM prodotto WHERE idProdotto = ?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM prodotto WHERE IdProdotto = ?");
             ps.setInt(1, idProdotto);
 
             if (ps.executeUpdate() != 1) {

@@ -18,6 +18,13 @@ public class ConPool {
     private static DataSource datasource;
 
     /**
+     * Permette di sovrascrivere il datasource, utile per i test.
+     */
+    public static void setDataSource(DataSource ds) {
+        datasource = ds;
+    }
+
+    /**
      * Recupera una connessione al database dal pool tramite jdbv.
      *
      * Se il pool non è ancora stato inizializzato, viene configurato e creato.
