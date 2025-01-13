@@ -25,7 +25,7 @@ public class RecensioneDAO {
      * @throws SQLException Se si verifica un errore durante l'operazione sul database.
      */
     public void doSave(Recensione recensione) throws SQLException {
-        String sql = "INSERT INTO Recensione (Titolo, Descrizione, Punteggio, idUtente, idProdotto) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO recensione (titolo, descrizione, punteggio, IdUtente, IdProdotto) VALUES(?, ?, ?, ?, ?)";
 
         try(Connection con = ConPool.getConnection();
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
@@ -55,7 +55,7 @@ public class RecensioneDAO {
      * @throws SQLException Se si verifica un errore durante l'operazione sul database.
      */
     public Collection<Recensione> doRetrieveByProduct(int product) throws SQLException{
-        String sql = "SELECT * FROM Recensione WHERE idProdotto = ?";
+        String sql = "SELECT * FROM recensione WHERE IdProdotto = ?";
         List<Recensione> recensioni = new ArrayList<>();
 
         try(Connection con = ConPool.getConnection();
@@ -89,7 +89,7 @@ public class RecensioneDAO {
      * @throws SQLException Se si verifica un errore durante l'operazione sul database.
      */
     public Collection<Recensione> doRetrieveByUtente(int idUtente) throws SQLException{
-        String sql = "SELECT * FROM Recensione WHERE idUtente = ?";
+        String sql = "SELECT * FROM recensione WHERE IdUtente = ?";
         List<Recensione> recensioni = new ArrayList<>();
 
         try(Connection con = ConPool.getConnection();
