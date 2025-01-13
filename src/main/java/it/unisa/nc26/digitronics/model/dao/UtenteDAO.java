@@ -110,7 +110,7 @@ public class UtenteDAO {
         Utente utente = null;
 
         try (Connection connection = ConPool.getConnection()) {
-            statement = connection.prepareStatement("SELECT idUtente, nome, cognome, email, passwordhash, datadinascita, ruolo FROM utente WHERE idUtente=?");
+            statement = connection.prepareStatement("SELECT IdUtente, nome, cognome, email, passwordhash, datadinascita, ruolo FROM utente WHERE IdUtente=?");
             statement.setString(1, String.valueOf(idUtente));
             rs = statement.executeQuery();
 
