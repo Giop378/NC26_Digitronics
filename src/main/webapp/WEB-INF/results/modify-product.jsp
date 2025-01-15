@@ -7,6 +7,7 @@
     <title>Modifica del prodotto</title>
     <link rel="stylesheet" href="./css/modifyProductStyles.css">
     <script src="./script/modifyDelete.js"></script>
+    <script src="./script/validateFormModificaProdotto.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -25,32 +26,38 @@
     <h1>Modifica prodotto</h1>
     <h3>Seleziona un prodotto dalla barra di ricerca per modificarlo</h3>
 </div>
-<form action="modify-product-servlet" method="post">
+<form action="modify-product-servlet" method="post" onsubmit="return validateFormModificaProdotto(event)">
     <input type="hidden" id="id" name="id" value="0">
 
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required><br>
+    <input type="text" id="nome" name="nome" ><br>
+    <div id="nome-warning" class="warning" style="display:none; color:red;"></div><br>
 
     <label for="descrizione">Descrizione:</label>
-    <input type="text" id="descrizione" name="descrizione" required><br>
+    <input type="text" id="descrizione" name="descrizione" ><br>
+    <div id="descrizione-warning" class="warning" style="display:none; color:red;"></div><br>
 
     <label for="prezzo">Prezzo:</label>
-    <input type="number" id="prezzo" name="prezzo" min="0" step="0.01" required><br>
+    <input type="text" id="prezzo" name="prezzo"  ><br>
+    <div id="prezzo-warning" class="warning" style="display:none; color:red;"></div><br>
 
     <label for="vetrina">In Vetrina:</label>
     <input type="checkbox" id="vetrina" name="vetrina" value="true"><br>
 
 
     <label for="quantita">Quantità:</label>
-    <input type="number" id="quantita" name="quantita" required  min="1" step="1" ><br>
+    <input type="number" id="quantita" name="quantita"  ><br>
+    <div id="quantita-warning" class="warning" style="display:none; color:red;"></div><br>
 
     <label for="categoria">Categoria:</label>
-    <select id="categoria" name="nomecategoria" required>
+    <select id="categoria" name="nomecategoria" >
         <% List<Categoria> categorie = (List<Categoria>) application.getAttribute("categorie");
             for (Categoria categoria : categorie) { %>
         <option  value="<%=categoria.getNome()%>"><%=categoria.getNome()%></option>
         <% } %>
     </select><br>
+
+
 
     <input type="submit" value="Invia">
 </form>

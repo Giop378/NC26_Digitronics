@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('id').value = prodotto.idProdotto;
         document.getElementById('nome').value = prodotto.nome;
         document.getElementById('descrizione').value = prodotto.descrizione; // Aggiungi descrizione se presente nel prodotto
-        document.getElementById('prezzo').value = prodotto.prezzo;
+        document.getElementById('prezzo').value = parseFloat(prodotto.prezzo).toFixed(2);
         document.getElementById('vetrina').checked = prodotto.vetrina;
         document.getElementById('quantita').value = prodotto.quantita;
         document.getElementById('categoria').value = prodotto.nomecategoria;

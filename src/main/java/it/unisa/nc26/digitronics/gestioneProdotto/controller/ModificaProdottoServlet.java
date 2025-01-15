@@ -102,7 +102,7 @@ public class ModificaProdottoServlet extends HttpServlet {
 
             // Validazioni Prezzo
             if (prezzoStr == null || Double.parseDouble(prezzoStr) <= 0) {
-                throw new MyServletException("Il prezzo deve essere maggiore di zero");
+                throw new MyServletException("Il prezzo deve essere maggiore di zero e non deve essere vuoto");
             }
 
             // Validazione del formato del prezzo (almeno due decimali)

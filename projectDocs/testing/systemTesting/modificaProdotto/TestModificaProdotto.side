@@ -1,0 +1,1475 @@
+{
+  "id": "55119310-c9de-4e80-bc9a-0684e60ff8f8",
+  "version": "2.0",
+  "name": "TestModificaProdotto",
+  "url": "https://localhost:8443",
+  "tests": [{
+    "id": "13c43726-caf5-40fe-b1c1-dcc73b31f930",
+    "name": "TC_2.1_1",
+    "commands": [{
+      "id": "d6a44321-8825-406f-b425-660954c1205c",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8dbba50c-0726-4745-8b60-3368382df6d0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0096081d-2ccb-45f2-aabb-b36b3da46d45",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7503791123241172']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "293c5ae0-9f4d-4d8c-88b3-33c5588e0513",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7503791123241172']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "af7c71c0-39b9-4bbb-9f5e-5f770c5db980",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fee90b7a-1d78-4a0f-aa43-a4878bef1136",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7503791123241172']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "863af9a4-71f9-41d5-9c89-8b1b86ac7ba4",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7503791123241172']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a97bbbe8-e497-4bf2-b09d-3e44c3de6233",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='modify-product-servlet']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.3665611707358911']/form", "xpath:idRelative"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a8678e1-ce3e-4a0a-af11-61b461cf8e66",
+      "comment": "",
+      "command": "type",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.3665611707358911']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "add52bd3-7178-4ef7-9160-309513e01eb4",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.3665611707358911']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60918380-9f49-43ee-9411-6652d9864fd1",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=nome-warning",
+      "targets": [
+        ["id=nome-warning", "id"],
+        ["css=#nome-warning", "css:finder"],
+        ["xpath=//div[@id='nome-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.3665611707358911']/form/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"],
+        ["xpath=//div[contains(.,'Il Nome non può essere vuoto.')]", "xpath:innerText"]
+      ],
+      "value": "Il Nome non può essere vuoto."
+    }]
+  }, {
+    "id": "1abb59d9-d8f6-45ff-b0e7-80508c96f944",
+    "name": "TC_2.1_2",
+    "commands": [{
+      "id": "3b969e37-0cb2-4bd5-bd96-7dc7dc34323b",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5e3faab2-eb72-4cfe-89de-c38914da6b41",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d061d263-9b97-4141-b8b6-d707d90d7a2c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.410661945087732']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "513f83be-dbb4-4bae-b534-3dcd95a176ad",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.410661945087732']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "c0b3759f-04da-4add-8f25-bc6fe48fd8b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7dac2705-7126-46e1-a71a-687093e4cb96",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='modify-product-servlet']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/form", "xpath:idRelative"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cabc917e-6f19-4306-92e7-695eca996baa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.410661945087732']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f414402-fea6-4800-ab47-e6db4759a122",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.410661945087732']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "766e616d-6266-40af-b26e-ac7948265ae8",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=intro",
+      "targets": [
+        ["id=intro", "id"],
+        ["css=#intro", "css:finder"],
+        ["xpath=//div[@id='intro']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/div[2]", "xpath:idRelative"],
+        ["xpath=//body/div[2]", "xpath:position"]
+      ],
+      "value": "397,33"
+    }, {
+      "id": "b146fc19-1329-432f-9aae-4a4318636327",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=intro",
+      "targets": [
+        ["id=intro", "id"],
+        ["css=#intro", "css:finder"],
+        ["xpath=//div[@id='intro']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/div[2]", "xpath:idRelative"],
+        ["xpath=//body/div[2]", "xpath:position"]
+      ],
+      "value": "397,33"
+    }, {
+      "id": "63742ada-13f2-4252-896f-b7994c1a4eb0",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=intro",
+      "targets": [
+        ["id=intro", "id"],
+        ["css=#intro", "css:finder"],
+        ["xpath=//div[@id='intro']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/div[2]", "xpath:idRelative"],
+        ["xpath=//body/div[2]", "xpath:position"]
+      ],
+      "value": "397,33"
+    }, {
+      "id": "b6acddcc-d1ed-4f6d-ba4a-5653eb2c5f42",
+      "comment": "",
+      "command": "click",
+      "target": "id=abId0.17044453806934756",
+      "targets": [
+        ["id=abId0.17044453806934756", "id"],
+        ["css=#abId0\\.17044453806934756", "css:finder"],
+        ["xpath=//body[@id='abId0.17044453806934756']", "xpath:attributes"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "96b4c55c-eb0c-4047-aa59-ad6723b33877",
+      "comment": "",
+      "command": "click",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1922d7a-a358-49fb-85d9-ec01eac3d6eb",
+      "comment": "",
+      "command": "type",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": " Sony Xperia 1 VI è uno smartphone di alta gamma che unisce prestazioni avanzate e design elegante. Con il suo display OLED 4K da 6,5 pollici, offre una qualità visiva straordinaria. Dotato di una potente fotocamera tripla da 48 MP, cattura ogni dettaglio con precisione. La modalità cinematografica e le funzionalità per la registrazione video 4K rendono il dispositivo ideale per i creativi. Inoltre, l'Xperia 1 VI è equipaggiato con il processore Snapdragon 8 Gen 2, garantendo velocità e efficienza nelle applicazioni più esigenti."
+    }, {
+      "id": "151b1b8b-1fc6-4070-842c-027050c13046",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ced2cff8-7dda-4474-a77d-65a2cb06b96b",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=nome-warning",
+      "targets": [
+        ["id=nome-warning", "id"],
+        ["css=#nome-warning", "css:finder"],
+        ["xpath=//div[@id='nome-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.17044453806934756']/form/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"],
+        ["xpath=//div[contains(.,'Il Nome non può superare i 255 caratteri.')]", "xpath:innerText"]
+      ],
+      "value": "Il Nome non può superare i 255 caratteri."
+    }]
+  }, {
+    "id": "348e3853-6113-4d6e-99ee-a05dd69d8166",
+    "name": "TC_2.1_3",
+    "commands": [{
+      "id": "1ecc6d92-ceb7-41a8-9352-b83a63372147",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e1f702ee-b235-49a4-8bcf-715c2ab8defc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da3c36ef-825c-42a2-a03a-bb4abfa2cfcb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.5743489905750492']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7129465e-febc-4fc1-95e9-f27c66de5fa4",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.5743489905750492']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "3eb903c1-6b00-4f67-be69-a1a7f78cd8a9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6d183a7-2715-4f11-91ec-d7201282c4c7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.5743489905750492']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7bdc1bd-a79b-4e8b-aeaf-b378439095b4",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.5743489905750492']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f266836e-cb08-4837-87f1-7bc30d00e215",
+      "comment": "",
+      "command": "click",
+      "target": "id=abId0.0021957767599900535",
+      "targets": [
+        ["id=abId0.0021957767599900535", "id"],
+        ["css=#abId0\\.0021957767599900535", "css:finder"],
+        ["xpath=//body[@id='abId0.0021957767599900535']", "xpath:attributes"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de4392d5-317b-44ef-8295-e7cd53cb5db0",
+      "comment": "",
+      "command": "type",
+      "target": "id=descrizione",
+      "targets": [
+        ["id=descrizione", "id"],
+        ["name=descrizione", "name"],
+        ["css=#descrizione", "css:finder"],
+        ["xpath=//input[@id='descrizione']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.0021957767599900535']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fcfd41e3-c73b-4f71-b761-fcde570e62f9",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.0021957767599900535']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b7852e7-d2f6-45e5-916d-97b925e17b54",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=descrizione-warning",
+      "targets": [
+        ["id=descrizione-warning", "id"],
+        ["css=#descrizione-warning", "css:finder"],
+        ["xpath=//div[@id='descrizione-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.0021957767599900535']/form/div[2]", "xpath:idRelative"],
+        ["xpath=//form/div[2]", "xpath:position"],
+        ["xpath=//div[contains(.,'La Descrizione non può essere vuota.')]", "xpath:innerText"]
+      ],
+      "value": "La Descrizione non può essere vuota."
+    }]
+  }, {
+    "id": "0c635de5-5da0-481e-a87d-8826a4cdf838",
+    "name": "TC_2.1_4",
+    "commands": [{
+      "id": "ccbac89c-0c52-4e02-85a9-ded296f84fe9",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b45455d0-5d98-4d66-8e8b-d9263e8d153d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb695b54-88de-457a-9e11-cb0719e232d4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7123809355653326']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "be7de50c-933c-4d1c-81e2-73a678bed37a",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7123809355653326']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "30d4f595-87c4-48af-b81f-6de9771a2318",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) > .product-link",
+      "targets": [
+        ["css=.result-item:nth-child(4) > .product-link", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "17d78624-a517-4a15-bbb8-df5590da3895",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7123809355653326']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6519e3c4-f375-4eb2-8171-c2a39ca77749",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7123809355653326']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b16cde4f-669e-4033-9a41-6fc3fd48bafa",
+      "comment": "",
+      "command": "click",
+      "target": "id=abId0.6094752454357062",
+      "targets": [
+        ["id=abId0.6094752454357062", "id"],
+        ["css=#abId0\\.6094752454357062", "css:finder"],
+        ["xpath=//body[@id='abId0.6094752454357062']", "xpath:attributes"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa99e294-4c88-4594-a24b-11e2bd59990f",
+      "comment": "",
+      "command": "type",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6094752454357062']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "14357907-11ee-4f9b-a27c-79b9727198fe",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6094752454357062']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f52a6eb-f3d3-4930-88a5-83a4e3cf0d03",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=prezzo-warning",
+      "targets": [
+        ["id=prezzo-warning", "id"],
+        ["css=#prezzo-warning", "css:finder"],
+        ["xpath=//div[@id='prezzo-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6094752454357062']/form/div[3]", "xpath:idRelative"],
+        ["xpath=//form/div[3]", "xpath:position"],
+        ["xpath=//div[contains(.,'Il Prezzo non deve essere vuoto.')]", "xpath:innerText"]
+      ],
+      "value": "Il Prezzo non deve essere vuoto."
+    }]
+  }, {
+    "id": "a13e3f83-565a-4dc4-b9b7-52f29d895989",
+    "name": "TC_2.1_5",
+    "commands": [{
+      "id": "1e8d4dbe-adb6-4a58-a4dd-b6c501a1558e",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "48b09fdb-9de6-4810-a975-53b234cf920f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c3d270bc-a8fe-447d-b7d8-1b3540d91e1b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.41983371217248844']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8098c139-97e7-4a7f-a7a7-1203297e77b4",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.41983371217248844']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "d91317a7-d14d-46c4-b3d3-64eb39f87c86",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c212133-e17a-45d2-95ad-b38cf6f9be1b",
+      "comment": "",
+      "command": "click",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.7418687198777625']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d228320c-0604-4561-99a7-f524686fac07",
+      "comment": "",
+      "command": "type",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.7418687198777625']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "-1400.00"
+    }, {
+      "id": "e0c0e393-2f09-41c1-9993-6f7e75a7a452",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.7418687198777625']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "97d242ca-6126-4a75-a0f8-f8fcf4699805",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=prezzo-warning",
+      "targets": [
+        ["id=prezzo-warning", "id"],
+        ["css=#prezzo-warning", "css:finder"],
+        ["xpath=//div[@id='prezzo-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.7418687198777625']/form/div[3]", "xpath:idRelative"],
+        ["xpath=//form/div[3]", "xpath:position"],
+        ["xpath=//div[contains(.,'Il Prezzo deve essere un numero positivo.')]", "xpath:innerText"]
+      ],
+      "value": "Il Prezzo deve essere un numero positivo."
+    }]
+  }, {
+    "id": "e2439589-2fab-4172-88ab-3d90a878601c",
+    "name": "TC_2.1_6",
+    "commands": [{
+      "id": "1ee39c9d-ac88-4589-b324-f9a78b2233f9",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7286bb7b-f5d0-4471-b262-ad11a770a4f4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bfa40394-bbfe-4727-8378-49572ccfa5e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.05309080307605085']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6eeb9d73-1969-4dff-8a74-199b23c101c6",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.05309080307605085']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "8b03b252-a4ee-4c36-ba51-910df97f1184",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b29e730-1b51-494c-89e8-31428795f913",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='modify-product-servlet']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.05671081665397493']/form", "xpath:idRelative"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "572abfb7-f0f8-4018-b541-c774430e9d4e",
+      "comment": "",
+      "command": "click",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.05671081665397493']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "94948f4d-ba52-4f74-9904-ccda1d2aae5f",
+      "comment": "",
+      "command": "type",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.05671081665397493']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "1400.0"
+    }, {
+      "id": "d5049f40-634e-454e-9add-110b397c9453",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.05671081665397493']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cf525a76-9e96-4d1d-9b23-6008898a3783",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=prezzo-warning",
+      "targets": [
+        ["id=prezzo-warning", "id"],
+        ["css=#prezzo-warning", "css:finder"],
+        ["xpath=//div[@id='prezzo-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.05671081665397493']/form/div[3]", "xpath:idRelative"],
+        ["xpath=//form/div[3]", "xpath:position"],
+        ["xpath=//div[contains(.,'Il Prezzo deve avere esattamente due cifre decimali (es. 10.00).')]", "xpath:innerText"]
+      ],
+      "value": "Il Prezzo deve avere esattamente due cifre decimali (es. 10.00)."
+    }]
+  }, {
+    "id": "99ba58b9-e9bb-4cf2-bc01-0131a109ee0f",
+    "name": "TC_2.1_7",
+    "commands": [{
+      "id": "537652e4-4536-4416-8d44-edda593c857e",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b454a00c-d1f2-48c7-81b1-f1b3860d7839",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d7ffeda3-1326-4878-b68d-5ad1bb5d2d57",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.8196764218043404']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc656653-54a0-4553-8967-27fd76e3d454",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.8196764218043404']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "ca16528e-c54a-43c0-8cf2-b6502dee33cb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9189aa8-0702-40a6-aee3-53d53704f94a",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.5907142768705813']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "27087ffb-405d-4a31-883d-3c022a3ef1ec",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.5907142768705813']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c19ac20-1df0-4f74-aaeb-5af37cd9c677",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.5907142768705813']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f7eca4c-1ec9-44df-8e94-3ba065ca5dd2",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=quantita-warning",
+      "targets": [
+        ["id=quantita-warning", "id"],
+        ["css=#quantita-warning", "css:finder"],
+        ["xpath=//div[@id='quantita-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.5907142768705813']/form/div[4]", "xpath:idRelative"],
+        ["xpath=//form/div[4]", "xpath:position"],
+        ["xpath=//div[contains(.,'La Quantità non deve essere vuota.')]", "xpath:innerText"]
+      ],
+      "value": "La Quantità non deve essere vuota."
+    }]
+  }, {
+    "id": "f36c0a78-d726-4dd6-b6c4-d6d4116ec228",
+    "name": "TC_2.1_8",
+    "commands": [{
+      "id": "94cceb3b-e55e-4e88-a6a9-2b6609d4dfc9",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "69ebd5f7-a4cf-4482-bd1d-7832fc0de6ea",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "790x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e11dc8b8-d23c-40d7-85c0-c3d4c8798ed7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.8406259204411655']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25312d36-3151-483d-8304-2237de7d3e0d",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.8406259204411655']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "b3045c94-2655-4c9a-82f8-f13ee033483a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) > .product-link",
+      "targets": [
+        ["css=.result-item:nth-child(4) > .product-link", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00ec1c98-253f-4467-8162-5bb26950eb67",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.9316287800706042']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0ef0f0c-1aed-4035-8bb1-afafff192ff2",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.9316287800706042']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "9ae4dc2b-1e60-4814-ae91-1f7709911d48",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.9316287800706042']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "81e20649-d988-47f5-ad7f-9caab38fda01",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=quantita-warning",
+      "targets": [
+        ["id=quantita-warning", "id"],
+        ["css=#quantita-warning", "css:finder"],
+        ["xpath=//div[@id='quantita-warning']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.9316287800706042']/form/div[4]", "xpath:idRelative"],
+        ["xpath=//form/div[4]", "xpath:position"],
+        ["xpath=//div[contains(.,'La Quantità deve essere un numero intero maggiore di zero.')]", "xpath:innerText"]
+      ],
+      "value": "La Quantità deve essere un numero intero maggiore di zero."
+    }]
+  }, {
+    "id": "3de9d1f0-8215-4e7a-bc1f-ea33b7dfc8a2",
+    "name": "TC_2.1_9",
+    "commands": [{
+      "id": "6f68ddfd-c07c-4de9-a8c8-df5a83bc3851",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2ebbba6d-d8bc-4b80-ac94-92ad5c3f3ded",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "793x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f0188f64-bcd0-4794-8609-3eec2597309a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.771453820458045']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1c71d2d-0c3d-4bb6-a6b7-cd1dd5e0c9c2",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.771453820458045']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "7ac51a6b-900d-4f54-b9ba-c2dd9e1d2d25",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) p:nth-child(1)",
+      "targets": [
+        ["css=.result-item:nth-child(4) p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a/div/p", "xpath:idRelative"],
+        ["xpath=//div[4]/a/div/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Sony Xperia 1 VI')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5adc8526-242b-4eaf-9b0f-593a766aa66b",
+      "comment": "",
+      "command": "click",
+      "target": "id=categoria",
+      "targets": [
+        ["id=categoria", "id"],
+        ["name=nomecategoria", "name"],
+        ["css=#categoria", "css:finder"],
+        ["xpath=//select[@id='categoria']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.3953592709043823']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7937e0a5-a95a-4aae-82e1-1c56c77dd189",
+      "comment": "",
+      "command": "executeScript",
+      "target": "var selectElement = document.getElementById('categoria'); var newOption = document.createElement('option'); newOption.value = 'categoria_non_esistente'; newOption.textContent = 'Categoria Non Esistente'; selectElement.appendChild(newOption);",
+      "targets": [],
+      "value": "Categoria Non Esistente"
+    }, {
+      "id": "c4056743-5dad-4cdf-b676-2a960b2779e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=categoria",
+      "targets": [
+        ["id=categoria", "id"],
+        ["name=nomecategoria", "name"],
+        ["css=#categoria", "css:finder"],
+        ["xpath=//select[@id='categoria']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.8211981707710097']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "be4901e4-174b-4c6a-8bf3-adf95d5b2a63",
+      "comment": "",
+      "command": "select",
+      "target": "id=categoria",
+      "targets": [],
+      "value": "label=Categoria Non Esistente"
+    }, {
+      "id": "7a1b196f-f7e5-407e-95c1-7ccd4aff6e33",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.8211981707710097']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "828cb69b-ccdb-4faa-92d9-9742694cb67e",
+    "name": "TC_2.1_10",
+    "commands": [{
+      "id": "bf1da6a2-9291-4e99-a63a-0208fa16b353",
+      "comment": "",
+      "command": "open",
+      "target": "/NC26_Digitronics_war/admin-choice-servlet?choice=modifyproduct",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "979c5049-31a8-433d-aceb-0323a250edd4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "794x816",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a890bb5b-89d9-47bf-8d26-f9ffbd768b46",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7602113986354022']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd3d0697-db32-46bb-9efe-44bf34ebdacc",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7602113986354022']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "x"
+    }, {
+      "id": "ef2ac344-948f-44ee-917a-b18ba24164c7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.result-item:nth-child(4) > .product-link",
+      "targets": [
+        ["css=.result-item:nth-child(4) > .product-link", "css:finder"],
+        ["xpath=//div[@id='results']/div/div[4]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da86f885-7154-4fd1-9871-1586d81fac15",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7602113986354022']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31108b01-5f87-4545-9c30-4160fca278ea",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='abId0.7602113986354022']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2583ce7b-d366-4f9a-b0b9-b07b1dc7c85f",
+      "comment": "",
+      "command": "click",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3cc4803-51ec-4b5c-8c0e-1197a7664880",
+      "comment": "",
+      "command": "type",
+      "target": "id=prezzo",
+      "targets": [
+        ["id=prezzo", "id"],
+        ["name=prezzo", "name"],
+        ["css=#prezzo", "css:finder"],
+        ["xpath=//input[@id='prezzo']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "1500.55"
+    }, {
+      "id": "fc7937d2-38fa-4451-80e1-b76b185b5a76",
+      "comment": "",
+      "command": "click",
+      "target": "id=descrizione",
+      "targets": [
+        ["id=descrizione", "id"],
+        ["name=descrizione", "name"],
+        ["css=#descrizione", "css:finder"],
+        ["xpath=//input[@id='descrizione']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8d7204fb-885a-4b49-8da4-067c17c04288",
+      "comment": "",
+      "command": "click",
+      "target": "id=descrizione",
+      "targets": [
+        ["id=descrizione", "id"],
+        ["name=descrizione", "name"],
+        ["css=#descrizione", "css:finder"],
+        ["xpath=//input[@id='descrizione']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19665a8a-5723-41f7-8118-bff3beb8cc0d",
+      "comment": "",
+      "command": "type",
+      "target": "id=descrizione",
+      "targets": [
+        ["id=descrizione", "id"],
+        ["name=descrizione", "name"],
+        ["css=#descrizione", "css:finder"],
+        ["xpath=//input[@id='descrizione']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "Smartphone Sony 2024 con schermo 4K OLED e sistema audio 23."
+    }, {
+      "id": "9abc38bb-a84b-4245-a981-8958f9ea3119",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b930281-5ae0-407a-8b5a-e802f629d40e",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "25"
+    }, {
+      "id": "9dd02796-2d7f-476d-be7a-1614009c3a91",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a99760d-4f4d-4dbe-99e8-38c11de3190e",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "26"
+    }, {
+      "id": "2f40cf0f-1774-4fa5-b79f-c37149dd6bdb",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e37ddaa-586d-485e-a523-45fdbffa3ad8",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8138de93-8ce6-401d-8345-1586432e6e4f",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "27"
+    }, {
+      "id": "e0123ee8-b410-4a21-88e8-33a2f8363477",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e9118ff-e9e4-4e48-b122-291846200d29",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "28"
+    }, {
+      "id": "a559c484-dedc-46fe-a48c-e0051422ed41",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["name=quantita", "name"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[6]", "xpath:idRelative"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc7f6854-43cd-4123-8650-a396b1f0dea6",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(28)",
+      "targets": [
+        ["css=input:nth-child(28)", "css:finder"],
+        ["xpath=//input[@value='Invia']", "xpath:attributes"],
+        ["xpath=//body[@id='abId0.6041581972800856']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "429eb54d-c4ba-4d1c-a011-82802237b1d4",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0079832-040e-4208-8a11-e7402aa4019b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(4)",
+      "targets": [
+        ["css=h1:nth-child(4)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Operazione Riuscita')]", "xpath:innerText"]
+      ],
+      "value": "Operazione Riuscita"
+    }]
+  }],
+  "suites": [{
+    "id": "8b13a58c-f776-45f5-9a6a-7eed2cc15a01",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["13c43726-caf5-40fe-b1c1-dcc73b31f930"]
+  }],
+  "urls": ["https://localhost:8443/"],
+  "plugins": []
+}

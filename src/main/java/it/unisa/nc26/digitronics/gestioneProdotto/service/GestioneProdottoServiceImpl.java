@@ -66,12 +66,12 @@ public class GestioneProdottoServiceImpl implements GestioneProdottoService {
         // Verifica che il prodotto esista
         Prodotto prodottoEsistente = prodottoDAO.doRetrieveById(prodottoModificato.getIdProdotto());
         if (prodottoEsistente == null) {
-            throw new MyServletException("Prodotto non esistente");
+            throw new MyServletException("Prodotto non esistente. Seleziona il prodotto dalla barra di ricerca ");
         }
 
         // Verifica che la categoria esista
         if (categoriaDAO.doRetrieveByNomeCategoria(prodottoModificato.getNomeCategoria()) == null) {
-            throw new MyServletException("Categoria non esistente");
+            throw new MyServletException("Categoria non esistente.Seleziona una delle categorie proposte");
         }
 
         // Mantieni l'immagine se non fornita
