@@ -2,10 +2,10 @@
   "id": "c7c3657a-b105-4e5d-b494-1125df5a6b05",
   "version": "2.0",
   "name": "testGestioneRecensione",
-  "url": "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1",
+  "url": "https://localhost:8443/NC26_Digitronics_war/",
   "tests": [{
     "id": "2ed6d9e1-c508-42df-bedf-cb8dd85acb5d",
-    "name": "titoloRecensioneTroppoLungoError",
+    "name": "TC_3.1_1",
     "commands": [{
       "id": "d949c13a-0c80-431e-a12f-c3bf80fabed8",
       "comment": "",
@@ -174,7 +174,7 @@
     }]
   }, {
     "id": "9cafc08f-0a7d-46ee-ba1b-1b3e9c52d29d",
-    "name": "titoloRecensioneVuotoError",
+    "name": "TC_3.1_2",
     "commands": [{
       "id": "a8ab7543-8f6e-40a9-863d-d3ae50d7ec17",
       "comment": "",
@@ -287,7 +287,7 @@
     }]
   }, {
     "id": "4ddf203e-f8b5-4795-80da-108823898fbc",
-    "name": "descrizioneRecensioneVuotoError",
+    "name": "TC_3.1_3",
     "commands": [{
       "id": "49becf6d-ca76-4dd3-97f2-a25dc93287ec",
       "comment": "",
@@ -400,7 +400,7 @@
     }]
   }, {
     "id": "e0ed400a-e6dd-4b2d-847d-140caf5c2a32",
-    "name": "punteggioRecensioneNonValidoError",
+    "name": "TC_3.1_4",
     "commands": [{
       "id": "0b1eca67-026d-4225-8615-544bbce09722",
       "comment": "",
@@ -569,7 +569,7 @@
     }]
   }, {
     "id": "94428fef-ec41-4614-a92b-8b0af0734bc1",
-    "name": "recensioneValida",
+    "name": "TC_3.1_5",
     "commands": [{
       "id": "423a1fe6-0ba0-40ee-a991-49800a0a918d",
       "comment": "",
@@ -760,6 +760,139 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "9814cb68-84c7-4e3c-aa76-5c4658c30db9",
+    "name": "1: setUpTest",
+    "commands": [{
+      "id": "e27a8675-75cf-4ebe-bfe9-7646be91bbe8",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5abd8e88-ad26-484f-982b-4628feecb622",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1133x812",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1a901740-8d32-4f28-b4d1-0b18c3806193",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-access > .icon-img",
+      "targets": [
+        ["css=.icon-access > .icon-img", "css:finder"],
+        ["xpath=//img[@alt='Accedi']", "xpath:img"],
+        ["xpath=//div[2]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a1f7b954-3a06-4c91-a2ff-51a9606bf9b4",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3846ecb-feef-4a3b-8c71-2719becc8f23",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": "giovanni@gmail.com"
+    }, {
+      "id": "e202cc1c-033f-4b78-bea8-cf8abffa8c4b",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2544e86c-2c43-49a3-86f0-9361b1a65fab",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "giovanni"
+    }, {
+      "id": "81297dfe-7657-40e2-87d1-8a8b79caa314",
+      "comment": "",
+      "command": "click",
+      "target": "css=.login-button",
+      "targets": [
+        ["css=.login-button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "501b13ff-e238-4429-b6ba-baf498522f6e",
+    "name": "tearDown",
+    "commands": [{
+      "id": "b66c0a3d-476a-4ab1-8d4a-91d96e9fc05e",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e16e3f4e-caa3-4a1a-be98-09cc6e0fcf4d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1133x812",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "50aed3dd-8f1d-4fa2-9cfd-2da469472b39",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-access > .icon-img",
+      "targets": [
+        ["css=.icon-access > .icon-img", "css:finder"],
+        ["xpath=//img[@alt='Accedi']", "xpath:img"],
+        ["xpath=//div[2]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ace0160-f972-4bc8-aa2e-3f0185cf706d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.profile-button:nth-child(2)",
+      "targets": [
+        ["css=.profile-button:nth-child(2)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "17f901aa-713e-4544-9d5d-0600a43aab39",
@@ -769,6 +902,6 @@
     "timeout": 300,
     "tests": []
   }],
-  "urls": ["https://localhost:8443/", "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1"],
+  "urls": ["https://localhost:8443/", "https://localhost:8443/NC26_Digitronics_war/dettagliProdotto?id=1", "https://localhost:8443/NC26_Digitronics_war/"],
   "plugins": []
 }
