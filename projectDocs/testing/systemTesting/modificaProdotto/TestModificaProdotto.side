@@ -2,7 +2,7 @@
   "id": "55119310-c9de-4e80-bc9a-0684e60ff8f8",
   "version": "2.0",
   "name": "TestModificaProdotto",
-  "url": "https://localhost:8443",
+  "url": "https://localhost:8443/NC26_Digitronics_war/index.html",
   "tests": [{
     "id": "13c43726-caf5-40fe-b1c1-dcc73b31f930",
     "name": "TC_2.1_1",
@@ -1461,6 +1461,110 @@
       ],
       "value": "Operazione Riuscita"
     }]
+  }, {
+    "id": "9bd6c441-2680-48db-a137-631b4f188a87",
+    "name": "1.Setup",
+    "commands": [{
+      "id": "cb2be028-8689-4aeb-a0e1-80b99cf045eb",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:8443/NC26_Digitronics_war/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "80fbf805-5289-4b1a-888b-ff7b53ca58fe",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "792x818",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "76845be3-7749-4ed2-8d20-7ca1ec0613f2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-access > .icon-img",
+      "targets": [
+        ["css=.icon-access > .icon-img", "css:finder"],
+        ["xpath=//img[@alt='Accedi']", "xpath:img"],
+        ["xpath=//div[2]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1899c3b5-80fb-4e38-bf7e-a5cdbb30b696",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ccd33f7-362d-47b2-9f00-36ab8b6820ca",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": "admin@gmail.com"
+    }, {
+      "id": "84676ac0-adb5-4988-a876-1786645dda52",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ea88081-598e-4e88-bb43-80c48c669006",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin2025"
+    }, {
+      "id": "05fa9523-c6f1-4675-b6ad-f9666e00e530",
+      "comment": "",
+      "command": "click",
+      "target": "css=.login-button",
+      "targets": [
+        ["css=.login-button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8494d4fa-e227-497e-85a6-3880cc47929f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Area Amministratore')]", "xpath:innerText"]
+      ],
+      "value": "Area Amministratore"
+    }]
   }],
   "suites": [{
     "id": "8b13a58c-f776-45f5-9a6a-7eed2cc15a01",
@@ -1470,6 +1574,6 @@
     "timeout": 300,
     "tests": ["13c43726-caf5-40fe-b1c1-dcc73b31f930"]
   }],
-  "urls": ["https://localhost:8443/"],
+  "urls": ["https://localhost:8443/", "https://localhost:8443/NC26_Digitronics_war/index.html"],
   "plugins": []
 }

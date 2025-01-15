@@ -26,11 +26,11 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * <p>
  * I test verificano la corretta interazione del servizio con il database e includono:
+ * </p>
  * <ul>
  *   <li>Inserimento iniziale dei dati (categorie e prodotti).</li>
  *   <li>Verifica delle operazioni di modifica sui prodotti.</li>
  * </ul>
- * </p>
  *
  * <p><b>Prerequisiti:</b></p>
  * <ul>
