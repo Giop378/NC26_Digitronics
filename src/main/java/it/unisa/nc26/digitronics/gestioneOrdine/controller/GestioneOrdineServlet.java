@@ -119,7 +119,7 @@ public class GestioneOrdineServlet extends HttpServlet {
                     if(metodoSpedizione == null) {
                         throw new MyServletException("Metodo di spedizione non esistente");
                     }
-                    if (nome == null || cognome == null || via == null || telefono == null || metodoSpedizione == null || città == null ||
+                    if (nome == null || cognome == null || via == null || telefono == null || città == null ||
                             cap == null || numeroCivico == null || numeroCarta == null || nomeIntestatario == null ||
                             scadenzaCarta == null || cvv == null) {
                         throw new MyServletException("Tutti i campi sono obbligatori");
