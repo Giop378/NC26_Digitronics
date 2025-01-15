@@ -24,50 +24,46 @@
   <% String erroreIndirizzo = (String) request.getAttribute("erroreIndirizzo"); %>
   <% if (erroreIndirizzo != null) { %>
   <div class="errore-indirizzo">
-    <%= erroreIndirizzo %>
+    <p><%= erroreIndirizzo %></p>
   </div>
   <% } %>
-  <form class="checkout-form" action="procedi-al-pagamento" method="post">
+  <form class="checkout-form" action="procedi-al-pagamento" method="post" onsubmit="validateCheckoutForm(event)">
 
-    <h3>Dati della Spedizione</h3>
+    <h3>Dati della Spedizione(Spedizione solo in Italia)</h3>
+
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" value="<%= request.getAttribute("nome") != null ? request.getAttribute("nome") : "" %>"
-           required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
-           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
+    <input type="text" id="nome" name="nome" value="<%= request.getAttribute("nome") != null ? request.getAttribute("nome") : "" %>">
+    <p id="nome-error" class="error-message"></p>
 
     <label for="cognome">Cognome:</label>
-    <input type="text" id="cognome" name="cognome" value="<%= request.getAttribute("cognome") != null ? request.getAttribute("cognome") : "" %>"
-           required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
-           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
+    <input type="text" id="cognome" name="cognome" value="<%= request.getAttribute("cognome") != null ? request.getAttribute("cognome") : "" %>">
+    <p id="cognome-error" class="error-message"></p>
 
     <label for="via">Via:</label>
-    <input type="text" id="via" name="via"
-           required minlength="1" maxlength="255"
-           title="Inserisci il nome della via, da 1 a 255 caratteri.">
+    <input type="text" id="via" name="via">
+    <p id="via-error" class="error-message"></p>
 
     <label for="numerocivico">Numero Civico:</label>
-    <input type="text" id="numerocivico" name="numerocivico"
-           required pattern="^\d{1,5}(\s?(bis|tris|[a-zA-Z]))?$"
-           title="Inserisci un numero civico composto da 1 a 5 cifre, con un eventuale suffisso come 'bis', 'tris' o una lettera.">
+    <input type="text" id="numerocivico" name="numerocivico">
+    <p id="numerocivico-error" class="error-message"></p>
 
     <label for="cap">CAP:</label>
-    <input type="text" id="cap" name="cap"
-           required pattern="^\d{5}$"
-           title="Inserisci il CAP composto esattamente 5 numeri">
+    <input type="text" id="cap" name="cap">
+    <p id="cap-error" class="error-message"></p>
 
     <label for="città">Città:</label>
-    <input type="text" id="città" name="città"
-           required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
-           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
+    <input type="text" id="città" name="città">
+    <p id="città-error" class="error-message"></p>
 
     <label for="telefono">Telefono:</label>
-    <input type="text" id="telefono" name="telefono" value="<%= request.getAttribute("telefono") != null ? request.getAttribute("telefono") : "" %>"
-           pattern="^\+?[1-9]\d{1,14}$"
-           title="Inserisci un numero di telefono valido, con un massimo di 15 cifre. Può includere un prefisso '+'.">
+    <input type="text" id="telefono" name="telefono" value="<%= request.getAttribute("telefono") != null ? request.getAttribute("telefono") : "" %>">
+    <p id="telefono-error" class="error-message"></p>
 
-    <% List<MetodoSpedizione> metodiSpedizione = (List<MetodoSpedizione>) request.getAttribute("metodiSpedizione"); %>
+    <%
+      List<MetodoSpedizione> metodiSpedizione = (List<MetodoSpedizione>) request.getAttribute("metodiSpedizione");
+    %>
     <label for="metodoSpedizione">Metodo di Spedizione:</label>
-    <select id="metodoSpedizione" name="metodoSpedizione" required>
+    <select id="metodoSpedizione" name="metodoSpedizione">
       <% for(MetodoSpedizione metodoSpedizione : metodiSpedizione) { %>
       <option value="<%=metodoSpedizione.getNome()%>">
         <%=metodoSpedizione.getNome()%> Prezzo: €<%= String.format("%.2f", metodoSpedizione.getCosto()).replace('.', ',') %>
@@ -77,37 +73,29 @@
 
     <div class="total">
       <% double prezzoTotale = (double) request.getAttribute("prezzoTotale"); %>
-      Prezzo Totale (Spedizione esclusa): €<%= String.format("%.2f", (double) prezzoTotale).replace('.', ',') %>
+      Prezzo Totale (Spedizione esclusa): €<%= String.format("%.2f", prezzoTotale).replace('.', ',') %>
     </div>
 
     <h3>Dati del Pagamento</h3>
+
     <label for="numeroCarta">Numero Carta:</label>
-    <input type="text" id="numeroCarta" name="numeroCarta" maxlength="19" required
-           pattern="(?:\d{4} ){3}\d{4}"
-           placeholder="1234 5678 9012 3456"
-           title="Inserisci esattamente 16 cifre, separate da spazi"
-           oninput="formatCardNumber(this)">
+    <input type="text" id="numeroCarta" name="numeroCarta" maxlength="19" placeholder="1234 5678 9012 3456" oninput="formatCardNumber(this)">
+    <p id="numeroCarta-error" class="error-message"></p>
 
     <label for="nomeIntestatario">Nome Intestatario:</label>
-    <input type="text" id="nomeIntestatario" name="nomeIntestatario" required pattern="^(?!\s*$)[a-zA-Zà-ÿÀ-Ÿ\s']{1,255}$"
-           placeholder="Mario Rossi"
-           title="Inserisci solo lettere, spazi o apostrofi. Massimo 255 caratteri.">
+    <input type="text" id="nomeIntestatario" name="nomeIntestatario" placeholder="Mario Rossi">
+    <p id="nomeIntestatario-error" class="error-message"></p>
 
     <div class="payment-row">
       <div class="field">
         <label for="scadenzaCarta">Scadenza (MM/YY):</label>
-        <input type="text" id="scadenzaCarta" name="scadenzaCarta" maxlength="5" required
-               pattern="^(0[1-9]|1[0-2])\/[0-9]{2}$"
-               placeholder="MM/YY"
-               title="Inserisci una data nel formato MM/YY"
-               oninput="formatExpirationDate(this)">
+        <input type="text" id="scadenzaCarta" name="scadenzaCarta" maxlength="5" placeholder="MM/YY" oninput="formatExpirationDate(this)">
+        <p id="scadenzaCarta-error" class="error-message"></p>
       </div>
       <div class="field">
         <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" maxlength="3" required
-               pattern="^[0-9]{3}$"
-               placeholder="123"
-               title="Inserisci esattamente 3 cifre">
+        <input type="text" id="cvv" name="cvv" maxlength="3" placeholder="123">
+        <p id="cvv-error" class="error-message"></p>
       </div>
     </div>
 
@@ -115,7 +103,11 @@
   </form>
 </div>
 <%@ include file="/WEB-INF/results/footer.jsp" %>
+
+<script src="./script/validateFormCheckout.js"></script>
+
 <script>
+  // Funzione per il formatting del numero di carta e della data di scadenza
   function formatCardNumber(input) {
     let value = input.value.replace(/\D/g, '');
     input.value = value.replace(/(\d{4})/g, '$1 ').trim();

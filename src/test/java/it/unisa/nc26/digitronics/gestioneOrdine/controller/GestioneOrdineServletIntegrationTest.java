@@ -150,7 +150,8 @@ public class GestioneOrdineServletIntegrationTest {
     }
 
     /**
-     * Testa il caso in cui inizio-checkout nella servlet GestioneOrdineServlet va a buon fine
+     * Testa il caso in cui inizio-checkout nella servlet GestioneOrdineServlet va a buon fine e quindi rimanda al
+     * pagina contenente il form con tutti i parametri da inserire per svolgere l'ordine
      *
      * @throws ServletException in caso di errore nella servlet.
      * @throws IOException in caso di errore di input/output.
@@ -184,7 +185,8 @@ public class GestioneOrdineServletIntegrationTest {
     }
 
     /**
-     * Testa il caso in cui procedi-al-pagamento va a buon fine
+     * Testa il caso in cui procedi-al-pagamento va a buon fine e quindi l'ordine viene salvato, il carrello svuotato
+     * e si verifica che viene fatto il forward alla pagina di conferma
      *
      * @throws ServletException in caso di errore nella servlet.
      * @throws IOException in caso di errore di input/output.
@@ -237,7 +239,6 @@ public class GestioneOrdineServletIntegrationTest {
         // Si verifica che il forward avvenga verso la pagina di conferma
         verify(requestDispatcherMock).forward(requestMock, responseMock);
 
-        // Acquisizione dell'ordine impostato come attributo per ulteriori controlli
         ArgumentCaptor<Ordine> ordineCaptor = ArgumentCaptor.forClass(Ordine.class);
         verify(requestMock).setAttribute(eq("ordine"), ordineCaptor.capture());
         Ordine ordineSalvato = ordineCaptor.getValue();
