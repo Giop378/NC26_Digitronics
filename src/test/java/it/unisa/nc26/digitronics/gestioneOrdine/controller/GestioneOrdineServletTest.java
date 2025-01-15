@@ -329,6 +329,59 @@ public class GestioneOrdineServletTest {
     }
 
     /**
+     * Caso procedi al pagamento: metodo di spedizione non esistente.
+     * In questo caso se uno dei parametri obbligatori manca viene lanciata MyServletException.
+     *
+     * @throws ServletException in caso di errore nella servlet
+     * @throws IOException      in caso di errore di input/output
+     */
+    @Test
+    public void pagamentoConMetodoSpedizioneNonEsistente() throws ServletException, IOException {
+        Utente utente = new Utente();
+        utente.setIdUtente(20);
+        utente.setRuolo(false);
+        when(sessionMock.getAttribute("utente")).thenReturn(utente);
+
+        // Carrello con almeno un item per non cadere nel controllo iniziale sul carrello
+        ItemCarrello item = new ItemCarrello();
+        item.setIdProdotto(200);
+        item.setQuantità(1);
+        List<ItemCarrello> carrello = new ArrayList<>();
+        carrello.add(item);
+        when(sessionMock.getAttribute("carrello")).thenReturn(carrello);
+
+        // Imposta il path per procedi al pagamento
+        when(requestMock.getServletPath()).thenReturn("/procedi-al-pagamento");
+
+        // Non imposta i parametri obbligatori, ad esempio "nome" risulta null
+        when(requestMock.getParameter("nome")).thenReturn("Mario");
+        // gli altri parametri possono essere simulati come non nulli
+        when(requestMock.getParameter("cognome")).thenReturn("Rossi");
+        when(requestMock.getParameter("via")).thenReturn("Via Roma");
+        when(requestMock.getParameter("numerocivico")).thenReturn("10");
+        when(requestMock.getParameter("cap")).thenReturn("12345");
+        when(requestMock.getParameter("città")).thenReturn("Milano");
+        when(requestMock.getParameter("telefono")).thenReturn("+391234567890");
+        when(requestMock.getParameter("numeroCarta")).thenReturn("1234567812345678");
+        when(requestMock.getParameter("nomeIntestatario")).thenReturn("Mario Rossi");
+        when(requestMock.getParameter("scadenzaCarta")).thenReturn("12/30");
+        when(requestMock.getParameter("cvv")).thenReturn("123");
+        when(requestMock.getParameter("metodoSpedizione")).thenReturn("SpedizioneNonEsistente");
+        // Simula il recupero del metodo di spedizione
+        MetodoSpedizione metodo = new MetodoSpedizione();
+        metodo.setNome("SpedizioneNonEsistente");
+        metodo.setCosto(5.0);
+        when(serviceMock.fetchMetodoSpedizioneByNome("Standard")).thenReturn(null);
+
+        try {
+            servlet.doGet(requestMock, responseMock);
+            fail("MyServletException attesa per parametri mancanti");
+        } catch (MyServletException ex) {
+            assertEquals("Metodo di spedizione non esistente", ex.getMessage());
+        }
+    }
+
+    /**
      * Caso procedi al pagamento: indirizzo non verificato e quantità corretta.
      * Viene simulato che l'indirizzo inserito non è verificato.
      * In questo caso viene fatto forward alla pagina di checkout e viene impostato l'attributo "erroreIndirizzo".

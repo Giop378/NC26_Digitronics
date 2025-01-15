@@ -14,7 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class OpenStreetMapVerificaIndirizzoApiAdapterImpl implements VerificaIndirizzoApiAdapter {
 
     /**
-     * Verifica se un indirizzo composto da via, CAP e città è valido utilizzando l'API di OpenStreetMap.
+     * Verifica se un indirizzo composto da via, CAP e città è valido utilizzando l'API di OpenStreetMap. Si verificano
+     * solo indirizzi italiani
      *
      * @param via   il nome della via
      * @param cap   il codice di avviamento postale (CAP)

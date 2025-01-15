@@ -98,6 +98,7 @@ public class GestioneOrdineServlet extends HttpServlet {
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/results/checkout.jsp");
                     requestDispatcher.forward(request, response);
                     break;
+                    //Qui si procede ad elaborare i dati di spedizione e pagamento ed effettuare l'ordine
                 case "/procedi-al-pagamento":
                     // Recupera i dettagli della spedizione dell'ordine dal form e controlla se sono corretti
                     String nome, cognome, via, città, telefono, numeroCarta, nomeIntestatario, scadenzaCarta, cvv, cap, numeroCivico;
@@ -115,12 +116,27 @@ public class GestioneOrdineServlet extends HttpServlet {
                     scadenzaCarta = request.getParameter("scadenzaCarta");
                     cvv = request.getParameter("cvv");
                     metodoSpedizione = gestioneOrdineService.fetchMetodoSpedizioneByNome(request.getParameter("metodoSpedizione"));
-
-                    if (nome == null || cognome == null || via == null || telefono == null || metodoSpedizione == null || città == null ||
+                    if(metodoSpedizione == null) {
+                        throw new MyServletException("Metodo di spedizione non esistente");
+                    }
+                    if (nome == null || cognome == null || via == null || telefono == null || città == null ||
                             cap == null || numeroCivico == null || numeroCarta == null || nomeIntestatario == null ||
                             scadenzaCarta == null || cvv == null) {
                         throw new MyServletException("Tutti i campi sono obbligatori");
                     }
+
+                    // Rimozione degli spazi vuoti ad inizio e fine delle stringhe
+                    nome = nome.trim();
+                    cognome = cognome.trim();
+                    via = via.trim();
+                    numeroCivico = numeroCivico.trim();
+                    cap = cap.trim();
+                    città = città.trim();
+                    telefono = telefono.trim();
+                    numeroCarta = numeroCarta.trim();
+                    nomeIntestatario = nomeIntestatario.trim();
+                    scadenzaCarta = scadenzaCarta.trim();
+                    cvv = cvv.trim();
 
                     // Controllo dei formati per i campi della spedizione
                     if (!nome.matches("^(?!\\s*$)[a-zA-Zà-ÿÀ-Ÿ\\s']{1,255}$")) {
@@ -198,7 +214,7 @@ public class GestioneOrdineServlet extends HttpServlet {
                         }
                         request.setAttribute("prezzoTotale", prezzoTotale);
                         //Se i prodotti sono ancora nel magazzino si rimanda alla pagina di inserimento spedizione e pagamento checkout.jsp con i dati inseriti precedentemente
-                        request.setAttribute("erroreIndirizzo", "L'indirizzo di spedizione inserito non è valido. Si prega di verificarlo.");
+                        request.setAttribute("erroreIndirizzo", "L'indirizzo di spedizione inserito non è valido. Si prega di verificarlo e di inserire un indirizzo italiano.");
                         request.setAttribute("nome", nome);
                         request.setAttribute("cognome", cognome);
                         request.setAttribute("telefono", telefono);
