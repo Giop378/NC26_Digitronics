@@ -336,7 +336,7 @@ public class ModificaProdottoServletTest {
             fail("MyServletException expected");  // Dovrebbe fallire
         } catch (MyServletException e) {
             System.out.println("Eccezione catturata: " + e.getMessage());
-            assertEquals("Il prezzo deve essere maggiore di zero", e.getMessage());
+            assertEquals("Il prezzo deve essere maggiore di zero e non deve essere vuoto", e.getMessage());
         }
     }
     /**

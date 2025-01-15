@@ -62,7 +62,7 @@ public class CategoriaDAO {
      */
     public Categoria doRetrieveByNomeCategoria(String nomeCategoria) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Categoria WHERE nome = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria WHERE nome = ?");
             ps.setString(1, nomeCategoria);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {

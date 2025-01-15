@@ -18,19 +18,70 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet per gestire la funzionalità di logout degli utenti.
+ *
+ * <p>
+ * Questa servlet è responsabile di:
+ * <ul>
+ *   <li>Gestire la disconnessione degli utenti registrati.</li>
+ *   <li>Salvare lo stato del carrello per utenti non amministratori.</li>
+ *   <li>Invalidare la sessione corrente.</li>
+ *   <li>Reindirizzare l'utente alla pagina principale.</li>
+ * </ul>
+ * </p>
+ *
+ * <p><b>Annotazioni:</b></p>
+ * <ul>
+ *   <li>{@code @WebServlet}: Definisce il nome e il percorso della servlet.</li>
+ * </ul>
+ */
 @WebServlet(name = "LogoutServlet", value = "/logout")
 public class LogoutServlet extends HttpServlet {
-
+    /**
+     * Servizio di autenticazione utilizzato per la gestione del carrello e altre funzionalità.
+     */
     private AutenticazioneService autenticazioneService;
 
+    /**
+     * Costruttore della servlet. Inizializza il servizio di autenticazione con l'implementazione predefinita.
+     */
     public LogoutServlet() {
         this.autenticazioneService = new AutenticazioneServiceImpl();
     }
 
+    /**
+     * Metodo per impostare un'istanza personalizzata del servizio di autenticazione.
+     *
+     * <p>Questo metodo è utile per l'iniezione di dipendenze nei test.</p>
+     *
+     * @param autenticazioneService il servizio di autenticazione da utilizzare.
+     */
     public void setAutenticazioneService(AutenticazioneService autenticazioneService) {
         this.autenticazioneService = autenticazioneService;
     }
-
+    /**
+     * Gestisce le richieste HTTP GET per la disconnessione dell'utente.
+     *
+     * <p><b>Logica di funzionamento:</b></p>
+     * <ul>
+     *   <li>Verifica se l'utente è registrato; in caso contrario, lancia un'eccezione.</li>
+     *   <li>Per utenti non amministratori:
+     *     <ul>
+     *       <li>Elimina il carrello dell'utente dal database.</li>
+     *       <li>Salva lo stato corrente del carrello della sessione nel database.</li>
+     *     </ul>
+     *   </li>
+     *   <li>Invalida la sessione corrente.</li>
+     *   <li>Reindirizza l'utente alla pagina principale.</li>
+     * </ul>
+     *
+     * @param request  l'oggetto {@link HttpServletRequest} contenente i dati della richiesta.
+     * @param response l'oggetto {@link HttpServletResponse} per inviare la risposta al client.
+     * @throws ServletException se si verifica un errore nella servlet.
+     * @throws IOException se si verifica un errore di I/O.
+     * @throws MyServletException se l'utente non è registrato.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -66,6 +117,15 @@ public class LogoutServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+
+    /**
+     * Gestisce le richieste HTTP POST chiamando il metodo {@link #doGet(HttpServletRequest, HttpServletResponse)}.
+     *
+     * @param request  l'oggetto {@link HttpServletRequest} contenente i dati della richiesta.
+     * @param response l'oggetto {@link HttpServletResponse} per inviare la risposta al client.
+     * @throws ServletException se si verifica un errore nella servlet.
+     * @throws IOException se si verifica un errore di I/O.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
