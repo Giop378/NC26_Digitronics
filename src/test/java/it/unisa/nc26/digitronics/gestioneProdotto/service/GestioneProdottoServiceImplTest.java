@@ -80,7 +80,7 @@ public class GestioneProdottoServiceImplTest {
             gestioneProdottoService.modificaProdotto(prodottoModificato);
             fail("Doveva essere lanciata un'eccezione");
         } catch (MyServletException e) {
-            assertEquals("Prodotto non esistente", e.getMessage());
+            assertEquals("Prodotto non esistente. Seleziona il prodotto dalla barra di ricerca", e.getMessage().trim());
         }
     }
 
@@ -104,7 +104,7 @@ public class GestioneProdottoServiceImplTest {
             gestioneProdottoService.modificaProdotto(prodottoModificato);
             fail("Doveva essere lanciata un'eccezione");
         } catch (MyServletException e) {
-            assertEquals("Categoria non esistente", e.getMessage());
+            assertEquals("Categoria non esistente.Seleziona una delle categorie proposte", e.getMessage());
         }
     }
 
