@@ -21,15 +21,13 @@ import java.util.List;
 /**
  * Servlet per gestire la funzionalità di logout degli utenti.
  *
- * <p>
- * Questa servlet è responsabile di:
+ * <p>Questa servlet è responsabile di:</p>
  * <ul>
  *   <li>Gestire la disconnessione degli utenti registrati.</li>
  *   <li>Salvare lo stato del carrello per utenti non amministratori.</li>
  *   <li>Invalidare la sessione corrente.</li>
  *   <li>Reindirizzare l'utente alla pagina principale.</li>
  * </ul>
- * </p>
  *
  * <p><b>Annotazioni:</b></p>
  * <ul>

@@ -31,13 +31,12 @@ import static org.mockito.Mockito.verify;
  * Questa classe verifica il corretto funzionamento della servlet responsabile
  * della modifica dei prodotti tramite interazione con un database H2 in memoria.
  *
- * <p>
- * I test includono:
+ * <p>I test includono:</p>
  * <ul>
  *   <li>Preparazione dell'ambiente con un database H2 in memoria e script SQL.</li>
  *   <li>Test di successo della modifica di un prodotto con parametri validi.</li>
  * </ul>
- * </p>
+ *
  *
  * <p><b>Prerequisiti:</b></p>
  * <ul>
