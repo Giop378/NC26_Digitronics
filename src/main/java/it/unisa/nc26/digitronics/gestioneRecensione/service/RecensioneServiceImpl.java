@@ -74,13 +74,13 @@ public class RecensioneServiceImpl implements RecensioneService {
     /**
      * Recupera tutte le recensioni effettuate da un utente specifico.
      *
-     * @param idProdotto ID dell'utente di cui recuperare le recensioni.
+     * @param idUtente ID dell'utente di cui recuperare le recensioni.
      * @return Una collezione di oggetti {@link Recensione} effettuati dall'utente specificato.
      * @throws SQLException Se si verifica un errore durante l'operazione sul database.
      */
     @Override
-    public Collection<Recensione> fetchByUtente(int idProdotto) throws SQLException {
-        return recensioneDAO.doRetrieveByUtente(idProdotto);
+    public Collection<Recensione> fetchByUtente(int idUtente) throws SQLException {
+        return recensioneDAO.doRetrieveByUtente(idUtente);
     }
 
 }

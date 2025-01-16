@@ -33,11 +33,11 @@ public interface RecensioneService {
     /**
      * Recupera tutte le recensioni effettuate da un utente specifico.
      *
-     * @param idProdotto L'ID dell'utente di cui recuperare le recensioni.
+     * @param idUtente L'ID dell'utente di cui recuperare le recensioni.
      * @return Una collezione di oggetti {@link Recensione} effettuati dall'utente specificato.
      * @throws SQLException Se si verifica un errore durante l'operazione sul database.
      */
-    Collection<Recensione> fetchByUtente(int idProdotto) throws SQLException;
+    Collection<Recensione> fetchByUtente(int idUtente) throws SQLException;
 
 
 }
