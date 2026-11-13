@@ -1,184 +1,166 @@
 # Digitronics
 
-Digitronics is a full-stack e-commerce web application developed in **Java 21** using **Jakarta Servlets**, **JSP**, **MySQL** and **Maven**.
+[![CI](https://github.com/Giop378/NC26_Digitronics/actions/workflows/ci.yml/badge.svg)](https://github.com/Giop378/NC26_Digitronics/actions/workflows/ci.yml)
 
-The project was developed as part of a university software engineering course at the **University of Salerno** and focuses on the design, implementation and testing of a complete web application using a layered architecture.
+Digitronics is a full-stack e-commerce web application for consumer electronics, written in **Java 21** with **Jakarta Servlets**, **JSP**, **MySQL** and **Maven**, and deployed on **Apache Tomcat 10.1**.
 
-## Features
+It was first developed as a team project for the Software Engineering course at the **University of Salerno**. It is now the subject of the **Software Dependability** course project, which applies the techniques from the [course labs](https://github.com/dardin88/swd-labs) (CI/CD, containerization, testing, coverage and mutation testing, JML, microbenchmarking, security analysis) to it.
 
-The application includes the main features of an e-commerce platform:
+---
 
-* User registration and authentication
-* Product catalog and product details
-* Product search and category browsing
-* Shopping cart management
-* Checkout and order creation
-* Order history
-* Product reviews
-* Administration features for product management
+## Quick start (Docker)
 
-## Architecture
-
-The backend is organized into functional modules such as:
-
-* `autenticazione`
-* `registrazione`
-* `gestioneCarrello`
-* `gestioneOrdine`
-* `gestioneProdotto`
-* `gestioneRecensione`
-* `infoProdotto`
-
-The application follows a layered architecture:
-
-```text
-HTTP Request
-     |
-     v
-Servlet / Controller
-     |
-     v
-Service
-     |
-     v
-DAO
-     |
-     v
-MySQL
-```
-
-The presentation layer is implemented with **JSP, CSS and JavaScript**.
-
-## Tech Stack
-
-**Backend**
-
-* Java 21
-* Jakarta Servlet API
-* JDBC
-* Apache Tomcat
-
-**Frontend**
-
-* JSP / JSTL
-* HTML
-* CSS
-* JavaScript
-
-**Database**
-
-* MySQL
-
-**Build & Dependency Management**
-
-* Maven
-* Maven Wrapper
-
-**Testing**
-
-* JUnit
-* Mockito
-* H2
-* Unit testing
-* Integration testing
-* System testing
-
-## Database
-
-The database scripts are available in the [`sql`](sql/) directory.
-
-The main schema can be created using:
-
-```text
-sql/DigitronicsDB.sql
-```
-
-Additional SQL files provide sample products, users and other seed data so that the application can be tested without manually populating the database.
-
-> All users and other information contained in the SQL seed files are dummy data created exclusively for testing purposes.
-
-## Running the Project
-
-### Requirements
-
-* JDK 21
-* MySQL
-* Apache Tomcat 10+
-
-### Setup
-
-Clone the repository:
+The only requirement is [Docker](https://docs.docker.com/get-docker/) with Docker Compose v2. You do not need to install a JDK, Maven, MySQL or Tomcat.
 
 ```bash
 git clone https://github.com/Giop378/NC26_Digitronics.git
 cd NC26_Digitronics
+
+# 1. Create the database password secret (pick any value)
+cp secrets/db_password.txt.example secrets/db_password.txt   # Windows: copy secrets\db_password.txt.example secrets\db_password.txt
+
+# 2. Build and start the application and the database
+docker compose up --build
 ```
 
-Create the MySQL database using:
+Then open **<http://localhost:8080>**.
+
+On first start, MySQL creates the `digitronics` database and loads the sample data from [`sql/`](sql/). The web container starts only after the database reports healthy.
+
+| Task | Command |
+|---|---|
+| Start in the background | `docker compose up -d --build` |
+| Follow the web app logs | `docker compose logs -f web` |
+| Stop | `docker compose down` |
+| Stop and **delete the database** (re-runs the SQL scripts next time) | `docker compose down -v` |
+
+> The SQL scripts run only when the `db_data` volume is empty. After changing a file in `sql/`, run `docker compose down -v` to reload it.
+
+### How the containers are set up
 
 ```text
-sql/DigitronicsDB.sql
+            host :8080
+                │
+┌───────────────▼──────────────┐        ┌──────────────────────────┐
+│ web                          │  JDBC  │ db                       │
+│ tomcat:10.1-jdk21 (non-root) ├───────►│ mysql:8.4                │
+│ ROOT.war                     │        │ volume: db_data          │
+└──────────────────────────────┘        └──────────────────────────┘
+         └──────── secret: db_password ────────┘
 ```
 
-Then populate it using the additional scripts available in the `sql/` directory.
+* [`Dockerfile`](Dockerfile) uses a multi-stage build: Maven builds the WAR, and only the WAR is copied into a Tomcat image that runs as an unprivileged `tomcat` user.
+* [`docker-compose.yml`](docker-compose.yml) defines the `web` and `db` services, a named volume, health checks, `restart: on-failure`, and the database password as a Docker secret.
 
-Configure the database connection according to your local MySQL installation.
+---
 
-Build the application using the Maven Wrapper:
+## Features
 
-```bash
-./mvnw clean package
+* User registration and authentication
+* Product catalog, product details, search and category browsing
+* Shopping cart management
+* Checkout and order creation, order history
+* Product reviews
+* Administration area for product management
+
+## Architecture
+
+The backend is split into functional modules (`autenticazione`, `registrazione`, `gestioneCarrello`, `gestioneOrdine`, `gestioneProdotto`, `gestioneRecensione`, `infoProdotto`). Each module follows a layered architecture:
+
+```text
+HTTP request → Servlet (controller) → Service → DAO → MySQL
 ```
 
-On Windows:
+The presentation layer is built with JSP/JSTL, CSS and JavaScript.
 
-```powershell
-mvnw.cmd clean package
+```text
+src/main/java/it/unisa/nc26/digitronics/
+├── <module>/controller   # Servlets
+├── <module>/service      # Business logic
+├── model/bean            # Domain objects
+├── model/dao             # JDBC data access
+└── utils                 # Connection pool, init servlet, ...
+src/main/webapp/          # JSP, CSS, JS, images
+src/test/                 # JUnit / Mockito / H2 tests
+sql/                      # MySQL schema and seed data
 ```
 
-Finally, deploy the generated WAR file on Apache Tomcat.
+## Tech stack
+
+| Area | Technologies |
+|---|---|
+| Backend | Java 21, Jakarta Servlet 6, JDBC, Tomcat JDBC pool |
+| Frontend | JSP / JSTL, HTML, CSS, JavaScript |
+| Database | MySQL 8 (H2 for integration tests) |
+| Build | Maven (Maven Wrapper included) |
+| Testing | JUnit 5 + JUnit 4 (vintage engine), Mockito 5, H2 |
+| Runtime | Apache Tomcat 10.1, Docker, Docker Compose |
+| CI | GitHub Actions |
+
+---
+
+## Configuration
+
+The database connection is configured with environment variables. The defaults match a local MySQL installation.
+
+| Variable | Default | Description |
+|---|---|---|
+| `DB_URL` | `jdbc:mysql://localhost:3306/digitronics?serverTimezone=<JVM timezone>` | JDBC URL |
+| `DB_USER` | `root` | Database user |
+| `DB_PASSWORD` | `root` | Database password |
+| `DB_PASSWORD_FILE` | – | Path to a file containing the password, such as a Docker secret. Takes precedence over `DB_PASSWORD`. |
+
+## Running without Docker
+
+Requirements: JDK 21, MySQL 8, Apache Tomcat 10.1.
+
+1. Create the database by running the scripts in this order:
+   `sql/DigitronicsDB.sql`, `sql/AltriInserimenti.sql`, `sql/InserimentoProdotti.sql`, `sql/Utenti.sql`.
+2. If your MySQL credentials are not `root`/`root`, set `DB_URL`, `DB_USER` and `DB_PASSWORD` in the environment Tomcat runs in (for example in `bin/setenv.sh` or `bin/setenv.bat`).
+3. Build the WAR:
+   ```bash
+   ./mvnw clean package        # Windows: mvnw.cmd clean package
+   ```
+4. Copy `target/digitronics.war` to Tomcat's `webapps/` directory. Rename it to `ROOT.war` to serve the app on `/`.
 
 ## Testing
 
-The project includes automated tests for several core components of the application, including:
-
-* Order management
-* Product management
-* Review management
-* Controllers
-* Services
-* Integration scenarios using H2
-
-The full Maven verification lifecycle can be executed with:
-
 ```bash
 ./mvnw clean verify
 ```
 
-## Continuous Integration
+The suite contains unit tests (Mockito) and integration tests (in-memory H2 database) for the order, product and review modules. Test reports are written to `target/surefire-reports/`.
 
-The repository includes a Travis CI configuration that automatically executes:
+## Continuous integration
 
-```bash
-./mvnw clean verify
-```
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs `./mvnw clean verify` on JDK 21 for every push and pull request to `main`/`master`. It uploads the test reports and the WAR as build artifacts.
 
-This runs the build and automated test suite.
+---
 
-## Project Documentation
+## Software Dependability project
 
-The [`projectDocs`](projectDocs/) directory contains the software engineering documentation produced during the project, including:
+Each lab report is a Markdown file in this repository and is linked here once completed.
 
-* Requirements and analysis documentation
-* Software design documentation
-* Traceability matrix
-* Testing documentation
-* System testing material
+| Lab | Topic | Report |
+|---|---|---|
+| 1 | CI/CD with GitHub Actions | `CICD.md` *(to do)* |
+| 2a | Docker, Docker Compose | `Docker.md` *(to do)* |
+| 2b | Orchestration with Minikube | *(to do)* |
+| 3 | JUnit and Mockito | *(to do)* |
+| 4 | JaCoCo, PiTest, Codecov | *(to do)* |
+| 5 | JML and OpenJML | *(to do)* |
+| 6 | JMH, JU2JMH, AMBER | *(to do)* |
+| 7 | CodeQL, secret scanning, Dependabot | *(to do)* |
+| 8 | GitGuardian, Snyk, SonarQube Cloud | *(to do)* |
 
-Generated Javadoc documentation is also available in the [`docs`](docs/) directory.
+### Notes and known limitations
 
-## Project Context
+* **HTTPS**: the original `web.xml` forced HTTPS (`CONFIDENTIAL` transport guarantee). This constraint was removed because the container serves plain HTTP on port 8080. In a real deployment, TLS should be terminated by a reverse proxy in front of Tomcat.
+* Passwords are hashed with unsalted SHA-1, and the default database credentials in `ConPool` are hard-coded fallbacks. These are deliberately left as they are, so that the security analysis labs (7–8) can detect and address them.
 
-Digitronics was developed as a **team university project at the University of Salerno**.
+## Project documentation
 
-The repository is maintained as part of my software development portfolio and documents the design, implementation and testing work carried out during the project.
+* [`projectDocs/`](projectDocs/): Software Engineering documentation (RAD, SDD, ODD, traceability matrix, testing material)
+* [`docs/`](docs/): generated Javadoc
+
+> All users and other data in the SQL seed files are dummy data created for testing purposes only.
