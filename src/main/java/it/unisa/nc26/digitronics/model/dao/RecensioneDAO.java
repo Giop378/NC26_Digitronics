@@ -124,7 +124,7 @@ public class RecensioneDAO {
      */
     public Double doRetrieveAveragePunteggio(int idProdotto) throws SQLException{
 
-        String sql = "SELECT AVG(punteggio) AS Media FROM Recensione WHERE idProdotto=?";
+        String sql = "SELECT AVG(punteggio) AS Media FROM recensione WHERE idProdotto=?";
         double result = 0;
 
         try(Connection con = ConPool.getConnection();

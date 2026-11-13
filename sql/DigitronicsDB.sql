@@ -1,6 +1,6 @@
-Drop database if exists Digitronics;
-create database Digitronics;
-use Digitronics;
+Drop database if exists digitronics;
+create database digitronics;
+use digitronics;
 
 create table categoria (
 	nome varchar(50) not null primary key,
@@ -28,7 +28,7 @@ create table utente(
     ruolo boolean not null
     );
 
-create table itemCarrello(
+create table itemcarrello(
 	IdProdotto int(5) zerofill,
     IdUtente int(10) zerofill,
     quantità int not null,

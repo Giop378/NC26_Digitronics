@@ -147,7 +147,7 @@ public class RecensioneServiceImplIntegrationTest {
         // 5. Inserimento di alcuni item nel carrello
         try (Connection connection = ConPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(
-                     "INSERT INTO itemCarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
+                     "INSERT INTO itemcarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
             ps.setInt(1, 2);
             ps.setInt(2, 1);
             ps.setInt(3, 3);
@@ -155,7 +155,7 @@ public class RecensioneServiceImplIntegrationTest {
         }
         try (Connection connection = ConPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(
-                     "INSERT INTO itemCarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
+                     "INSERT INTO itemcarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
             ps.setInt(1, 1);
             ps.setInt(2, 1);
             ps.setInt(3, 5);

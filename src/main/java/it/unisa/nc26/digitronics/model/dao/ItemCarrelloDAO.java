@@ -81,7 +81,7 @@ public class ItemCarrelloDAO {
     public synchronized void doDelete(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM itemCarrello WHERE IdUtente = ?"
+                    "DELETE FROM itemcarrello WHERE IdUtente = ?"
             );
             ps.setInt(1, idUtente);
             int rowsDeleted = ps.executeUpdate();

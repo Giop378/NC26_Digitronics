@@ -1,0 +1,55 @@
+services:
+  db:
+    image: mysql:8.4
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: digitronics
+      MYSQL_USER: digitronics
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    secrets:
+      - db_password
+    volumes:
+      - db_data:/var/lib/mysql
+      # Eseguiti in ordine alfabetico solo al primo avvio (volume vuoto)
+      - ./sql/DigitronicsDB.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./sql/AltriInserimenti.sql:/docker-entrypoint-initdb.d/02_categorie_spedizioni.sql:ro
+      - ./sql/InserimentoProdotti.sql:/docker-entrypoint-initdb.d/03_prodotti.sql:ro
+      - ./sql/Utenti.sql:/docker-entrypoint-initdb.d/04_utenti.sql:ro
+    healthcheck:
+      # Via TCP: durante l'inizializzazione MySQL accetta solo il socket locale,
+      # quindi il check diventa "healthy" solo quando gli script sono stati eseguiti
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  web:
+    build: .
+    image: digitronics:latest
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: "jdbc:mysql://db:3306/digitronics?serverTimezone=UTC&allowPublicKeyRetrieval=true"
+      DB_USER: digitronics
+      DB_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080'"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+
+volumes:
+  db_data:
