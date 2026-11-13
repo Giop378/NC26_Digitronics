@@ -27,14 +27,10 @@
         <filter-name>httpHeaderSecurity</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!--Permette di rendere le pagine accessibili solo tramite https-->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>All</web-resource-name>
-            <url-pattern>/*</url-pattern>
-        </web-resource-collection>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
+    <!--
+        Il vincolo CONFIDENTIAL (redirect forzato su HTTPS) è stato rimosso:
+        nel container Tomcat espone solo HTTP sulla porta 8080 e il redirect
+        verso la 8443 rendeva il sito irraggiungibile. In produzione il TLS
+        va terminato su un reverse proxy davanti a Tomcat (vedi README.md).
+    -->
 </web-app>
