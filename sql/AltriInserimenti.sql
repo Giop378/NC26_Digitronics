@@ -1,3 +1,4 @@
+SET NAMES utf8mb4;
 use digitronics;
 -- Inserimento categorie del sito Digitronics
 INSERT INTO categoria (nome, descrizione, immagine) VALUES

@@ -1,3 +1,4 @@
+SET NAMES utf8mb4;
 -- Inserimento di smartphone
 insert into prodotto (nome, prezzo, descrizione, immagine, vetrina, quantità, nomecategoria)
 values

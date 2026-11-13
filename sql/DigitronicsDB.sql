@@ -1,3 +1,4 @@
+SET NAMES utf8mb4;
 Drop database if exists digitronics;
 create database digitronics;
 use digitronics;
