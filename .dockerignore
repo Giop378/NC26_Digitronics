@@ -1,0 +1,4 @@
+# Ignora tutto tranne ciò che serve al build
+*
+!pom.xml
+!src/
