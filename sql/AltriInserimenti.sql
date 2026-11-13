@@ -1,4 +1,4 @@
-use Digitronics;
+use digitronics;
 -- Inserimento categorie del sito Digitronics
 INSERT INTO categoria (nome, descrizione, immagine) VALUES
 ('Smartphone', 'Dispositivi mobili per comunicazione e produttività', './images/categorie/smartphone.jpg'),

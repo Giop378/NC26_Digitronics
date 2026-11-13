@@ -31,7 +31,7 @@ CREATE TABLE utente(
                        ruolo BOOLEAN NOT NULL
 );
 
-CREATE TABLE itemCarrello(
+CREATE TABLE itemcarrello(
                              IdProdotto INT,
                              IdUtente INT,
                              quantità INT NOT NULL,
