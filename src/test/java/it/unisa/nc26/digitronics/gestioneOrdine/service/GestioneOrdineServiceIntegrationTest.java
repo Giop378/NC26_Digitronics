@@ -136,7 +136,7 @@ public class GestioneOrdineServiceIntegrationTest {
         // 5. Inserimento di alcuni item nel carrello
         try (Connection connection = ConPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(
-                     "INSERT INTO itemCarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
+                     "INSERT INTO itemcarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
             ps.setInt(1, 2);
             ps.setInt(2, 1);
             ps.setInt(3, 3);
@@ -144,7 +144,7 @@ public class GestioneOrdineServiceIntegrationTest {
         }
         try (Connection connection = ConPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(
-                     "INSERT INTO itemCarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
+                     "INSERT INTO itemcarrello (IdProdotto, IdUtente, quantità) VALUES (?, ?, ?)")) {
             ps.setInt(1, 1);
             ps.setInt(2, 1);
             ps.setInt(3, 5);
@@ -243,7 +243,7 @@ public class GestioneOrdineServiceIntegrationTest {
     public void testRimuoviCarrelloServletByIdUtente() throws SQLException {
         // Verifica che esistano degli item prima della rimozione per l'utente 1
         try (Connection connection = ConPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) AS cnt FROM itemCarrello WHERE IdUtente=?")) {
+             PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) AS cnt FROM itemcarrello WHERE IdUtente=?")) {
             ps.setInt(1, 1);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -254,7 +254,7 @@ public class GestioneOrdineServiceIntegrationTest {
         service.rimuoviCarrelloServletByIdUtente(1);
         // Verifica che il carrello sia stato svuotato
         try (Connection connection = ConPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) AS cnt FROM itemCarrello WHERE IdUtente=?")) {
+             PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) AS cnt FROM itemcarrello WHERE IdUtente=?")) {
             ps.setInt(1, 1);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
