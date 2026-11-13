@@ -12,9 +12,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>21</maven.compiler.target>
-        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.release>21</maven.compiler.release>
         <junit.version>5.10.2</junit.version>
+        <mockito.version>5.14.2</mockito.version>
+        <tomcat.version>10.1.19</tomcat.version>
     </properties>
 
     <dependencies>
@@ -49,7 +50,7 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <version>10.0.17</version>
+            <version>${tomcat.version}</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -64,10 +65,12 @@
             <version>1.1.1</version>
         </dependency>
 
+        <!-- Fornito da Tomcat a runtime (es. HttpHeaderSecurityFilter nel web.xml): non va incluso nel WAR -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <version>10.1.19</version>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -77,14 +80,21 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Esegue i test JUnit 4 esistenti sulla JUnit Platform insieme a quelli JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- Mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.12.4</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -96,7 +106,18 @@
     </dependencies>
 
     <build>
+        <finalName>digitronics</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
