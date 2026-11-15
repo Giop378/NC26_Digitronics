@@ -40,3 +40,6 @@ Desktop.ini
 ### Docker secrets (non committare le password reali) ###
 secrets/*
 !secrets/*.example
+
+### SDKMAN (versione Java locale) ###
+.sdkmanrc
