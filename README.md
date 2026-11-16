@@ -1,6 +1,6 @@
 # Digitronics
 
-[![CI](https://github.com/Giop378/NC26_Digitronics/actions/workflows/ci.yml/badge.svg)](https://github.com/Giop378/NC26_Digitronics/actions/workflows/ci.yml)
+[![CI](https://github.com/Vincenzo2002/Digitronics--SD-Version/actions/workflows/ci.yml/badge.svg)](https://github.com/Vincenzo2002/Digitronics--SD-Version/actions/workflows/ci.yml)
 
 Digitronics is a full-stack e-commerce web application for consumer electronics, written in **Java 21** with **Jakarta Servlets**, **JSP**, **MySQL** and **Maven**, and deployed on **Apache Tomcat 10.1**.
 
@@ -133,7 +133,9 @@ The suite contains unit tests (Mockito) and integration tests (in-memory H2 data
 
 ## Continuous integration
 
-[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs `./mvnw clean verify` on JDK 21 for every push and pull request to `main`/`master`. It uploads the test reports and the WAR as build artifacts.
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs `./mvnw clean verify` on JDK 21 for every push to any branch and every pull request to `main`/`master`, and can also be started manually from the Actions tab. It uploads the test reports and the WAR as build artifacts.
+
+The pipeline stages and the practices used for reproducibility and code quality are described in [`CICD.md`](CICD.md).
 
 ---
 
