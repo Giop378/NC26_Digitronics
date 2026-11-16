@@ -2,7 +2,7 @@
 
 ## 1. Obiettivo
 
-La pipeline definita in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) automatizza la build e i test di Digitronics: a ogni modifica compila il progetto, esegue la suite di test e produce il WAR dell'applicazione, senza interventi manuali. Questo documento ne descrive gli stadi e spiega come garantisce la riproducibilità della build, la qualità del codice e la sicurezza della pipeline.
+La pipeline definita in [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) automatizza la build e i test di Digitronics: a ogni modifica compila il progetto, esegue la suite di test e produce il WAR dell'applicazione, senza interventi manuali. Questo documento ne descrive gli stadi e spiega come garantisce la riproducibilità della build, la qualità del codice e la sicurezza della pipeline.
 
 ## 2. Stadi
 

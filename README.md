@@ -135,7 +135,7 @@ The suite contains unit tests (Mockito) and integration tests (in-memory H2 data
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs `./mvnw clean verify` on JDK 21 for every push to any branch and every pull request to `main`/`master`, and can also be started manually from the Actions tab. It uploads the test reports and the WAR as build artifacts.
 
-The pipeline stages and the practices used for reproducibility and code quality are described in [`CICD.md`](CICD.md).
+The pipeline stages and the practices used for reproducibility and code quality are described in [`report/01_CICD.md`](report/01_CICD.md).
 
 ---
 
